@@ -1,0 +1,24 @@
+First you need to install the project dependencies, for it you have to run the following command in the current directory:
+
+pip3 install -r requirements.txt
+
+
+Also, you need to set some environment variables:
+
+NAME: roombnb
+USER: roombnb_user
+PASSWORD: <THE_DB_PASSWORD>
+HOST: 127.0.0.1
+PORT: 5432
+SECRET_KEY: <THE_SECRET_KEY>
+
+
+Finally, you need to run the migrate command in order to create the tables in database:
+
+python3 manage.py migrate
+
+
+
+To run the project:
+
+python3 manage.py runserver

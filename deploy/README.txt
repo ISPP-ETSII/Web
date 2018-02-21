@@ -1,0 +1,1 @@
+With the aim to deploy the project, first read the database instruction and then code instruction.

@@ -1,0 +1,19 @@
+In order to deploy the project, first we need to have a database. For it we will use Docker.
+
+The command to create the database is the following:
+
+sudo docker run --name postgres -p 5432:5432 -e POSTGRES_PASSWORD=<THE_PASSWORD> -e POSTGRES_USER=roombnb_user -e POSTGRES_DB=roombnb -d postgres:10
+
+
+You need to run the previous command just the first time.
+
+
+
+If you want to stop the database just type:
+
+docker stop postgres
+
+If you want to start the database:
+
+docker start postgres
+
