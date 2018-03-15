@@ -17,3 +17,9 @@ If you want to start the database:
 
 docker start postgres
 
+
+
+Para cargar la base de datos con los datos usamos "ejecutar tarea de manage.py" en Herramientas:
+
+loaddata deploy/populate.json
+
