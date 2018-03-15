@@ -1,0 +1,53 @@
+[{"model": "RoomBnB.creditcard", "pk": 1, "fields": {"owner": "1", "code": "12345677", "cvv": "123"}},
+  {"model": "RoomBnB.creditcard", "pk": 2, "fields": {"owner": "2", "code": "12345678", "cvv": "124"}},
+  {"model": "RoomBnB.creditcard", "pk": 3, "fields": {"owner": "3", "code": "12345679", "cvv": "125"}},
+  {"model": "RoomBnB.creditcard", "pk": 4, "fields": {"owner": "4", "code": "12345680", "cvv": "126"}},
+  {"model": "RoomBnB.creditcard", "pk": 5, "fields": {"owner": "5", "code": "12345680", "cvv": "126"}},
+  {"model": "RoomBnB.creditcard", "pk": 6, "fields": {"owner": "6", "code": "12345680", "cvv": "126"}},
+
+
+  {"model": "RoomBnB.profile", "pk": 1, "fields": {"user": 1, "avatar": "imagen", "credit_card": 1}},
+  {"model": "RoomBnB.profile", "pk": 2, "fields": {"user": 2, "avatar": "imagen", "credit_card": 2}},
+  {"model": "RoomBnB.profile", "pk": 3, "fields": {"user": 3, "avatar": "imagen", "credit_card": 3}},
+  {"model": "RoomBnB.profile", "pk": 4, "fields": {"user": 4, "avatar": "imagen", "credit_card": 4}},
+  {"model": "RoomBnB.profile", "pk": 5, "fields": {"user": 5, "avatar": "imagen", "credit_card": 5}},
+  {"model": "RoomBnB.profile", "pk": 6, "fields": {"user": 6, "avatar": "imagen", "credit_card": 6}},
+
+
+  {"model": "RoomBnB.flat", "pk": 1, "fields": {"description": "Piso en Bami", "pictures": "img", "owner": 1}},
+  {"model": "RoomBnB.flat", "pk": 2, "fields": {"description": "Piso en Bermejales", "pictures": "img", "owner": 2}},
+  {"model": "RoomBnB.room", "pk": 1, "fields": {"description": "Habitacion luminosa", "price": 200.0, "pictures": "img", "temporal_owner": 3, "belong_to": 1}},
+  {"model": "RoomBnB.room", "pk": 2, "fields": {"description": "Habitacion con balcon", "price": 200.0, "pictures": "img", "temporal_owner": 4, "belong_to": 1}},
+  {"model": "RoomBnB.room", "pk": 3, "fields": {"description": "Habitacion grande", "price": 200.0, "pictures": "img", "temporal_owner": 5, "belong_to": 2}},
+  {"model": "RoomBnB.room", "pk": 4, "fields": {"description": "Habitacion peque\u00f1a", "price": 200.0, "pictures": "img", "temporal_owner": 6, "belong_to": 2}},
+
+
+  {"model": "RoomBnB.contract", "pk": 1, "fields": {"picture": "img", "date_signed": "2018-03-15", "landlord": 1, "tenant": 3, "room": 1}},
+  {"model": "RoomBnB.contract", "pk": 2, "fields": {"picture": "img", "date_signed": "2018-03-15", "landlord": 1, "tenant": 4, "room": 2}},
+  {"model": "RoomBnB.contract", "pk": 3, "fields": {"picture": "img", "date_signed": "2018-03-15", "landlord": 2, "tenant": 5, "room": 3}},
+  {"model": "RoomBnB.contract", "pk": 4, "fields": {"picture": "img", "date_signed": "2018-03-15", "landlord": 2, "tenant": 6, "room": 4}},
+
+
+  {"model": "RoomBnB.payment", "pk": 1, "fields": {"amount": 200.0, "date": "2018-03-15", "credit_card": 3, "contract": 1}},
+  {"model": "RoomBnB.payment", "pk": 2, "fields": {"amount": 200.0, "date": "2018-03-15", "credit_card": 4, "contract": 2}},
+  {"model": "RoomBnB.payment", "pk": 3, "fields": {"amount": 200.0, "date": "2018-03-15", "credit_card": 5, "contract": 3}},
+  {"model": "RoomBnB.payment", "pk": 4, "fields": {"amount": 200.0, "date": "2018-03-15", "credit_card": 6, "contract": 4}},
+
+  {"model": "RoomBnB.review", "pk": 1, "fields": {"title": "Review", "description": "Review general", "date": "2018-03-15", "rating": "1"}},
+  {"model": "RoomBnB.review", "pk": 2, "fields": {"title": "Review", "description": "Review general", "date": "2018-03-15", "rating": "2"}},
+
+
+  {"model": "RoomBnB.userreview", "pk": 3, "fields": {"user": 3}},
+  {"model": "RoomBnB.userreview", "pk": 4, "fields": {"user": 4}},
+  {"model": "RoomBnB.userreview", "pk": 5, "fields": {"user": 5}},
+  {"model": "RoomBnB.userreview", "pk": 6, "fields": {"user": 6}},
+
+
+  {"model": "RoomBnB.flatreview", "pk": 7, "fields": {"flat": 1}},
+  {"model": "RoomBnB.flatreview", "pk": 8, "fields": {"flat": 2}},
+
+
+  {"model": "RoomBnB.roomreview", "pk": 9, "fields": {"room": 1}},
+  {"model": "RoomBnB.roomreview", "pk": 10, "fields": {"room": 2}},
+  {"model": "RoomBnB.roomreview", "pk": 11, "fields": {"room": 3}},
+  {"model": "RoomBnB.roomreview", "pk": 12, "fields": {"room": 4}}]

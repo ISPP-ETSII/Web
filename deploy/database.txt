@@ -17,3 +17,6 @@ If you want to start the database:
 
 docker start postgres
 
+Para cargar la base de datos con los datos usamos(Populate):
+loaddata roombnb.json
+
