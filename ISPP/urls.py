@@ -19,5 +19,4 @@ from RoomBnB import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('loaddata/', views.loaddata, name='loaddata')
 ]
