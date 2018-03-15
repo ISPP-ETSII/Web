@@ -1,5 +1,5 @@
 [
-    {
+  {
     "model": "auth.permission",
     "pk": 1,
     "fields": {
@@ -57,54 +57,54 @@
     "model": "auth.permission",
     "pk": 7,
     "fields": {
-      "name": "Can add user",
+      "name": "Can add group",
       "content_type": 3,
-      "codename": "add_user"
+      "codename": "add_group"
     }
   },
   {
     "model": "auth.permission",
     "pk": 8,
     "fields": {
-      "name": "Can change user",
+      "name": "Can change group",
       "content_type": 3,
-      "codename": "change_user"
+      "codename": "change_group"
     }
   },
   {
     "model": "auth.permission",
     "pk": 9,
     "fields": {
-      "name": "Can delete user",
+      "name": "Can delete group",
       "content_type": 3,
-      "codename": "delete_user"
+      "codename": "delete_group"
     }
   },
   {
     "model": "auth.permission",
     "pk": 10,
     "fields": {
-      "name": "Can add group",
+      "name": "Can add user",
       "content_type": 4,
-      "codename": "add_group"
+      "codename": "add_user"
     }
   },
   {
     "model": "auth.permission",
     "pk": 11,
     "fields": {
-      "name": "Can change group",
+      "name": "Can change user",
       "content_type": 4,
-      "codename": "change_group"
+      "codename": "change_user"
     }
   },
   {
     "model": "auth.permission",
     "pk": 12,
     "fields": {
-      "name": "Can delete group",
+      "name": "Can delete user",
       "content_type": 4,
-      "codename": "delete_group"
+      "codename": "delete_user"
     }
   },
   {
@@ -165,189 +165,189 @@
     "model": "auth.permission",
     "pk": 19,
     "fields": {
-      "name": "Can add contract",
+      "name": "Can add room",
       "content_type": 7,
-      "codename": "add_contract"
+      "codename": "add_room"
     }
   },
   {
     "model": "auth.permission",
     "pk": 20,
     "fields": {
-      "name": "Can change contract",
+      "name": "Can change room",
       "content_type": 7,
-      "codename": "change_contract"
+      "codename": "change_room"
     }
   },
   {
     "model": "auth.permission",
     "pk": 21,
     "fields": {
-      "name": "Can delete contract",
+      "name": "Can delete room",
       "content_type": 7,
-      "codename": "delete_contract"
+      "codename": "delete_room"
     }
   },
   {
     "model": "auth.permission",
     "pk": 22,
     "fields": {
-      "name": "Can add credit card",
+      "name": "Can add profile",
       "content_type": 8,
-      "codename": "add_creditcard"
+      "codename": "add_profile"
     }
   },
   {
     "model": "auth.permission",
     "pk": 23,
     "fields": {
-      "name": "Can change credit card",
+      "name": "Can change profile",
       "content_type": 8,
-      "codename": "change_creditcard"
+      "codename": "change_profile"
     }
   },
   {
     "model": "auth.permission",
     "pk": 24,
     "fields": {
-      "name": "Can delete credit card",
+      "name": "Can delete profile",
       "content_type": 8,
-      "codename": "delete_creditcard"
+      "codename": "delete_profile"
     }
   },
   {
     "model": "auth.permission",
     "pk": 25,
     "fields": {
-      "name": "Can add payment",
+      "name": "Can add credit card",
       "content_type": 9,
-      "codename": "add_payment"
+      "codename": "add_creditcard"
     }
   },
   {
     "model": "auth.permission",
     "pk": 26,
     "fields": {
-      "name": "Can change payment",
+      "name": "Can change credit card",
       "content_type": 9,
-      "codename": "change_payment"
+      "codename": "change_creditcard"
     }
   },
   {
     "model": "auth.permission",
     "pk": 27,
     "fields": {
-      "name": "Can delete payment",
+      "name": "Can delete credit card",
       "content_type": 9,
-      "codename": "delete_payment"
+      "codename": "delete_creditcard"
     }
   },
   {
     "model": "auth.permission",
     "pk": 28,
     "fields": {
-      "name": "Can add profile",
+      "name": "Can add payment",
       "content_type": 10,
-      "codename": "add_profile"
+      "codename": "add_payment"
     }
   },
   {
     "model": "auth.permission",
     "pk": 29,
     "fields": {
-      "name": "Can change profile",
+      "name": "Can change payment",
       "content_type": 10,
-      "codename": "change_profile"
+      "codename": "change_payment"
     }
   },
   {
     "model": "auth.permission",
     "pk": 30,
     "fields": {
-      "name": "Can delete profile",
+      "name": "Can delete payment",
       "content_type": 10,
-      "codename": "delete_profile"
+      "codename": "delete_payment"
     }
   },
   {
     "model": "auth.permission",
     "pk": 31,
     "fields": {
-      "name": "Can add review",
+      "name": "Can add flat",
       "content_type": 11,
-      "codename": "add_review"
+      "codename": "add_flat"
     }
   },
   {
     "model": "auth.permission",
     "pk": 32,
     "fields": {
-      "name": "Can change review",
+      "name": "Can change flat",
       "content_type": 11,
-      "codename": "change_review"
+      "codename": "change_flat"
     }
   },
   {
     "model": "auth.permission",
     "pk": 33,
     "fields": {
-      "name": "Can delete review",
+      "name": "Can delete flat",
       "content_type": 11,
-      "codename": "delete_review"
+      "codename": "delete_flat"
     }
   },
   {
     "model": "auth.permission",
     "pk": 34,
     "fields": {
-      "name": "Can add flat",
+      "name": "Can add contract",
       "content_type": 12,
-      "codename": "add_flat"
+      "codename": "add_contract"
     }
   },
   {
     "model": "auth.permission",
     "pk": 35,
     "fields": {
-      "name": "Can change flat",
+      "name": "Can change contract",
       "content_type": 12,
-      "codename": "change_flat"
+      "codename": "change_contract"
     }
   },
   {
     "model": "auth.permission",
     "pk": 36,
     "fields": {
-      "name": "Can delete flat",
+      "name": "Can delete contract",
       "content_type": 12,
-      "codename": "delete_flat"
+      "codename": "delete_contract"
     }
   },
   {
     "model": "auth.permission",
     "pk": 37,
     "fields": {
-      "name": "Can add flat review",
+      "name": "Can add review",
       "content_type": 13,
-      "codename": "add_flatreview"
+      "codename": "add_review"
     }
   },
   {
     "model": "auth.permission",
     "pk": 38,
     "fields": {
-      "name": "Can change flat review",
+      "name": "Can change review",
       "content_type": 13,
-      "codename": "change_flatreview"
+      "codename": "change_review"
     }
   },
   {
     "model": "auth.permission",
     "pk": 39,
     "fields": {
-      "name": "Can delete flat review",
+      "name": "Can delete review",
       "content_type": 13,
-      "codename": "delete_flatreview"
+      "codename": "delete_review"
     }
   },
   {
@@ -381,62 +381,62 @@
     "model": "auth.permission",
     "pk": 43,
     "fields": {
-      "name": "Can add room",
+      "name": "Can add room review",
       "content_type": 15,
-      "codename": "add_room"
+      "codename": "add_roomreview"
     }
   },
   {
     "model": "auth.permission",
     "pk": 44,
     "fields": {
-      "name": "Can change room",
+      "name": "Can change room review",
       "content_type": 15,
-      "codename": "change_room"
+      "codename": "change_roomreview"
     }
   },
   {
     "model": "auth.permission",
     "pk": 45,
     "fields": {
-      "name": "Can delete room",
+      "name": "Can delete room review",
       "content_type": 15,
-      "codename": "delete_room"
+      "codename": "delete_roomreview"
     }
   },
   {
     "model": "auth.permission",
     "pk": 46,
     "fields": {
-      "name": "Can add room review",
+      "name": "Can add flat review",
       "content_type": 16,
-      "codename": "add_roomreview"
+      "codename": "add_flatreview"
     }
   },
   {
     "model": "auth.permission",
     "pk": 47,
     "fields": {
-      "name": "Can change room review",
+      "name": "Can change flat review",
       "content_type": 16,
-      "codename": "change_roomreview"
+      "codename": "change_flatreview"
     }
   },
   {
     "model": "auth.permission",
     "pk": 48,
     "fields": {
-      "name": "Can delete room review",
+      "name": "Can delete flat review",
       "content_type": 16,
-      "codename": "delete_roomreview"
+      "codename": "delete_flatreview"
     }
   },
   {
     "model": "auth.user",
     "pk": 1,
     "fields": {
-      "password": "damserfer",
-      "last_login": "2018-03-15T19:46:38.360Z",
+      "password": "pbkdf2_sha256$100000$1MsgmXkj9oBp$LiC1iFTpyI1lingyDtzzC6D7j76FA9CalSerK+dzBik=",
+      "last_login": "2018-03-15T20:34:32.866Z",
       "is_superuser": false,
       "username": "damserfer",
       "first_name": "Damian",
@@ -444,7 +444,7 @@
       "email": "damian@gmail.com",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2018-03-15T19:46:38.360Z",
+      "date_joined": "2018-03-15T20:34:32.866Z",
       "groups": [
 
       ],
@@ -457,8 +457,8 @@
     "model": "auth.user",
     "pk": 2,
     "fields": {
-      "password": "carfergon",
-      "last_login": "2018-03-15T19:46:38.367Z",
+      "password": "pbkdf2_sha256$100000$iBjFHX8mm0xm$YHYe4M2cQqs9hzoyX+LaQzAVtkdyOhEEeftposiprXw=",
+      "last_login": "2018-03-15T20:34:32.950Z",
       "is_superuser": false,
       "username": "carfergon",
       "first_name": "Carlos",
@@ -466,7 +466,7 @@
       "email": "carlos@gmail.com",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2018-03-15T19:46:38.367Z",
+      "date_joined": "2018-03-15T20:34:32.950Z",
       "groups": [
 
       ],
@@ -479,8 +479,8 @@
     "model": "auth.user",
     "pk": 3,
     "fields": {
-      "password": "tansalalv",
-      "last_login": "2018-03-15T19:46:38.370Z",
+      "password": "pbkdf2_sha256$100000$mT5VZJrrOE1f$KwVJdYIud87Qfv\/hH8c3hPFKsX5GAoFsfQi4Nt6FJic=",
+      "last_login": "2018-03-15T20:34:33.018Z",
       "is_superuser": false,
       "username": "tansalalv",
       "first_name": "Tania",
@@ -488,7 +488,7 @@
       "email": "tania@gmail.com",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2018-03-15T19:46:38.370Z",
+      "date_joined": "2018-03-15T20:34:33.018Z",
       "groups": [
 
       ],
@@ -501,8 +501,8 @@
     "model": "auth.user",
     "pk": 4,
     "fields": {
-      "password": "alevazrod",
-      "last_login": "2018-03-15T19:46:38.372Z",
+      "password": "pbkdf2_sha256$100000$9vnknc2JJBby$Mxs3unQaEskhLVTcMqP3RTn1KcpcEnea5CoFyk8iNlY=",
+      "last_login": "2018-03-15T20:34:33.085Z",
       "is_superuser": false,
       "username": "alevazrod",
       "first_name": "Alejandro",
@@ -510,7 +510,7 @@
       "email": "alejandro@gmail.com",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2018-03-15T19:46:38.372Z",
+      "date_joined": "2018-03-15T20:34:33.086Z",
       "groups": [
 
       ],
@@ -523,8 +523,8 @@
     "model": "auth.user",
     "pk": 5,
     "fields": {
-      "password": "javferfer",
-      "last_login": "2018-03-15T19:46:38.374Z",
+      "password": "pbkdf2_sha256$100000$fbNnLlwJrRZ8$HYUDrz49oPZ3FBhZ1aJ6fK1SpZ8AYMrqkufBMnATLtw=",
+      "last_login": "2018-03-15T20:34:33.153Z",
       "is_superuser": false,
       "username": "javferfer",
       "first_name": "Javier",
@@ -532,7 +532,7 @@
       "email": "javier@gmail.com",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2018-03-15T19:46:38.374Z",
+      "date_joined": "2018-03-15T20:34:33.153Z",
       "groups": [
 
       ],
@@ -545,8 +545,8 @@
     "model": "auth.user",
     "pk": 6,
     "fields": {
-      "password": "pedserlun",
-      "last_login": "2018-03-15T19:46:38.376Z",
+      "password": "pbkdf2_sha256$100000$T4NVFTutZasb$2vbPcJu8Ap6GNOZ9oim1ppfT+XlJtsHmNgiGwRKe1C0=",
+      "last_login": "2018-03-15T20:34:33.221Z",
       "is_superuser": false,
       "username": "pedserlun",
       "first_name": "Pedro",
@@ -554,7 +554,7 @@
       "email": "pedro@gmail.com",
       "is_staff": false,
       "is_active": true,
-      "date_joined": "2018-03-15T19:46:38.376Z",
+      "date_joined": "2018-03-15T20:34:33.221Z",
       "groups": [
 
       ],
