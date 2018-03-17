@@ -1,7 +1,7 @@
 {% if flatList %}
     <ul>
     {% for flat in flatList %}
-        <li><a href="{% url 'flats:detail' flat.id %}">{{ flat.description }}</a></li>
+        <li><a href="{% url 'detail' flat.id %}">{{ flat.description }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
