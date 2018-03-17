@@ -15,17 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
+from RoomBnB import views
 
 
 from RoomBnB import views
 
-
-vote_ = [
+urlpatterns = [
     path('admin/', admin.site.urls),
     # ex: /flats/
     path('flats', views.list, name='list'),
     # ex: /flats/5/
     path('<int:flat_id>/', views.detail, name='detail'),
 
+
+    path('login/', auth_views.login, name='login'),
+    path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
+    path('', views.root, name='root'),
+
 ]
-urlpatterns = vote_
