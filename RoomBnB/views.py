@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 from RoomBnB.forms import FlatForm
 from RoomBnB.models import Flat
+from RoomBnB.models import Profile
 
 
 def list(request):
@@ -27,10 +28,14 @@ def get_name(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            f1= Flat(description=form.description)
+            loggedUser=request.user
+
+            profile = Profile.objects.get(user=loggedUser)
+            f1= Flat(description=form.cleaned_data.get("description"), owner=profile)
             f1.save()
-            # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
+
+
+            return HttpResponseRedirect('/flats')
 
     # if a GET (or any other method) we'll create a blank form
     else:

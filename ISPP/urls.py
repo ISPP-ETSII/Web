@@ -24,10 +24,11 @@ from RoomBnB import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # ex: /flats/
-    path('flats', views.list, name='list'),
+    path('flats', views.list, name='flatList'),
     # ex: /flats/5/
-    path('flats/<int:flat_id>/', views.detail, name='detail'),
-    path('flats/create',views.get_name, name='create'),
+    path('flats/<int:flat_id>/', views.detail, name='flatDetail'),
+    path('flats/create',views.get_name, name='flatCreate'),
+    path('flats/delete/<int:flat_id>/', views.detail, name='flatDelete'),
     path('login/', auth_views.login, name='login'),
     path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
     path('', views.root, name='root'),
