@@ -16,6 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-urlpatterns = [
+
+from RoomBnB import views
+
+
+vote_ = [
     path('admin/', admin.site.urls),
+    # ex: /flats/
+    path('flats', views.list, name='list'),
+    # ex: /flats/5/
+    path('<int:flat_id>/', views.detail, name='detail'),
+
 ]
+urlpatterns = vote_
