@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from RoomBnB.forms import FlatForm
 from RoomBnB.models import Flat
 from RoomBnB.models import Profile
+from RoomBnB.models import Room
 
 
 def list(request):
@@ -19,7 +20,8 @@ def list(request):
 
 def detail(request, flat_id):
     flat=Flat.objects.get(id=flat_id)
-    return render(request, 'flat/detail.html', {'flat': flat})
+    rooms = Room.objects.filter(belong_to=flat)
+    return render(request, 'flat/detail.html', {'flat': flat,'roomList':rooms})
 
 def get_name(request):
     # if this is a POST request we need to process the form data
