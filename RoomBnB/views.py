@@ -18,7 +18,8 @@ def list(request):
 
 
 def detail(request, flat_id):
-    return HttpResponse("You're looking at flat %s." % flat_id)
+    flat=Flat.objects.get(id=flat_id)
+    return render(request, 'flat/detail.html', {'flat': flat})
 
 def get_name(request):
     # if this is a POST request we need to process the form data
@@ -42,6 +43,15 @@ def get_name(request):
         form = FlatForm()
 
     return render(request, 'flat/create.html', {'form': form})
+
+
+def flatDelete(request, flat_id):
+    flatList = Flat.objects.all()
+    context = {'flatList': flatList}
+    flat = Flat.objects.get(id=flat_id)
+    Flat.delete(flat)
+
+    return render(request, 'flat/list.html', context)
 
 @login_required
 def root(request):
