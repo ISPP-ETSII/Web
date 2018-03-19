@@ -1,0 +1,18 @@
+language: python
+
+virtualenv:
+  system_site_packages: true
+
+python:
+    - "3.6"
+
+install:
+    - pip install -r deploy/requirements.txt
+
+sudo: required
+
+services:
+  - docker
+
+script:
+    - python manage.py test
