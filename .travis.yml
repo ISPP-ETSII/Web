@@ -1,16 +1,20 @@
-language: python
+sudo: required
 
+language: python
 
 python:
     - "3.6"
 
+services:
+  - postgresql
+  - docker
+  
+before_script:
+  - psql -c 'create database roombnb;' -U postgres
+  - python manage.py database migrate
+
 install:
     - pip install -r deploy/requirements.txt
 
-sudo: required
-
-services:
-  - docker
-
 script:
-    - python manage.py test
+    - pytest
