@@ -7,9 +7,11 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
 from RoomBnB.forms import FlatForm
+from RoomBnB.forms import ProfileForm
 from RoomBnB.models import Flat
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
+from RoomBnB.models import CreditCard
 
 
 def list(request):
@@ -23,7 +25,7 @@ def detail(request, flat_id):
     rooms = Room.objects.filter(belong_to=flat)
     return render(request, 'flat/detail.html', {'flat': flat,'roomList':rooms})
 
-def get_name(request):
+def flatCreate(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -46,6 +48,30 @@ def get_name(request):
 
     return render(request, 'flat/create.html', {'form': form})
 
+def profileCreate(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = ProfileForm(request.POST,request.FILES)
+
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            loggedUser=request.user
+
+            creditcard = CreditCard(owner=form.cleaned_data['owner'],code=form.cleaned_data['code'],cvv=form.cleaned_data['cvv'])
+            CreditCard.save(creditcard)
+            profile = Profile(user=loggedUser,avatar=form.cleaned_data['avatar'],credit_card=creditcard)
+            profile.save()
+
+
+            return HttpResponseRedirect('/flats')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = ProfileForm()
+
+    return render(request, 'profile/create.html', {'form': form})
 
 def flatDelete(request, flat_id):
     flatList = Flat.objects.all()
@@ -60,3 +86,12 @@ def root(request):
     return render(request, template_name='root.html')
 
 
+def upload_pic(request):
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            m = ExampleModel.objects.get(pk=course_id)
+            m.model_pic = form.cleaned_data['image']
+            m.save()
+            return HttpResponse('image upload success')
+    return HttpResponseForbidden('allowed only via POST')
