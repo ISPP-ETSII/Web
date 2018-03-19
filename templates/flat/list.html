@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+{% if flatList %}
+
+    <table>
+      <tr>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    {% for flat in flatList %}
+        <tr>
+            <th><a href="{% url 'flatDetail' flat.id %}">{{ flat.description }}</a> </th>
+            <th><button onclick="location.href='{% url 'flatDelete' flat.id%}'">Delete</button></th>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No flats are available.</p>
+{% endif %}
+
+<button onclick="location.href='{% url 'flatCreate' %}'">Create</button>
+<button onclick="location.href='{% url 'profileCreate' %}'">Create profile</button>
+
+{% endblock %}

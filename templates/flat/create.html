@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<button onclick="location.href='{% url 'flatList' %}'">Back</button>
+
+<form action="{% url 'flatCreate' %}" method="post">
+{% csrf_token %}
+    <label for="address">Address: </label>
+    <input id="address" type="text" name="address" value="{{ address }}">
+
+    <br>
+    <label for="description">Description: </label>
+    <input id="description" type="text" name="description" value="{{ description }}">
+
+    <input type="submit" value="Save" />
+</form>
+
+{% endblock %}

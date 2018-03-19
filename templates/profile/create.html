@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<button onclick="location.href='{% url 'flatList' %}'">Back</button>
+
+<form action="{% url 'profileCreate' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+
+    <!-- <p>
+        <label for="image">Image: </label>
+        <input id="id_image" type="file" class="" name="image">
+    </p>
+-->
+
+    {{ form.as_p }}
+    <input type="submit" value="Save" />
+</form>
+
+{% endblock %}

@@ -15,7 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
+
+
+from RoomBnB import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # ex: /flats/
+    path('flats', views.list, name='flatList'),
+    path('flats/', views.list, name='flatList'),
+    # ex: /flats/5/
+    path('flats/<int:flat_id>/', views.detail, name='flatDetail'),
+    path('flats/create',views.flatCreate, name='flatCreate'),
+    path('profile/create',views.profileCreate, name='profileCreate'),
+    path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),
+    path('login/', auth_views.login, name='login'),
+    path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
+    path('', views.base, name='base'),
+    #path('', views.root, name='root'),
+
 ]
