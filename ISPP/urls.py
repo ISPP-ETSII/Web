@@ -31,6 +31,7 @@ urlpatterns = [
     path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),
     path('login/', auth_views.login, name='login'),
     path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
-    path('', views.root, name='root'),
+    path('', views.base, name='base'),
+    #path('', views.root, name='root'),
 
 ]

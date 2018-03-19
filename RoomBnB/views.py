@@ -59,4 +59,7 @@ def flatDelete(request, flat_id):
 def root(request):
     return render(request, template_name='root.html')
 
+def base(request):
+    return render(request, template_name='static/index.html')
+
 
