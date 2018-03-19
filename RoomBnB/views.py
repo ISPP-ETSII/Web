@@ -85,6 +85,9 @@ def flatDelete(request, flat_id):
 def root(request):
     return render(request, template_name='root.html')
 
+def base(request):
+    return render(request, template_name='index.html')
+
 
 def upload_pic(request):
     if request.method == 'POST':
