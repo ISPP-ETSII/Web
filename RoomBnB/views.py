@@ -60,6 +60,6 @@ def root(request):
     return render(request, template_name='root.html')
 
 def base(request):
-    return render(request, template_name='static/index.html')
+    return render(request, template_name='index.html')
 
 
