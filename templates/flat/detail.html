@@ -12,7 +12,7 @@
     <table>
     {% for room in roomList %}
         <tr>
-            <th><a>{{ room.description }}</a> </th>
+            <th><h2>{{ room.description }}</h2> </th>
             <th>{{ room.price }} €</th>
             {% if room.temporal_onwer is None %}
                 <th><button>Alquilar</button></th>
