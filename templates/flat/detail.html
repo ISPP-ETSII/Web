@@ -1,0 +1,22 @@
+<button onclick="location.href='{% url 'flatList' %}'">Back</button>
+
+<h1>{{ flat.description }}</h1>
+
+{% if roomList %}
+
+    <table>
+    {% for room in roomList %}
+        <tr>
+            <th><a>{{ room.description }}</a> </th>
+            <th>{{ room.price }} €</th>
+            {% if room.temporal_onwer is None %}
+                <th><button>Alquilar</button></th>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No rooms are available.</p>
+{% endif %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
