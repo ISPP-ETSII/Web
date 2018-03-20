@@ -1,0 +1,14 @@
+<table>
+    {% for review in roomRev %}
+        <tr>
+            <th>{{ review.title }}</th>
+            <th>{{ review.date }}</th>
+            <th>{{ review.description }}</th>
+            <th>{{ review.rating }}</th>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<button onclick="location.href='{% url 'writeRoomReview' room.id %}'">Escribir comentario</button>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
