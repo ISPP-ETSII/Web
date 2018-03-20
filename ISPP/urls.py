@@ -20,7 +20,20 @@ from RoomBnB import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # ex: /flats/
+    path('flats', views.list, name='flatList'),
+    # ex: /flats/5/
+    path('flats/<int:flat_id>/', views.detail, name='flatDetail'),
+    path('flats/create',views.get_name, name='flatCreate'),
+    path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),
+    path('rooms/<int:room_id>/', views.detailRoom, name='roomDetail'),
+    path('roomReview/<int:room_id>/', views.roomReview, name='roomReview'),
+    path('flatReview/<int:flat_id>/', views.flatReview, name='flatReview'),
+    path('userReview/<int:user_id>/', views.userReview, name='userReview'),
+    path('ownerReview/<int:user_id>/', views.ownerReview, name='ownerReview'),
+    path('writeRoomReview/<int:room_id>/', views.writeReviewRoom, name='writeRoomReview'),
     path('login/', auth_views.login, name='login'),
     path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
     path('', views.root, name='root'),
+
 ]
