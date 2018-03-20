@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <button onclick="location.href='{% url 'flatList' %}'">Back</button>
 
 <h1>{{ flat.description }}</h1>
@@ -7,7 +11,7 @@
     <table>
     {% for room in roomList %}
         <tr>
-            <th><a>{{ room.description }}</a> </th>
+            <th><h2>{{ room.description }}</h2> </th>
             <th>{{ room.price }} €</th>
             {% if room.temporal_onwer is None %}
                 <th><button>Alquilar</button></th>
@@ -20,3 +24,5 @@
 {% endif %}
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}

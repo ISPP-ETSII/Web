@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
 <button onclick="location.href='{% url 'flatList' %}'">Back</button>
 
 <form action="{% url 'flatCreate' %}" method="post">
@@ -11,3 +15,5 @@
 
     <input type="submit" value="Save" />
 </form>
+
+{% endblock %}

@@ -1,19 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
 {% if flatList %}
 
-    <table>
-      <tr>
-        <th>Description</th>
-        <th></th>
-      </tr>
-    {% for flat in flatList %}
-        <tr>
-            <th><a href="{% url 'flatDetail' flat.id %}">{{ flat.description }}</a> </th>
-            <th><button onclick="location.href='{% url 'flatDelete' flat.id%}'">Delete</button></th>
-        </tr>
-    {% endfor %}
-    </table>
+    <section class="listings">
+		<div class="wrapper">
+			<ul class="properties_list">
+                {% for flat in flatList %}
+                    <li>
+                        <a href="{% url 'flatDetail' flat.id %}">
+                            <img src="/static/img/property_1.jpg" alt="" title="" class="property_img"/>
+                        </a>
+                        <span class="price">$2500</span>
+                        <div class="property_details">
+                            <h1>
+                                <a href="{% url 'flatDetail' flat.id %}">{{ flat.title }}</a>
+                            </h1>
+                            <h2>{{ flat.description }} <span class="property_size">(288ftsq)</span></h2>
+                            <button onclick="location.href='{% url 'flatDelete' flat.id%}'">Delete</button>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
 {% else %}
     <p>No flats are available.</p>
 {% endif %}
 
 <button onclick="location.href='{% url 'flatCreate' %}'">Create</button>
+<button onclick="location.href='{% url 'profileCreate' %}'">Create profile</button>
+
+{% endblock %}
