@@ -21,13 +21,13 @@
                      <ul>
                         <li><a href="/">Home</a></li>
                          {% if user.is_authenticated %}
-                            <li><a href="flats">Flats</a></li>
+                            <li><a href="/flats">Flats</a></li>
                          {% endif %}
                       </ul>
                     {% if user.is_authenticated %}
-                        <a href="logout" class="login_btn">Logout</a>
+                        <a href="/logout" class="login_btn">Logout</a>
                     {% else %}
-                        <a href="login" class="login_btn">Login</a>
+                        <a href="/login" class="login_btn">Login</a>
                     {% endif %}
 				</nav>
 			</div>

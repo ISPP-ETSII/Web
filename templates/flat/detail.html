@@ -1,28 +1,30 @@
 {% extends 'base.html' %}
 
+{% block title %}Flat details{% endblock %}
+
 {% block content %}
 
-<button onclick="location.href='{% url 'flatList' %}'">Back</button>
+    <button onclick="location.href='{% url 'flatList' %}'">Back</button>
 
-<h1>{{ flat.description }}</h1>
+    <h1>{{ flat.description }}</h1>
 
-{% if roomList %}
+    {% if roomList %}
 
-    <table>
-    {% for room in roomList %}
-        <tr>
-            <th><h2>{{ room.description }}</h2> </th>
-            <th>{{ room.price }} €</th>
-            {% if room.temporal_onwer is None %}
-                <th><button>Alquilar</button></th>
-            {% endif %}
-        </tr>
-    {% endfor %}
-    </table>
-{% else %}
-    <p>No rooms are available.</p>
-{% endif %}
+        <table>
+        {% for room in roomList %}
+            <tr>
+                <th><h2>{{ room.description }}</h2> </th>
+                <th>{{ room.price }} €</th>
+                {% if room.temporal_onwer is None %}
+                    <th><button>Alquilar</button></th>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No rooms are available.</p>
+    {% endif %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% endblock %}
