@@ -36,7 +36,10 @@ def flatCreate(request):
             loggedUser=request.user
 
             profile = Profile.objects.get(user=loggedUser)
-            f1= Flat(description=form.cleaned_data.get("description"), owner=profile)
+            f1= Flat(title=form.cleaned_data.get("title"),
+                     address=form.cleaned_data.get("address"),
+                     description=form.cleaned_data.get("description"),
+                     owner=profile)
             f1.save()
 
 
