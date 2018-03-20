@@ -1,14 +1,182 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>RentInPeace</title>
-    </head>
+<html lang="en">
+<head>
+	<title>{% block title %}{% endblock title%}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
 
-    <nav>
-        <a href="logout/">Logout</a>
-    </nav>
+	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/responsive.css">
 
-    <body>
+	<script type="text/javascript" src="/static/js/jquery.js"></script>
+	<script type="text/javascript" src="/static/js/main.js"></script>
+</head>
+<body>
+
+	<section class="hero">
+		<header>
+			<div class="wrapper">
+				<a href="#" class="hamburger"></a>
+				<nav>
+                     <ul>
+                        <li><a href="/">Home</a></li>
+                      </ul>
+                    {% if user.is_authenticated %}
+                        <a href="logout" class="login_btn">Logout</a>
+                    {% else %}
+                        <a href="login" class="login_btn">Login</a>
+                    {% endif %}
+				</nav>
+			</div>
+		</header><!--  end header section  -->
+
+			<section class="caption">
+				<h2 class="caption">RentInPeace</h2>
+				<h3 class="properties">FIND A ROOM TO DIED FOR</h3>
+			</section>
+	</section><!--  end hero section  -->
+
     {% block content %}{% endblock content %}
-    </body>
+
+<!--
+
+	<section class="listings">
+		<div class="wrapper">
+			<ul class="properties_list">
+				<li>
+					<a href="#">
+						<img src="img/property_1.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$2500</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_2.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$1000</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_3.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$500</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_1.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$2500</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_2.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$1000</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_3.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$500</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_1.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$2500</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_2.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$1000</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
+					</div>
+				</li>
+				<li>
+					<a href="#">
+						<img src="img/property_3.jpg" alt="" title="" class="property_img"/>
+					</a>
+					<span class="price">$500</span>
+					<div class="property_details">
+						<h1>
+							<a href="#">Fuisque dictum tortor at purus libero</a>
+						</h1>
+						<h2>2 kitchens, 2 bed, 2 bath... <span class="property_size">(288ftsq)</span></h2>
+					</div>
+				</li>
+			</ul>
+			<div class="more_listing">
+				<a href="#" class="more_listing_btn">View More Listings</a>
+			</div>
+		</div>
+	</section>	--><!--  end listing section  -->
+
+	<footer>
+		<div class="wrapper footer">
+			<ul>
+				<li class="about">
+					<p></p>
+					<ul>
+						<li><a href="#" class="facebook" target="_blank"></a></li>
+						<li><a href="#" class="twitter" target="_blank"></a></li>
+						<li><a href="#" class="google" target="_blank"></a></li>
+						<li><a href="#" class="skype"></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="copyrights wrapper">
+			Copyright © 2018 <a href="/" target="_blank" class="ph_link" title="">RentInPeace</a>. All Rights Reserved.
+		</div>
+	</footer><!--  end footer  -->
+
+</body>
 </html>
