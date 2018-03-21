@@ -15,6 +15,8 @@ from RoomBnB.models import Profile
 from RoomBnB.models import Room
 from RoomBnB.models import CreditCard
 
+from RoomBnB.services import create_flat
+
 
 def signup(request):
     if request.method == 'POST':
@@ -54,15 +56,10 @@ def flatCreate(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            loggedUser=request.user
-
-            profile = Profile.objects.get(user=loggedUser)
-            f1= Flat(title=form.cleaned_data.get("title"),
-                     address=form.cleaned_data.get("address"),
-                     description=form.cleaned_data.get("description"),
-                     owner=profile)
-            f1.save()
-
+            create_flat(form_title=form.cleaned_data.get("title"),
+                       form_address=form.cleaned_data.get("address"),
+                       form_description=form.cleaned_data.get("description"),
+                       user=request.user)
 
             return HttpResponseRedirect('/flats')
 
