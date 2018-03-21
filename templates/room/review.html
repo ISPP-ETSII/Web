@@ -1,12 +1,12 @@
 <table>
-    {% for review in roomRev %}
+{% for review in roomRev %}
         <tr>
             <th>{{ review.title }}</th>
             <th>{{ review.date }}</th>
             <th>{{ review.description }}</th>
             <th>{{ review.rating }}</th>
         </tr>
-    {% endfor %}
+{% endfor %}
 </table>
 <br>
 <button onclick="location.href='{% url 'writeRoomReview' room.id %}'">Escribir comentario</button>

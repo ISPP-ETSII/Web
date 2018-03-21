@@ -20,7 +20,6 @@ class ReviewForm(forms.Form):
 
     title = forms.CharField(label='title', max_length=50)
     description = forms.CharField(label='description', max_length=500)
-    date = forms.DateField(label='date')
     rating = forms.CharField(label='rating', max_length=1)
 
 class UserReviewForm(ReviewForm):
