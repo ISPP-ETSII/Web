@@ -57,6 +57,13 @@ class Room(models.Model):
     belong_to = models.ForeignKey(Flat, on_delete=models.CASCADE)
 
 
+class RentRequest(models.Model):
+    text = models.TextField(max_length=500, blank=True)
+    accepted = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+
 class Contract(models.Model):
     picture = models.ImageField()
     date_signed = models.DateField(auto_now_add=True)

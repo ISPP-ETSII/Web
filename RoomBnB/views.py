@@ -14,6 +14,11 @@ from RoomBnB.models import Room
 from RoomBnB.models import CreditCard
 
 
+def request_rent_room(request, room_id):
+
+    pass
+
+
 def list(request):
     flatList = Flat.objects.all()
     context = {'flatList': flatList} # TODO: Cambiar f.description por el nombre
