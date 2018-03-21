@@ -456,7 +456,7 @@ header nav .login_btn:hover{
 
 /*  listings section  */
 .listings{
-    padding: 40px 0;
+    padding: 100px 0;
 }
 
 .listings ul.properties_list{
@@ -720,7 +720,7 @@ footer .copyrights a.ph_link{
 
 @media (max-width:1500px){
     .hero{
-        height: 500px;
+        height: 800px;
     }
 }
 
