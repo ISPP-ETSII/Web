@@ -19,4 +19,4 @@ install:
   - pip install -r deploy/requirements.txt
 
 script:
-  - pytest
+  - python manage.py RoomBnB.tests
