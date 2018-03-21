@@ -4,8 +4,6 @@
 
 {% block content %}
 
-    <button onclick="location.href='{% url 'flatList' %}'">Back</button>
-
     <h1>{{ flat.description }}</h1>
 
     {% if roomList %}
@@ -16,7 +14,7 @@
                 <th><h2>{{ room.description }}</h2> </th>
                 <th>{{ room.price }} €</th>
                 {% if room.temporal_onwer is None %}
-                    <th><button>Alquilar</button></th>
+                    <th><button class="pure-button">Alquilar</button></th>
                 {% endif %}
             </tr>
         {% endfor %}

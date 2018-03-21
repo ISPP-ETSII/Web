@@ -4,22 +4,25 @@
 
 {% block content %}
 
-    <button onclick="location.href='{% url 'flatList' %}'">Back</button>
+    <form class="pure-form pure-form-stacked" action="{% url 'flatCreate' %}" method="post">
+        <fieldset>
+            <legend>Create a flat</legend>
+            {% csrf_token %}
+            {{ form.as_p }}
 
-    <form action="{% url 'flatCreate' %}" method="post">
-    {% csrf_token %}
-        <label for="title">Title: </label>
-        <input id="title" type="text" name="title" value="{{ title }}">
-        <br>
+            <!--<label for="title">Title: </label>
+            <input placeholder="An awesome flat" id="title" type="text" name="title" value="{{ title }}">
+            <br>
 
-        <label for="address">Address: </label>
-        <input id="address" type="text" name="address" value="{{ address }}">
+            <label for="address">Address: </label>
+            <input placeholder="Street" id="address" type="text" name="address" value="{{ address }}">
 
-        <br>
-        <label for="description">Description: </label>
-        <input id="description" type="text" name="description" value="{{ description }}">
+            <br>
+            <label for="description">Description: </label>
+            <input placeholder="Sample description" id="description" type="text" name="description" value="{{ description }}">-->
 
-        <input type="submit" value="Save" />
+            <input class="pure-button pure-button-primary" type="submit" value="Save" />
+        </fieldset>
     </form>
 
 {% endblock %}

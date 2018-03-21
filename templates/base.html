@@ -7,6 +7,7 @@
 
 	<link rel="stylesheet" type="text/css" href="/static/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="/static/css/responsive.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
 
 	<script type="text/javascript" src="/static/js/jquery.js"></script>
 	<script type="text/javascript" src="/static/js/main.js"></script>
@@ -40,7 +41,9 @@
 			</section>
 	</section><!--  end hero section  -->
 
-    {% block content %}{% endblock content %}
+    <div style="margin: 40px">
+        {% block content %}{% endblock content %}
+    </div>
 
 <!--
 
