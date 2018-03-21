@@ -16,15 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
+
+
 from RoomBnB import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # ex: /flats/
     path('flats', views.list, name='flatList'),
+    path('flats/', views.list, name='flatList'),
     # ex: /flats/5/
     path('flats/<int:flat_id>/', views.detail, name='flatDetail'),
-    path('flats/create',views.get_name, name='flatCreate'),
+    path('flats/create',views.flatCreate, name='flatCreate'),
+    path('profile/create',views.profileCreate, name='profileCreate'),
     path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),
     path('rooms/<int:room_id>/', views.detailRoom, name='roomDetail'),
     path('roomReview/<int:room_id>/', views.roomReview, name='roomReview'),
@@ -34,8 +38,10 @@ urlpatterns = [
     path('writeRoomReview/<int:room_id>/', views.writeReviewRoom, name='writeRoomReview'),
     path('writeFlatReview/<int:flat_id>/', views.writeReviewFlat, name='writeFlatReview'),
     path('writeUserReview/<int:user_id>/', views.writeReviewUser, name='writeUserReview'),
+    path('signup/', views.signup, name='signup'),
     path('login/', auth_views.login, name='login'),
     path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
-    path('', views.root, name='root'),
+    path('', views.base, name='base'),
+    #path('', views.root, name='root'),
 
 ]

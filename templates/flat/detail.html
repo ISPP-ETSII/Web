@@ -1,29 +1,36 @@
-<button onclick="location.href='{% url 'flatList' %}'">Back</button>
+{% extends 'base.html' %}
 
-<h1>{{ flat.description }}</h1>
+{% block title %}Flat details{% endblock %}
 
-{% if roomList %}
+{% block content %}
 
-    <table>
-    {% for room in roomList %}
-        <tr>
-            <th><a href="{% url 'roomDetail' room.id %}">{{ room.description }}</a></th>
-            <th>{{ room.price }} €</th>
-            <th><button onclick="location.href='{% url 'roomReview' room.id %}'">Opiniones de la habitación</button></th>
-            {% if room.temporal_owner %}
-                <th><button onclick="location.href='{% url 'userReview' room.temporal_owner_id %}'">Opiniones del inquilino</button></th>
-            {% else %}
-                <th><button>Alquilar</button></th>
-            {% endif %}
-        </tr>
-    {% endfor %}
-    </table>
-{% else %}
-    <p>No rooms are available.</p>
-{% endif %}
+    <button onclick="location.href='{% url 'flatList' %}'">Back</button>
 
-<br>
-<button onclick="location.href='{% url 'flatReview' flat.id %}'">Opiniones de la casa</button>
-<button onclick="location.href='{% url 'ownerReview' flat.owner.id %}'">Opiniones del dueño</button>
+    <h1>{{ flat.description }}</h1>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if roomList %}
+
+        <table>
+        {% for room in roomList %}
+            <tr>
+                <th><h2>{{ room.description }}</h2> </th>
+                <th>{{ room.price }} €</th>
+                {% if room.temporal_owner %}
+                  <th><button onclick="location.href='{% url 'userReview' room.temporal_owner_id %}'">Opiniones del inquilino</button></th>
+                {% else %}
+                  <th><button>Alquilar</button></th>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <p>No rooms are available.</p>
+    {% endif %}
+
+  <br>
+  <button onclick="location.href='{% url 'flatReview' flat.id %}'">Opiniones de la casa</button>
+  <button onclick="location.href='{% url 'ownerReview' flat.owner.id %}'">Opiniones del dueño</button>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}
