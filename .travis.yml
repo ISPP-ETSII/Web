@@ -3,15 +3,15 @@ sudo: required
 language: python
 
 python:
-  - "3.6"
+  - "3.5"
 
 services:
   - postgresql
-  - docker
-  
+
 before_script:
-  - psql -c 'create database roombnb;' -U postgres
-  - psql -c "CREATE USER roombnb_user WITH PASSWORD 'roombnb_db_password';" -U postgres
+  - psql -c 'create database roombnb_test;' -U postgres
+  - psql -c "CREATE USER roombnb_user_test WITH PASSWORD 'password_test';" -U postgres
+  - psql -c 'grant all privileges on database roombnb_test to roombnb_user_test;' -U postgres
   - python manage.py migrate
   - python manage.py loaddata deploy/populate.json
 
@@ -19,4 +19,4 @@ install:
   - pip install -r deploy/requirements.txt
 
 script:
-  - python manage.py test RoomBnB
+  - python manage.py test RoomBnB.tests
