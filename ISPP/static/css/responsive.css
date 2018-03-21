@@ -688,6 +688,12 @@ footer ul li.about > ul > li a.skype{
     height: 18px;
     background-position: -43px 0px;
 }
+footer ul li.about > ul > li a.instagram{
+    display: block;
+    width: 17px;
+    height: 18px;
+    background-position: -60px 0px;
+}
 
 footer .copyrights{
     display: block;
