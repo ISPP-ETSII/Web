@@ -1,3 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}List user reviews{% endblock %}
+
+{% block content %}
+
+
 <table>
     {% for review in userRev %}
         <tr>
@@ -12,3 +19,5 @@
 <button onclick="location.href='{% url 'writeUserReview' user.id %}'">Escribir comentario</button>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}

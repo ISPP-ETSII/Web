@@ -20,11 +20,6 @@ from RoomBnB.models import RoomReview
 from RoomBnB.models import UserReview
 from RoomBnB.forms import ReviewForm
 from RoomBnB.models import User
-from RoomBnB.forms import UserReviewForm
-from RoomBnB.forms import RoomReviewForm
-from RoomBnB.forms import FlatReviewForm
-from RoomBnB.models import Review
-import datetime
 
 from RoomBnB.services import create_flat
 
@@ -50,7 +45,7 @@ def signup(request):
 
 def list(request):
     flatList = Flat.objects.all()
-    context = {'flatList': flatList} # TODO: Cambiar f.description por el nombre
+    context = {'flatList': flatList}
     return render(request, 'flat/list.html', context)
 
 
@@ -179,5 +174,3 @@ def writeReviewFlat(request, flat_id):
     else:
         form = ReviewForm()
     print(form.errors)
-    return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
-

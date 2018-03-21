@@ -13,7 +13,7 @@
         <table>
         {% for room in roomList %}
             <tr>
-                <th><h2>{{ room.description }}</h2> </th>
+                <th><a href="{% url 'roomDetail' room.id %}"><h2>{{ room.description }}</h2></a></th>
                 <th>{{ room.price }} €</th>
                 {% if room.temporal_owner %}
                   <th><button onclick="location.href='{% url 'userReview' room.temporal_owner_id %}'">Opiniones del inquilino</button></th>
@@ -28,8 +28,8 @@
     {% endif %}
 
   <br>
-  <button onclick="location.href='{% url 'flatReview' flat.id %}'">Opiniones de la casa</button>
-  <button onclick="location.href='{% url 'ownerReview' flat.owner.id %}'">Opiniones del dueño</button>
+  <button onclick="location.href='{% url 'flatReview' flat.id %}'">Flat reviews</button>
+  <button onclick="location.href='{% url 'ownerReview' flat.owner.id %}'">Owner Reviews</button>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 

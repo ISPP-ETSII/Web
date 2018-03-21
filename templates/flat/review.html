@@ -1,3 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Flat reviews{% endblock %}
+
+{% block content %}
+
 <table>
     {% for review in flatRev %}
         <tr>
@@ -9,6 +15,8 @@
     {% endfor %}
 </table>
 <br>
-<button onclick="location.href='{% url 'writeFlatReview' flat.id %}'">Escribir comentario</button>
+<button onclick="location.href='{% url 'writeFlatReview' flat.id %}'">Write a review</button>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}
