@@ -456,7 +456,7 @@ header nav .login_btn:hover{
 
 /*  listings section  */
 .listings{
-    padding: 40px 0;
+    padding: 0px 0;
 }
 
 .listings ul.properties_list{
@@ -687,6 +687,12 @@ footer ul li.about > ul > li a.skype{
     width: 17px;
     height: 18px;
     background-position: -43px 0px;
+}
+footer ul li.about > ul > li a.instagram{
+    display: block;
+    width: 17px;
+    height: 18px;
+    background-position: -60px 0px;
 }
 
 footer .copyrights{
