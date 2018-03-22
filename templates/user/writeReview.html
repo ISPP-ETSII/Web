@@ -1,23 +1,35 @@
-<form action="{% url 'writeUserReview' userid %}" method="post">
+{% extends 'base.html' %}
 
-{% csrf_token %}
-    <label for="title">Title: </label>
-    <input id="title" type="text" name="title" value="{{ title }}">
+{% block title %}Write an user review{% endblock %}
 
-    <br>
-    <label for="description">Description: </label>
-    <input id="description" type="text" name="description" value="{{ description }}">
+{% block content %}
 
-    <br>
-    <label for="rating">Rating:</label>
-    <select name="rating">
-       <option value="1" selected="selected">1</option>
-       <option value="2">2</option>
-       <option value="3">3</option>
-       <option value="4">4</option>
-       <option value="5">5</option>
-    </select>
-    <br>
-    <input type="submit" value="Save" />
-</form>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <form class="pure-form pure-form-stacked" action="{% url 'writeUserReview' userid %}" method="post">
+        <fieldset>
+            <legend>Create a review</legend>
+            {% csrf_token %}
+
+            <label for="title">Title: </label>
+            <input id="title" type="text" name="title" value="{{ title }}">
+
+            <br>
+            <label for="description">Description: </label>
+            <input id="description" type="text" name="description" value="{{ description }}">
+
+            <br>
+            <label for="rating">Rating:</label>
+            <select name="rating">
+               <option value="1" selected="selected">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+            </select>
+            <br>
+
+            <input class="pure-button pure-button-primary" type="submit" value="Save" />
+        </fieldset>
+    </form>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}

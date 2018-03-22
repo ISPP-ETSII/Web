@@ -27,8 +27,8 @@
     {% endif %}
 
   <br>
-  <button onclick="location.href='{% url 'flatReview' flat.id %}'">Flat reviews</button>
-  <button onclick="location.href='{% url 'ownerReview' flat.owner.id %}'">Owner Reviews</button>
+  <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatReview' flat.id %}'">Flat reviews</button>
+  <button class="pure-button pure-button-primary" onclick="location.href='{% url 'ownerReview' flat.owner.id %}'">Owner Reviews</button>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
