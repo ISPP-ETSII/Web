@@ -8,12 +8,18 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 
 from RoomBnB.forms import FlatForm
+
 from RoomBnB.forms import ProfileForm
 from RoomBnB.forms import SignUpForm
 from RoomBnB.models import Flat
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
 from RoomBnB.models import CreditCard
+from RoomBnB.models import FlatReview
+from RoomBnB.models import RoomReview
+from RoomBnB.models import UserReview
+from RoomBnB.forms import ReviewForm
+from RoomBnB.models import User
 
 from RoomBnB.services import create_flat
 
@@ -39,7 +45,7 @@ def signup(request):
 
 def list(request):
     flatList = Flat.objects.all()
-    context = {'flatList': flatList} # TODO: Cambiar f.description por el nombre
+    context = {'flatList': flatList}
     return render(request, 'flat/list.html', context)
 
 
@@ -108,3 +114,64 @@ def root(request):
 
 def base(request):
     return render(request, template_name='index.html')
+
+def detailRoom(request, room_id):
+    room = Room.objects.get(id=room_id)
+    return render(request, 'room/detail.html', {'room': room})
+
+def roomReview(request, room_id):
+    room = Room.objects.get(id=room_id)
+    reviews = RoomReview.objects.filter(room = room)
+    return render(request, 'room/review.html', {'roomRev': reviews, 'room': room})
+
+def flatReview(request, flat_id):
+    flat = Flat.objects.get(id=flat_id)
+    review = FlatReview.objects.filter(flat = flat)
+    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat})
+
+def userReview(request, user_id):
+    user= User.objects.get(id = user_id)
+    review = UserReview.objects.filter(user = user)
+    return render(request, 'user/review.html', {'userRev': review, 'user': user})
+
+def writeReviewUser(request, user_id):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            user = User.objects.get(id = user_id)
+            rev = UserReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
+                             rating = form.cleaned_data.get("rating"), user = user)
+            rev.save()
+            return HttpResponseRedirect('/userReview/'+ str(user_id))
+    else:
+        form = ReviewForm()
+    print(form.errors)
+    return render(request, 'user/writeReview.html', {'form': form, 'userid': user_id})
+
+def writeReviewRoom(request, room_id):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            room = Room.objects.get(id = room_id)
+            rev = RoomReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
+                             rating = form.cleaned_data.get("rating"), room = room)
+            rev.save()
+            return HttpResponseRedirect('/roomReview/'+ str(room_id))
+    else:
+        form = ReviewForm()
+    print(form.errors)
+    return render(request, 'room/writeReview.html', {'form': form, 'roomid': room_id})
+
+def writeReviewFlat(request, flat_id):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            flat = Flat.objects.get(id = flat_id)
+            rev = FlatReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
+                             rating= form.cleaned_data.get("rating"), flat = flat)
+            rev.save()
+            return HttpResponseRedirect('/flatReview/'+ str(flat_id))
+    else:
+        form = ReviewForm()
+    print(form.errors)
+    return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}List user reviews{% endblock %}
+
+{% block content %}
+
+
+<table>
+    {% for review in userRev %}
+        <tr>
+            <th>{{ review.title }}</th>
+            <th>{{ review.date }}</th>
+            <th>{{ review.description }}</th>
+            <th>{{ review.rating }}</th>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' user.id %}'">Write a review</button>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}

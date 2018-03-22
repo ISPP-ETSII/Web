@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Flat reviews{% endblock %}
+
+{% block content %}
+
+    {{ room.pictures }}
+
+    <h1>{{ room.description }}</h1>
+
+    <h2>{{ room.temporal_owner.user }}</h2>
+
+    <h2>{{ room.price }} €</h2>
+
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomReview' room.id %}'">Room reviews</button>
+
+
+{% endblock %}
+

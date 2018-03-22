@@ -5,23 +5,43 @@
 {% block content %}
 
     <h1>{{ flat.description }}</h1>
+    <h3>{{ flat.address }}</h3>
 
     {% if roomList %}
 
-        <table>
-        {% for room in roomList %}
-            <tr>
-                <th><h2>{{ room.description }}</h2> </th>
-                <th>{{ room.price }} €</th>
-                {% if room.temporal_onwer is None %}
-                    <th><button class="pure-button">Alquilar</button></th>
-                {% endif %}
-            </tr>
-        {% endfor %}
-        </table>
+        <h2>Available rooms</h2>
+
+        <section class="listings">
+            <div class="wrapper">
+                 <ul class="properties_list">
+                    {% for room in roomList %}
+                         <li>
+                            <a href="{% url 'roomDetail' room.id %}">
+                                <img src="/static/img/property_1.jpg" alt="" title="" class="property_img"/>
+                            </a>
+                             <span class="price">{{ room.price }} €</span>
+                             <div class="property_details">
+                                <h1>
+                                    <a href="{% url 'roomDetail' room.id %}">{{ room.description }}</a>
+                                </h1>
+                                {% if room.temporal_owner %}
+                                    <button class="pure-button" onclick="location.href='{% url 'userReview' room.temporal_owner_id %}'">Tenant's opinions</button>
+                                {% else %}
+                                    <button class="pure-button">Rent</button>
+                                {% endif %}
+                            </div>
+                         </li>
+                    {% endfor %}
+                 </ul>
+            </div>
+        </section>
     {% else %}
         <p>No rooms are available.</p>
     {% endif %}
+
+  <br>
+  <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatReview' flat.id %}'">Flat reviews</button>
+  <button class="pure-button pure-button-primary" onclick="location.href='{% url 'ownerReview' flat.owner.id %}'">Owner Reviews</button>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
