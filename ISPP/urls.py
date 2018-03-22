@@ -27,6 +27,7 @@ urlpatterns = [
     path('flats/', views.list, name='flatList'),
     # ex: /flats/5/
     path('flats/<int:flat_id>/', views.detail, name='flatDetail'),
+    path('flats/keyword=<keyword>', views.listWithKeyword, name='flatListWithKeyword'),
     path('flats/create',views.flatCreate, name='flatCreate'),
     path('profile/create',views.profileCreate, name='profileCreate'),
     path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),
