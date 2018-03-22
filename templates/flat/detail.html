@@ -43,6 +43,11 @@
         </section>
     {% else %}
         <p>No rooms are available.</p>
+
+        {% if flat.owner.user == user %}
+            <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomCreate' flat.id %}'">Create room</button>
+            <br><br>
+        {% endif %}
     {% endif %}
 
   <br>
