@@ -52,8 +52,9 @@ def list(request):
     return render(request, 'flat/list.html', context)
 
 def listWithKeyword(request,keyword):
-    query = Q(title__contains=keyword)
-    query.add(Q(description__contains=keyword), Q.OR)
+    query = Q(title__icontains=keyword)
+    query.add(Q(description__icontains=keyword), Q.OR)
+    query.add(Q(address__icontains=keyword), Q.OR)
     flatList = Flat.objects.all().filter(query)
 
     return render(request, 'flat/list.html', {'flatList': flatList})
@@ -124,13 +125,10 @@ def root(request):
 
 
 def base(request):
-    print("hola")
     if request.method == 'POST':
         form = SearchFlatForm(request.POST)
         if form.is_valid():
-            print("dentro")
             keyword=form.cleaned_data.get('keyword')
-            print("post")
             return HttpResponseRedirect('/flats/keyword=' + keyword)
 
     else:
