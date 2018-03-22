@@ -15,4 +15,8 @@
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
+    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomReview' room.id %}'">Room reviews</button>
+
+
 {% endblock %}
+
