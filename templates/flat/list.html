@@ -10,9 +10,11 @@
 
             <div class="wrapper">
 
-                <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatCreate' %}'">Create</button>
-                <button class="pure-button pure-button-active" onclick="location.href='{% url 'profileCreate' %}'">Create profile</button>
-                <br><br>
+                {% if user.is_authenticated %}
+                    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatCreate' %}'">Create</button>
+                    <!--<button class="pure-button pure-button-active" onclick="location.href='{% url 'profileCreate' %}'">Create profile</button>-->
+                    <br><br>
+                {% endif %}
 
                 <ul class="properties_list">
                     {% for flat in flatList %}
@@ -26,7 +28,10 @@
                                     <a href="{% url 'flatDetail' flat.id %}">{{ flat.title }}</a>
                                 </h1>
                                 <h2>{{ flat.description }} <span class="property_size">(288ftsq)</span></h2>
-                                <button class="pure-button" onclick="location.href='{% url 'flatDelete' flat.id%}'">Delete</button>
+
+                                {% if flat.owner.user == user %}
+                                    <button class="pure-button" onclick="location.href='{% url 'flatDelete' flat.id%}'">Delete</button>
+                                {% endif %}
                             </div>
                         </li>
                     {% endfor %}

@@ -63,3 +63,7 @@ class FlatReviewForm(ReviewForm):
 
 class RoomReviewForm(ReviewForm):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
+
+
+class SearchFlatForm(forms.Form):
+    keyword = forms.CharField(max_length=100)

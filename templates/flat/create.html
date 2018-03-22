@@ -4,25 +4,33 @@
 
 {% block content %}
 
-    <form class="pure-form pure-form-stacked" action="{% url 'flatCreate' %}" method="post">
-        <fieldset>
-            <legend>Create a flat</legend>
-            {% csrf_token %}
-            {{ form.as_p }}
+    {% if user.is_authenticated %}
 
-            <!--<label for="title">Title: </label>
-            <input placeholder="An awesome flat" id="title" type="text" name="title" value="{{ title }}">
-            <br>
+        <form class="pure-form pure-form-stacked" action="{% url 'flatCreate' %}" method="post">
+            <fieldset>
+                <legend>Create a flat</legend>
+                {% csrf_token %}
+                {{ form.as_p }}
 
-            <label for="address">Address: </label>
-            <input placeholder="Street" id="address" type="text" name="address" value="{{ address }}">
+                <!--<label for="title">Title: </label>
+                <input placeholder="An awesome flat" id="title" type="text" name="title" value="{{ title }}">
+                <br>
 
-            <br>
-            <label for="description">Description: </label>
-            <input placeholder="Sample description" id="description" type="text" name="description" value="{{ description }}">-->
+                <label for="address">Address: </label>
+                <input placeholder="Street" id="address" type="text" name="address" value="{{ address }}">
 
-            <input class="pure-button pure-button-primary" type="submit" value="Save" />
-        </fieldset>
-    </form>
+                <br>
+                <label for="description">Description: </label>
+                <input placeholder="Sample description" id="description" type="text" name="description" value="{{ description }}">-->
+
+                <input class="pure-button pure-button-primary" type="submit" value="Save" />
+            </fieldset>
+        </form>
+
+     {% else %}
+
+        <h2>You are not logged in.</h2>
+
+    {% endif %}
 
 {% endblock %}

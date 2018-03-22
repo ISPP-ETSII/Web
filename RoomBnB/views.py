@@ -6,6 +6,7 @@ from pip.download import user_agent
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
+from django.db.models import Q
 
 from RoomBnB.forms import FlatForm
 
@@ -21,6 +22,8 @@ from RoomBnB.models import RoomReview
 from RoomBnB.models import UserReview
 from RoomBnB.forms import ReviewForm
 from RoomBnB.models import User
+from RoomBnB.forms import SearchFlatForm
+
 
 from RoomBnB.services import create_flat
 
@@ -49,6 +52,13 @@ def list(request):
     context = {'flatList': flatList}
     return render(request, 'flat/list.html', context)
 
+def listWithKeyword(request,keyword):
+    query = Q(title__icontains=keyword)
+    query.add(Q(description__icontains=keyword), Q.OR)
+    query.add(Q(address__icontains=keyword), Q.OR)
+    flatList = Flat.objects.all().filter(query)
+
+    return render(request, 'flat/list.html', {'flatList': flatList})
 
 def detail(request, flat_id):
     flat=Flat.objects.get(id=flat_id)
@@ -137,8 +147,19 @@ def flatDelete(request, flat_id):
 def root(request):
     return render(request, template_name='root.html')
 
+
+
 def base(request):
-    return render(request, template_name='index.html')
+    if request.method == 'POST':
+        form = SearchFlatForm(request.POST)
+        if form.is_valid():
+            keyword=form.cleaned_data.get('keyword')
+            return HttpResponseRedirect('/flats/keyword=' + keyword)
+
+    else:
+        form = SearchFlatForm()
+
+    return render(request, 'index.html', {'form': form})
 
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
@@ -200,3 +221,4 @@ def writeReviewFlat(request, flat_id):
         form = ReviewForm()
     print(form.errors)
     return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
+
