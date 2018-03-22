@@ -5,23 +5,36 @@
 {% block content %}
 
     <h1>{{ flat.description }}</h1>
+    <h3>{{ flat.address }}</h3>
 
     {% if roomList %}
 
-        <table>
-        {% for room in roomList %}
-            <tr>
-                <th><a href="{% url 'roomDetail' room.id %}"><h2>{{ room.description }}</h2></a></th>
-                <th>{{ room.price }} €</th>
-                {% if room.temporal_owner %}
-                  <th><button onclick="location.href='{% url 'userReview' room.temporal_owner_id %}'">Opiniones del inquilino</button></th>
-                {% else %}
-                    <th><button class="pure-button">Alquilar</button></th>
+        <h2>Available rooms</h2>
 
-                {% endif %}
-            </tr>
-        {% endfor %}
-        </table>
+        <section class="listings">
+            <div class="wrapper">
+                 <ul class="properties_list">
+                    {% for room in roomList %}
+                         <li>
+                            <a href="{% url 'roomDetail' room.id %}">
+                                <img src="/static/img/property_1.jpg" alt="" title="" class="property_img"/>
+                            </a>
+                             <span class="price">{{ room.price }} €</span>
+                             <div class="property_details">
+                                <h1>
+                                    <a href="{% url 'roomDetail' room.id %}">{{ room.description }}</a>
+                                </h1>
+                                {% if room.temporal_owner %}
+                                    <button class="pure-button" onclick="location.href='{% url 'userReview' room.temporal_owner_id %}'">Opiniones del inquilino</button>
+                                {% else %}
+                                    <button class="pure-button">Alquilar</button>
+                                {% endif %}
+                            </div>
+                         </li>
+                    {% endfor %}
+                 </ul>
+            </div>
+        </section>
     {% else %}
         <p>No rooms are available.</p>
     {% endif %}
