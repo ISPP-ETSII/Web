@@ -53,7 +53,7 @@ class Flat(models.Model):
 class Room(models.Model):
     description = models.TextField(max_length=500)
     price = models.FloatField()
-    temporal_owner = models.ForeignKey(Profile, on_delete=models.DO_NOTHING)
+    temporal_owner = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, null=True)
     belong_to = models.ForeignKey(Flat, on_delete=models.CASCADE)
 
 

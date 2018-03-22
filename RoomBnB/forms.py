@@ -14,6 +14,11 @@ class FlatForm(forms.Form):
     description = forms.CharField(label='Description', max_length=500)
 
 
+class RoomForm(forms.Form):
+    description = forms.CharField(label='Description', max_length=500)
+    price = forms.FloatField(required=True, max_value=1000, min_value=0)
+
+
 class ProfileForm(forms.Form):
     avatar = forms.ImageField()
     owner = forms.CharField(label='Owner',max_length=50)

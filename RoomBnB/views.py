@@ -12,6 +12,7 @@ from RoomBnB.forms import FlatForm
 
 from RoomBnB.forms import ProfileForm
 from RoomBnB.forms import SignUpForm
+from RoomBnB.forms import RoomForm
 from RoomBnB.models import Flat
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
@@ -64,6 +65,7 @@ def detail(request, flat_id):
     rooms = Room.objects.filter(belong_to=flat)
     return render(request, 'flat/detail.html', {'flat': flat,'roomList':rooms})
 
+
 def flatCreate(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -84,6 +86,29 @@ def flatCreate(request):
         form = FlatForm()
 
     return render(request, 'flat/create.html', {'form': form})
+
+
+def roomCreate(request, flat_id):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = RoomForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            flat = Flat.objects.get(id=flat_id)
+            room = Room(price=form.cleaned_data.get("price"),
+                        description=form.cleaned_data.get("description"),
+                        belong_to=flat)
+            room.save()
+            return HttpResponseRedirect('/flats/' + str(flat_id))
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = RoomForm()
+
+    return render(request, 'room/create.html', {'form': form, 'flatid': flat_id})
+
 
 def profileCreate(request):
     # if this is a POST request we need to process the form data

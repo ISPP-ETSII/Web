@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a room{% endblock %}
+
+{% block content %}
+
+    <form class="pure-form pure-form-stacked" action="{% url 'roomCreate' flatid %}" method="post">
+        <fieldset>
+            <legend>Create a room</legend>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="pure-button pure-button-primary" type="submit" value="Save" />
+        </fieldset>
+    </form>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+{% endblock %}
