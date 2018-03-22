@@ -170,7 +170,7 @@ def writeReviewFlat(request, flat_id):
             rev = FlatReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
                              rating= form.cleaned_data.get("rating"), flat = flat)
             rev.save()
-            return HttpResponseRedirect('/flatReview/'+ flat_id)
+            return HttpResponseRedirect('/flatReview/'+ str(flat_id))
     else:
         form = ReviewForm()
     print(form.errors)
