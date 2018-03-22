@@ -30,6 +30,7 @@ urlpatterns = [
     path('flats/create',views.flatCreate, name='flatCreate'),
     path('profile/create',views.profileCreate, name='profileCreate'),
     path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),
+    path('rooms/create/<int:flat_id>/', views.roomCreate, name='roomCreate'),
     path('rooms/<int:room_id>/', views.detailRoom, name='roomDetail'),
     path('roomReview/<int:room_id>/', views.roomReview, name='roomReview'),
     path('flatReview/<int:flat_id>/', views.flatReview, name='flatReview'),
