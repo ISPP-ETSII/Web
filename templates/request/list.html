@@ -26,7 +26,7 @@
         <li>
             <p>{{ request.creation_date }}</p>
             <p>Accepted: {{ request.accepted }}</p>
-            <a class="pure-button" href="/userReview/{{ request.requester.id }}/">View user profile</a>
+            <a class="pure-button" href="/userReview/{{ request.requester.id }}/">View user reviews</a>
             <a class="pure-button" href="/rooms/{{ request.requested.id }}/">View room</a>
         </li>
     {% endfor %}
