@@ -90,6 +90,7 @@ def deny_request(request, request_id):
 
     return redirect('/requests/list')
 
+
 def list(request):
     flatList = Flat.objects.all()
     context = {'flatList': flatList}

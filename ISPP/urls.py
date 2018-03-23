@@ -45,6 +45,7 @@ urlpatterns = [
     path('writeFlatReview/<int:flat_id>/', views.writeReviewFlat, name='writeFlatReview'),
     path('writeUserReview/<int:user_id>/', views.writeReviewUser, name='writeUserReview'),
     path('signup/', views.signup, name='signup'),
+    path('rooms/request/<int:room_id>', views.request_rent_room, name='request_rent_room'),
     path('login/', auth_views.login, name='login'),
     path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
     path('', views.base, name='base'),
