@@ -4,15 +4,25 @@
 
 {% block content %}
 
-    <table>
-        {% for review in flatRev %}
+    <table class="pure-table">
+        <thead>
             <tr>
-                <th>{{ review.title }}</th>
-                <th>{{ review.date }}</th>
-                <th>{{ review.description }}</th>
-                <th>{{ review.rating }}</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Rating</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for review in flatRev %}
+                <tr>
+                    <th>{{ review.title }}</th>
+                    <th>{{ review.date }}</th>
+                    <th>{{ review.description }}</th>
+                    <th>{{ review.rating }}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
     <br>
 

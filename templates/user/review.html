@@ -4,23 +4,32 @@
 
 {% block content %}
 
+    <table class="pure-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in userRev %}
+                <tr>
+                    <th>{{ review.title }}</th>
+                    <th>{{ review.date }}</th>
+                    <th>{{ review.description }}</th>
+                    <th>{{ review.rating }}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
 
-<table>
-    {% for review in userRev %}
-        <tr>
-            <th>{{ review.title }}</th>
-            <th>{{ review.date }}</th>
-            <th>{{ review.description }}</th>
-            <th>{{ review.rating }}</th>
-        </tr>
-    {% endfor %}
-</table>
-<br>
+    {% if user.is_authenticated %}
+        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' user.id %}'">Write a review</button>
+    {% endif %}
 
-{% if user.is_authenticated %}
-    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' user.id %}'">Write a review</button>
-{% endif %}
-
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% endblock %}
