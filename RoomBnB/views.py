@@ -1,15 +1,13 @@
 from django.core.serializers import unregister_serializer
 from django.http.multipartparser import parse_boundary_stream
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from pip.download import user_agent
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.db.models import Q
-
 from RoomBnB.forms import FlatForm
-
 from RoomBnB.forms import ProfileForm
 from RoomBnB.forms import SignUpForm
 from RoomBnB.forms import RoomForm
@@ -23,9 +21,9 @@ from RoomBnB.models import UserReview
 from RoomBnB.forms import ReviewForm
 from RoomBnB.models import User
 from RoomBnB.forms import SearchFlatForm
-
-
-from RoomBnB.services import create_flat
+from RoomBnB.models import RentRequest
+from django.contrib.auth.models import User
+from RoomBnB.services import create_flat, create_rent_request
 
 
 def signup(request):
@@ -46,6 +44,51 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
 
+
+@login_required
+def request_rent_room(request, room_id):
+    response = create_rent_request(request.user, room_id)
+
+    return response
+
+
+@login_required
+def requests_list(request):
+    my_flats = request.user.flats.all()
+    rent_requests_to_me = []
+
+    if my_flats:
+        for flat in my_flats:
+            rooms = flat.rooms.all()
+            if rooms:
+                for room in rooms:
+                    room_requests = room.rent_requests.all()
+                    if room_requests:
+                        rent_requests_to_me.append(*room_requests)
+
+    rent_requests_by_me = RentRequest.objects.filter(requester=request.user)
+
+    return render(request, 'request/list.html', {'requests_by_me': rent_requests_by_me,
+                                                 'requests_to_me': rent_requests_to_me})
+
+
+def accept_request(request, request_id):
+    rent_request = RentRequest.objects.get(pk=request_id)
+    room = rent_request.requested
+    room.temporal_owner = rent_request.requester
+    room.save()
+
+    rent_request.delete()
+
+    return redirect('/requests/list')
+
+
+def deny_request(request, request_id):
+    rent_request = RentRequest.objects.get(pk=request_id)
+
+    rent_request.delete()
+
+    return redirect('/requests/list')
 
 def list(request):
     flatList = Flat.objects.all()

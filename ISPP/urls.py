@@ -25,6 +25,10 @@ urlpatterns = [
     # ex: /flats/
     path('flats', views.list, name='flatList'),
     path('flats/', views.list, name='flatList'),
+    path('room/rent/<int:room_id>', views.request_rent_room, name='requestRentRoom'),
+    path('requests/list', views.requests_list, name='requestsList'),
+    path('requests/accept/<int:request_id>/', views.accept_request, name='acceptRequest'),
+    path('requests/deny/<int:request_id>/', views.deny_request, name='denyRequest'),
     # ex: /flats/5/
     path('flats/<int:flat_id>/', views.detail, name='flatDetail'),
     path('flats/keyword=<keyword>', views.listWithKeyword, name='flatListWithKeyword'),

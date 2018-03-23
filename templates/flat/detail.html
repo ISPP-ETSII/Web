@@ -33,7 +33,7 @@
                                 {% if room.temporal_owner %}
                                     <button class="pure-button" onclick="location.href='{% url 'userReview' room.temporal_owner_id %}'">Tenant's opinions</button>
                                 {% else %}
-                                    <button class="pure-button">Rent</button>
+                                    <th><a class="pure-button" href="/room/rent/{{ room.id }}">Request rent</a></th>
                                 {% endif %}
                             </div>
                          </li>
