@@ -47,7 +47,7 @@ class Flat(models.Model):
     title = models.TextField(max_length=100)
     address = models.TextField(max_length=100)
     description = models.TextField(max_length=500)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='flats')
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='flats')
 
 
 class Room(models.Model):
