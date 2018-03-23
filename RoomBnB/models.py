@@ -26,7 +26,7 @@ class Properties(models.Model):
         ('5', 'Arquitectura'),
     )
 
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
     smoker = models.CharField(max_length=1, choices=RATINGS)
     neat = models.CharField(max_length=1, choices=RATINGS)
     sporty = models.CharField(max_length=1, choices=RATINGS)
@@ -47,14 +47,21 @@ class Flat(models.Model):
     title = models.TextField(max_length=100)
     address = models.TextField(max_length=100)
     description = models.TextField(max_length=500)
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='flats')
 
 
 class Room(models.Model):
     description = models.TextField(max_length=500)
     price = models.FloatField()
-    temporal_owner = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, null=True)
-    belong_to = models.ForeignKey(Flat, on_delete=models.CASCADE)
+    temporal_owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+    belong_to = models.ForeignKey(Flat, on_delete=models.CASCADE, related_name='rooms')
+
+
+class RentRequest(models.Model):
+    requester = models.ForeignKey(User, on_delete=models.CASCADE, related_name='rent_requests')
+    creation_date = models.DateField(auto_now_add=True)
+    requested = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='rent_requests')
+    accepted = models.BooleanField(default=False)
 
 
 class Contract(models.Model):

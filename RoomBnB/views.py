@@ -1,15 +1,13 @@
 from django.core.serializers import unregister_serializer
 from django.http.multipartparser import parse_boundary_stream
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from pip.download import user_agent
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.db.models import Q
-
 from RoomBnB.forms import FlatForm
-
 from RoomBnB.forms import ProfileForm
 from RoomBnB.forms import SignUpForm
 from RoomBnB.forms import RoomForm
@@ -23,9 +21,9 @@ from RoomBnB.models import UserReview
 from RoomBnB.forms import ReviewForm
 from RoomBnB.models import User
 from RoomBnB.forms import SearchFlatForm
-
-
-from RoomBnB.services import create_flat
+from RoomBnB.models import RentRequest
+from django.contrib.auth.models import User
+from RoomBnB.services import create_flat, create_rent_request
 
 
 def signup(request):
@@ -47,6 +45,52 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
+@login_required
+def request_rent_room(request, room_id):
+    response = create_rent_request(request.user, room_id)
+
+    return response
+
+
+@login_required
+def requests_list(request):
+    my_flats = request.user.flats.all()
+    rent_requests_to_me = []
+
+    if my_flats:
+        for flat in my_flats:
+            rooms = flat.rooms.all()
+            if rooms:
+                for room in rooms:
+                    room_requests = room.rent_requests.all()
+                    if room_requests:
+                        rent_requests_to_me.append(*room_requests)
+
+    rent_requests_by_me = RentRequest.objects.filter(requester=request.user)
+
+    return render(request, 'request/list.html', {'requests_by_me': rent_requests_by_me,
+                                                 'requests_to_me': rent_requests_to_me})
+
+@login_required
+def accept_request(request, request_id):
+    rent_request = RentRequest.objects.get(pk=request_id)
+    room = rent_request.requested
+    room.temporal_owner = rent_request.requester
+    room.save()
+
+    rent_request.delete()
+
+    return redirect('/requests/list')
+
+@login_required
+def deny_request(request, request_id):
+    rent_request = RentRequest.objects.get(pk=request_id)
+
+    rent_request.delete()
+
+    return redirect('/requests/list')
+
+
 def list(request):
     flatList = Flat.objects.all()
     context = {'flatList': flatList}
@@ -65,7 +109,7 @@ def detail(request, flat_id):
     rooms = Room.objects.filter(belong_to=flat)
     return render(request, 'flat/detail.html', {'flat': flat,'roomList':rooms})
 
-
+@login_required
 def flatCreate(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -87,7 +131,7 @@ def flatCreate(request):
 
     return render(request, 'flat/create.html', {'form': form})
 
-
+@login_required
 def roomCreate(request, flat_id):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -109,7 +153,7 @@ def roomCreate(request, flat_id):
 
     return render(request, 'room/create.html', {'form': form, 'flatid': flat_id})
 
-
+@login_required
 def profileCreate(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -135,6 +179,7 @@ def profileCreate(request):
 
     return render(request, 'profile/create.html', {'form': form})
 
+@login_required
 def flatDelete(request, flat_id):
     flatList = Flat.objects.all()
     context = {'flatList': flatList}
@@ -180,6 +225,8 @@ def userReview(request, user_id):
     review = UserReview.objects.filter(user = user)
     return render(request, 'user/review.html', {'userRev': review, 'user': user})
 
+
+@login_required
 def writeReviewUser(request, user_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -194,6 +241,8 @@ def writeReviewUser(request, user_id):
     print(form.errors)
     return render(request, 'user/writeReview.html', {'form': form, 'userid': user_id})
 
+
+@login_required
 def writeReviewRoom(request, room_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
@@ -208,6 +257,8 @@ def writeReviewRoom(request, room_id):
     print(form.errors)
     return render(request, 'room/writeReview.html', {'form': form, 'roomid': room_id})
 
+
+@login_required
 def writeReviewFlat(request, flat_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)

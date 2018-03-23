@@ -727,7 +727,6 @@
     "fields": {
       "description": "Habitacion peque\u00f1a",
       "price": 200,
-      "temporal_owner": 6,
       "belong_to": 2
     }
   },
