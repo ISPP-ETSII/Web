@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['rentinpeace.ml']
+ALLOWED_HOSTS = ['rentinpeace.ml', '127.0.0.1']
 
 
 LOGIN_URL = '/login'
