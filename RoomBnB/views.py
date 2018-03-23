@@ -54,7 +54,7 @@ def request_rent_room(request, room_id):
 
 @login_required
 def requests_list(request):
-    my_flats = request.user.flats.all()
+    my_flats = request.user.profile.flats.all()
     rent_requests_to_me = []
 
     if my_flats:
