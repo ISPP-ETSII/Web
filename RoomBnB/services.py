@@ -1,6 +1,8 @@
 from RoomBnB.models import Flat
+from RoomBnB.models import FlatProperties
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
+from RoomBnB.models import RoomProperties
 from RoomBnB.models import RentRequest
 from django.shortcuts import render, redirect
 
@@ -13,7 +15,21 @@ def create_flat(form_title, form_address, form_description, form_picture, user):
               description=form_description,
               picture=form_picture,
               owner=profile)
-    f1.save()
+    return f1.save()
+
+
+def get_flat_details(flat):
+    try:
+        return FlatProperties.objects.get(flat=flat)
+    except FlatProperties.DoesNotExist:
+        return FlatProperties(flat = flat).save()
+
+
+def get_room_details(room):
+    try:
+        return RoomProperties.objects.get(room=room)
+    except RoomProperties.DoesNotExist:
+        return RoomProperties(room = room).save()
 
 
 def create_rent_request(user, room_id):

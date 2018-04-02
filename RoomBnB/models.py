@@ -44,6 +44,7 @@ class Flat(models.Model):
 
 
 class FlatProperties(models.Model):
+    flat = models.OneToOneField(Flat, on_delete=models.CASCADE)
     elevator = models.BooleanField(default=False)
     washdisher = models.BooleanField(default=False)
 
@@ -68,7 +69,7 @@ class RoomProperties(models.Model):
     balcony = models.BooleanField(default=False)
     window = models.BooleanField(default=False)
     air_conditioner = models.BooleanField(default=False)
-    bed = models.CharField(max_length=1, choices=BEDS)
+    bed = models.CharField(max_length=1, choices=BEDS, default=2)
 
 
 class RentRequest(models.Model):

@@ -7,6 +7,22 @@
     <h1>{{ flat.description }}</h1>
     <h3>{{ flat.address }}</h3>
 
+    <h2>Details</h2>
+
+    <div class="pure-button-group" role="group">
+        {% if flatDetails.elevator == True %}
+            <button class="pure-button">Elevator</button>
+        {% else %}
+            <button class="pure-button pure-button-disabled">Elevator</button>
+        {% endif %}
+
+        {% if flatDetails.washdisher == True %}
+            <button class="pure-button">Washdisher</button>
+        {% else %}
+            <button class="pure-button pure-button-disabled">Washdisher</button>
+        {% endif %}
+    </div>
+
     {% if roomList %}
 
         <h2>Available rooms</h2>
