@@ -14,16 +14,17 @@ from RoomBnB.forms import RoomForm
 from RoomBnB.models import Flat
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
-from RoomBnB.models import CreditCard
+from RoomBnB.models import RoomProperties
 from RoomBnB.models import FlatReview
 from RoomBnB.models import RoomReview
 from RoomBnB.models import UserReview
+from RoomBnB.models import FlatProperties
 from RoomBnB.forms import ReviewForm
 from RoomBnB.models import User
 from RoomBnB.forms import SearchFlatForm
 from RoomBnB.models import RentRequest
 from django.contrib.auth.models import User
-from RoomBnB.services import create_flat, create_rent_request
+from RoomBnB.services import create_flat, create_rent_request, get_flat_details, get_room_details
 
 
 def signup(request):
@@ -105,23 +106,27 @@ def listWithKeyword(request,keyword):
     return render(request, 'flat/list.html', {'flatList': flatList})
 
 def detail(request, flat_id):
-    flat=Flat.objects.get(id=flat_id)
+    flat = Flat.objects.get(id=flat_id)
+    flat_details = get_flat_details(flat)
     rooms = Room.objects.filter(belong_to=flat)
-    return render(request, 'flat/detail.html', {'flat': flat,'roomList':rooms})
+    return render(request, 'flat/detail.html', {'flat': flat, 'flatDetails': flat_details, 'roomList':rooms})
+
 
 @login_required
 def flatCreate(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = FlatForm(request.POST)
+        form = FlatForm(request.POST, request.FILES)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            create_flat(form_title=form.cleaned_data.get("title"),
-                       form_address=form.cleaned_data.get("address"),
-                       form_description=form.cleaned_data.get("description"),
-                       user=request.user)
+            create_flat(
+                form_title=form.cleaned_data.get("title"),
+                form_address=form.cleaned_data.get("address"),
+                form_description=form.cleaned_data.get("description"),
+                form_picture=form.cleaned_data['picture'],
+                user=request.user)
 
             return HttpResponseRedirect('/flats')
 
@@ -136,15 +141,17 @@ def roomCreate(request, flat_id):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = RoomForm(request.POST)
+        form = RoomForm(request.POST, request.FILES)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
             flat = Flat.objects.get(id=flat_id)
             room = Room(price=form.cleaned_data.get("price"),
                         description=form.cleaned_data.get("description"),
+                        picture=form.cleaned_data['picture'],
                         belong_to=flat)
             room.save()
+
             return HttpResponseRedirect('/flats/' + str(flat_id))
 
     # if a GET (or any other method) we'll create a blank form
@@ -165,9 +172,8 @@ def profileCreate(request):
             # process the data in form.cleaned_data as required
             loggedUser=request.user
 
-            creditcard = CreditCard(owner=form.cleaned_data['owner'],code=form.cleaned_data['code'],cvv=form.cleaned_data['cvv'])
-            CreditCard.save(creditcard)
-            profile = Profile(user=loggedUser,avatar=form.cleaned_data['avatar'],credit_card=creditcard)
+            profile = Profile(user=loggedUser,
+                              avatar=form.cleaned_data['avatar'])
             profile.save()
 
 
@@ -208,7 +214,8 @@ def base(request):
 
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
-    return render(request, 'room/detail.html', {'room': room})
+    room_details = get_room_details(room)
+    return render(request, 'room/detail.html', {'room': room, 'roomDetails': room_details})
 
 def roomReview(request, room_id):
     room = Room.objects.get(id=room_id)

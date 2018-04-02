@@ -7,6 +7,24 @@
     <h1>{{ flat.description }}</h1>
     <h3>{{ flat.address }}</h3>
 
+    <h2>Details</h2>
+
+    <div class="pure-button-group" role="group">
+        {% if flatDetails.elevator == True %}
+            <button class="pure-button">Elevator</button>
+        {% else %}
+            <button class="pure-button pure-button-disabled">Elevator</button>
+        {% endif %}
+
+        {% if flatDetails.washdisher == True %}
+            <button class="pure-button">Washdisher</button>
+        {% else %}
+            <button class="pure-button pure-button-disabled">Washdisher</button>
+        {% endif %}
+
+        <br><br>
+    </div>
+
     {% if roomList %}
 
         <h2>Available rooms</h2>
@@ -23,7 +41,7 @@
                     {% for room in roomList %}
                          <li>
                             <a href="{% url 'roomDetail' room.id %}">
-                                <img src="/static/img/property_1.jpg" alt="" title="" class="property_img"/>
+                                <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
                             </a>
                              <span class="price">{{ room.price }} €</span>
                              <div class="property_details">

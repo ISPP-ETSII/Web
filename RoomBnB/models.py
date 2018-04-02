@@ -6,10 +6,10 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    avatar = models.ImageField()
+    avatar = models.ImageField(upload_to='profile/', default='profile/generic/default.png')
 
 
-class Properties(models.Model):
+class UserProperties(models.Model):
     RATINGS = (
         ('1', '1'),
         ('2', '2'),
@@ -27,34 +27,49 @@ class Properties(models.Model):
     )
 
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
-    smoker = models.CharField(max_length=1, choices=RATINGS)
-    neat = models.CharField(max_length=1, choices=RATINGS)
+    smoker = models.BooleanField(default=False)
+    pets = models.BooleanField(default=False)
     sporty = models.CharField(max_length=1, choices=RATINGS)
     gamer = models.CharField(max_length=1, choices=RATINGS)
     sociable = models.CharField(max_length=1, choices=RATINGS)
-    active = models.CharField(max_length=1, choices=RATINGS)
     degree = models.CharField(max_length=1, choices=DEGREES)
-
-
-class CreditCard(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    owner = models.CharField(max_length=50)
-    code = models.CharField(max_length=16)
-    cvv = models.CharField(max_length=3)
 
 
 class Flat(models.Model):
     title = models.TextField(max_length=100)
     address = models.TextField(max_length=100)
     description = models.TextField(max_length=500)
+    picture = models.ImageField(upload_to='flat/', default='flat/generic/default.jpg')
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='flats')
+
+
+class FlatProperties(models.Model):
+    flat = models.OneToOneField(Flat, on_delete=models.CASCADE)
+    elevator = models.BooleanField(default=False)
+    washdisher = models.BooleanField(default=False)
 
 
 class Room(models.Model):
     description = models.TextField(max_length=500)
     price = models.FloatField()
+    picture = models.ImageField(upload_to='room/', default='room/generic/default.jpg')
     temporal_owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
     belong_to = models.ForeignKey(Flat, on_delete=models.CASCADE, related_name='rooms')
+
+
+class RoomProperties(models.Model):
+    BEDS = (
+        ('1', 'Couple'),
+        ('2', 'Single'),
+        ('3', 'Sofa'),
+        ('4', 'None'),
+    )
+
+    room = models.OneToOneField(Room, on_delete=models.CASCADE)
+    balcony = models.BooleanField(default=False)
+    window = models.BooleanField(default=False)
+    air_conditioner = models.BooleanField(default=False)
+    bed = models.CharField(max_length=1, choices=BEDS, default=2)
 
 
 class RentRequest(models.Model):
@@ -75,7 +90,6 @@ class Contract(models.Model):
 class Payment(models.Model):
     amount = models.FloatField()
     date = models.DateField(auto_now_add=True)
-    credit_card = models.ForeignKey(CreditCard, on_delete=models.DO_NOTHING)
     contract = models.ForeignKey(Contract, on_delete=models.CASCADE, default=None)
 
 

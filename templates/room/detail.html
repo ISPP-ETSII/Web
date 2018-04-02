@@ -12,6 +12,30 @@
 
     <h2>{{ room.price }} €</h2>
 
+    <h2>Details</h2>
+
+    <div class="pure-button-group" role="group">
+        {% if roomDetails.balcony == True %}
+            <button class="pure-button">Balcony</button>
+        {% else %}
+            <button class="pure-button pure-button-disabled">Balcony</button>
+        {% endif %}
+
+        {% if flatDetails.window == True %}
+            <button class="pure-button">Window</button>
+        {% else %}
+            <button class="pure-button pure-button-disabled">Window</button>
+        {% endif %}
+
+        {% if flatDetails.air_conditioner == True %}
+            <button class="pure-button">Air Conditioner</button>
+        {% else %}
+            <button class="pure-button pure-button-disabled">Air Conditioner</button>
+        {% endif %}
+
+        <br><br>
+    </div>
+
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
