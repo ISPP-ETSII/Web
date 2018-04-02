@@ -4,17 +4,17 @@
 
 {% block content %}
 
+    {% if user.is_authenticated %}
+        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatCreate' %}'">Create</button>
+        <!--<button class="pure-button pure-button-active" onclick="location.href='{% url 'profileCreate' %}'">Create profile</button>-->
+        <br><br>
+    {% endif %}
+
     {% if flatList %}
 
         <section class="listings">
 
             <div class="wrapper">
-
-                {% if user.is_authenticated %}
-                    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatCreate' %}'">Create</button>
-                    <!--<button class="pure-button pure-button-active" onclick="location.href='{% url 'profileCreate' %}'">Create profile</button>-->
-                    <br><br>
-                {% endif %}
 
                 <ul class="properties_list">
                     {% for flat in flatList %}
