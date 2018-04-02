@@ -5,12 +5,13 @@ from RoomBnB.models import RentRequest
 from django.shortcuts import render, redirect
 
 
-def create_flat(form_title, form_address, form_description, user):
+def create_flat(form_title, form_address, form_description, form_picture, user):
     profile = Profile.objects.get(user=user)
 
     f1 = Flat(title=form_title,
               address=form_address,
               description=form_description,
+              picture=form_picture,
               owner=profile)
     f1.save()
 

@@ -118,9 +118,10 @@ def flatCreate(request):
         if form.is_valid():
             # process the data in form.cleaned_data as required
             create_flat(form_title=form.cleaned_data.get("title"),
-                       form_address=form.cleaned_data.get("address"),
-                       form_description=form.cleaned_data.get("description"),
-                       user=request.user)
+                        form_address=form.cleaned_data.get("address"),
+                        form_description=form.cleaned_data.get("description"),
+                        form_picture=form.cleaned_data['picture'],
+                        user=request.user)
 
             return HttpResponseRedirect('/flats')
 
@@ -142,6 +143,7 @@ def roomCreate(request, flat_id):
             flat = Flat.objects.get(id=flat_id)
             room = Room(price=form.cleaned_data.get("price"),
                         description=form.cleaned_data.get("description"),
+                        picture=form.cleaned_data['picture'],
                         belong_to=flat)
             room.save()
             return HttpResponseRedirect('/flats/' + str(flat_id))
