@@ -14,7 +14,6 @@ from RoomBnB.forms import RoomForm
 from RoomBnB.models import Flat
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
-from RoomBnB.models import CreditCard
 from RoomBnB.models import FlatReview
 from RoomBnB.models import RoomReview
 from RoomBnB.models import UserReview
@@ -165,9 +164,8 @@ def profileCreate(request):
             # process the data in form.cleaned_data as required
             loggedUser=request.user
 
-            creditcard = CreditCard(owner=form.cleaned_data['owner'],code=form.cleaned_data['code'],cvv=form.cleaned_data['cvv'])
-            CreditCard.save(creditcard)
-            profile = Profile(user=loggedUser,avatar=form.cleaned_data['avatar'],credit_card=creditcard)
+            profile = Profile(user=loggedUser,
+                              avatar=form.cleaned_data['avatar'])
             profile.save()
 
 
