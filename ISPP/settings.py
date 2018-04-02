@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -128,6 +129,8 @@ USE_TZ = True
 
 STATIC_ROOT = '/var/www/staticfiles'
 STATIC_URL = '/static/'
+
+#MEDIA_ROOT = '/var/www/mediafiles'
 MEDIA_ROOT = os.path.join(BASE_DIR, "ISPP", "pics")
 MEDIA_URL = '/pics/'
 

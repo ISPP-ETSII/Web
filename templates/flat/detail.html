@@ -41,7 +41,7 @@
                     {% for room in roomList %}
                          <li>
                             <a href="{% url 'roomDetail' room.id %}">
-                                <img src="/static/img/property_1.jpg" alt="" title="" class="property_img"/>
+                                <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
                             </a>
                              <span class="price">{{ room.price }} €</span>
                              <div class="property_details">
