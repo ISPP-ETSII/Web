@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    avatar = models.ImageField(upload_to='profile/', default='profile/default.png')
+    avatar = models.ImageField(upload_to='profile/', default='profile/generic/default.png')
 
 
 class UserProperties(models.Model):
@@ -39,7 +39,7 @@ class Flat(models.Model):
     title = models.TextField(max_length=100)
     address = models.TextField(max_length=100)
     description = models.TextField(max_length=500)
-    picture = models.ImageField(upload_to='flat/', default='flat/default.jpg')
+    picture = models.ImageField(upload_to='flat/', default='flat/generic/default.jpg')
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='flats')
 
 
@@ -52,7 +52,7 @@ class FlatProperties(models.Model):
 class Room(models.Model):
     description = models.TextField(max_length=500)
     price = models.FloatField()
-    picture = models.ImageField(upload_to='room/', default='room/default.png')
+    picture = models.ImageField(upload_to='room/', default='room/generic/default.jpg')
     temporal_owner = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
     belong_to = models.ForeignKey(Flat, on_delete=models.CASCADE, related_name='rooms')
 
