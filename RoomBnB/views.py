@@ -117,16 +117,16 @@ def flatCreate(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = FlatForm(request.POST)
+        form = FlatForm(request.POST, request.FILES)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            flat = create_flat(form_title=form.cleaned_data.get("title"),
-                        form_address=form.cleaned_data.get("address"),
-                        form_description=form.cleaned_data.get("description"),
-                        form_picture=form.cleaned_data['picture'],
-                        user=request.user)
-            FlatProperties(flat=flat).save()
+            create_flat(
+                form_title=form.cleaned_data.get("title"),
+                form_address=form.cleaned_data.get("address"),
+                form_description=form.cleaned_data.get("description"),
+                form_picture=form.cleaned_data['picture'],
+                user=request.user)
 
             return HttpResponseRedirect('/flats')
 
@@ -141,7 +141,7 @@ def roomCreate(request, flat_id):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = RoomForm(request.POST)
+        form = RoomForm(request.POST, request.FILES)
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
@@ -151,7 +151,7 @@ def roomCreate(request, flat_id):
                         picture=form.cleaned_data['picture'],
                         belong_to=flat)
             room.save()
-            RoomProperties(room=room).save()
+
             return HttpResponseRedirect('/flats/' + str(flat_id))
 
     # if a GET (or any other method) we'll create a blank form

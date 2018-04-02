@@ -12,13 +12,13 @@ class FlatForm(forms.Form):
     title = forms.CharField(label='Title', max_length=100)
     address = forms.CharField(label='Address', max_length=100)
     description = forms.CharField(label='Description', max_length=500)
-    avatar = forms.ImageField()
+    picture = forms.ImageField()
 
 
 class RoomForm(forms.Form):
     description = forms.CharField(label='Description', max_length=500)
     price = forms.FloatField(required=True, max_value=1000, min_value=0)
-    avatar = forms.ImageField()
+    picture = forms.ImageField()
 
 
 class ProfileForm(forms.Form):
