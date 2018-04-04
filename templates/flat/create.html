@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a flat{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        <form class="pure-form pure-form-stacked" action="{% url 'flatCreate' %}" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <legend>Create a flat</legend>
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <!--<label for="title">Title: </label>
+                <input placeholder="An awesome flat" id="title" type="text" name="title" value="{{ title }}">
+                <br>
+
+                <label for="address">Address: </label>
+                <input placeholder="Street" id="address" type="text" name="address" value="{{ address }}">
+
+                <br>
+                <label for="description">Description: </label>
+                <input placeholder="Sample description" id="description" type="text" name="description" value="{{ description }}">-->
+
+                <input class="pure-button pure-button-primary" type="submit" value="Save" />
+            </fieldset>
+        </form>
+
+     {% else %}
+
+        <h2>You are not logged in.</h2>
+
+    {% endif %}
+
+{% endblock %}
