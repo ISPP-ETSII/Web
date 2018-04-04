@@ -18,6 +18,11 @@ def create_flat(form_title, form_address, form_description, form_picture, user):
     return f1.save()
 
 
+def delete_flat(flat_id):
+    flat = Flat.objects.get(id=flat_id)
+    return flat.delete()
+
+
 def get_flat_details(flat):
     try:
         return FlatProperties.objects.get(flat=flat)
