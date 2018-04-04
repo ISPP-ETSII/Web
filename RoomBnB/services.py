@@ -4,6 +4,7 @@ from RoomBnB.models import Profile
 from RoomBnB.models import Room
 from RoomBnB.models import RoomProperties
 from RoomBnB.models import RentRequest
+from RoomBnB.models import Review
 from django.shortcuts import render, redirect
 
 
@@ -16,6 +17,42 @@ def create_flat(form_title, form_address, form_description, form_picture, user):
               picture=form_picture,
               owner=profile)
     return f1.save()
+
+
+def create_userreview(form_title, form_description, form_date, form_rating, user1):
+    profile = Profile.objects.get(user=user1)
+
+    r1 = Review(title=form_title,
+                description=form_description,
+                date=form_date,
+                rating=form_rating,
+                user=profile)
+    return r1.save()
+
+
+def create_flatreview(form_title, form_description, form_date, form_rating, flat1):
+    flat = Flat.objects.get(flat=flat1)
+
+    r1 = Review(title=form_title,
+                description=form_description,
+                date=form_date,
+                rating=form_rating,
+                flat1=flat)
+    return r1.save()
+
+
+def create_roomreview(form_title, form_description, form_date, form_rating, room1):
+    room = Room.objects.get(room=room1)
+
+    r1 = Review(title=form_title,
+                description=form_description,
+                date=form_date,
+                rating=form_rating,
+                room1=room)
+    return r1.save()
+
+
+
 
 
 def delete_flat(flat_id):
