@@ -13,12 +13,50 @@
                         <h2>Search your flat</h2>
 
                         <input class="pure-input-2-3" type="text" placeholder="Bami" id="keyword" name="keyword">
-
-                        <br><br>
+                        <br>
+                        <br>
+                        <table class="pure-table">
+                            <thead>
+                                <tr>
+                                    <th>House features</th>
+                                    <th>Room features</th>
+                                    <th>User features</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th><label><input type="checkbox" id="washdisher" value="washdisher"> Washdisher </label></th>
+                                    <th><label for="bed"> Bed </label>
+                                         <select name="bed">
+                                            <option value="1">Couple</option>
+                                            <option value="2" selected="selected">Single</option>
+                                            <option value="3">Sofa</option>
+                                            <option value="4">None</option>
+                                         </select></th>
+                                    <th><label><input type="checkbox" id="man" value="man"> Man </label></th>
+                                </tr>
+                                <tr>
+                                    <th><label><input type="checkbox" id="elevator" value="elevator"> Elevator </label></th>
+                                    <th><label><input type="checkbox" id="balcony" value="balcony"> Balcony </label></th>
+                                    <th><label><input type="checkbox" id="woman" value="woman"> Woman </label></th>
+                                </tr>
+                                <tr>
+                                    <th><label><input type="checkbox" id="pets" value="pets"> Pets </label></th>
+                                    <th><label><input type="checkbox" id="window" value="window"> Window </label></th>
+                                    <th><label><input type="checkbox" id="sociable" value="sociable"> Sociable </label></th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th><label><input type="checkbox" id="air_conditioner" value="air_conditioner"> Air conditioner </label></th>
+                                    <th><label><input type="checkbox" id="smoker" value="smoker"> Smoker </label></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <br>
                         <p><input class="pure-button pure-button-primary" type="submit" value="Search" /></p>
                     </fieldset>
                 </form>
-
             </p>
         </div>
         <div class="pure-u-1-5"><p></p></div>
