@@ -26,7 +26,7 @@
     </table>
     <br>
     {% for room in rooms %}
-        {% if profile == room.temporal_owner or profile == owner %}
+        {% if profile == room.temporal_owner %}
         <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' user.id %}'">Write a review</button>
         {% endif %}
     {% endfor %}

@@ -66,3 +66,8 @@ class RoomReviewForm(ReviewForm):
 
 class SearchFlatForm(forms.Form):
     keyword = forms.CharField(max_length=100)
+    elevator = forms.BooleanField(required=False, initial=False)
+    washdisher = forms.BooleanField(required=False, initial=False)
+    balcony = forms.BooleanField(required=False, initial=False)
+    window = forms.BooleanField(required=False, initial=False)
+    air_conditioner = forms.BooleanField(required=False, initial=False)
