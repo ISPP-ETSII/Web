@@ -1,18 +1,7 @@
-sudo: required
-
 language: python
 
 python:
   - "3.5"
-
-services:
-  - postgresql
-
-before_script:
-  - psql -c 'create database roombnb;' -U postgres
-  - psql -c "CREATE USER roombnb_user WITH PASSWORD 'password_test';" -U postgres
-  - psql -c 'grant all privileges on database roombnb to roombnb_user;' -U postgres
-  - python manage.py migrate
 
 install:
   - pip3 install -r deploy/requirements.txt
