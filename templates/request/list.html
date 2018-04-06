@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Requests{% endblock %}
+
+{% block content %}
+
+    <h2>Requests pending to answer</h2>
+    <ul>
+    {% for request in requests_to_me %}
+        <li>
+            <p>{{ request.creation_date }}</p>
+            <p>Accepted: {{ request.accepted }}</p>
+            <a class="pure-button" href="/userReview/{{ request.requester.id }}/">View user reviews</a>
+            <a class="pure-button" href="/rooms/{{ request.requested.id }}/">View room</a>
+            {% if not request.accepted %}
+                <a class="pure-button" href="/requests/accept/{{ request.id }}/">Accept</a>
+                <a class="pure-button" href="/requests/deny/{{ request.id }}/">Deny</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Requests made by me</h2>
+    <ul>
+    {% for request in requests_by_me %}
+        <li>
+            <p>{{ request.creation_date }}</p>
+            <p>Accepted: {{ request.accepted }}</p>
+            <a class="pure-button" href="/userReview/{{ request.requester.id }}/">View user reviews</a>
+            <a class="pure-button" href="/rooms/{{ request.requested.id }}/">View room</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -25,10 +25,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rentinpeace.ml', '127.0.0.1']
 
 
-LOGIN_URL = 'login/'
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -125,4 +127,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATIC_ROOT = '/var/www/staticfiles'
 STATIC_URL = '/static/'
+
+#MEDIA_ROOT = '/var/www/mediafiles'
+MEDIA_ROOT = os.path.join(BASE_DIR, "ISPP", "pics")
+MEDIA_URL = '/pics/'
+
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, "ISPP", "static"),
+)

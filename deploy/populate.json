@@ -569,7 +569,8 @@
     "fields": {
       "owner": "1",
       "code": "12345677",
-      "cvv": "123"
+      "cvv": "123",
+      "user": 1
     }
   },
   {
@@ -578,7 +579,8 @@
     "fields": {
       "owner": "2",
       "code": "12345678",
-      "cvv": "124"
+      "cvv": "124",
+      "user": 2
     }
   },
   {
@@ -587,7 +589,8 @@
     "fields": {
       "owner": "3",
       "code": "12345679",
-      "cvv": "125"
+      "cvv": "125",
+      "user": 3
     }
   },
   {
@@ -596,7 +599,8 @@
     "fields": {
       "owner": "4",
       "code": "12345680",
-      "cvv": "126"
+      "cvv": "126",
+      "user": 4
     }
   },
   {
@@ -605,7 +609,8 @@
     "fields": {
       "owner": "5",
       "code": "12345680",
-      "cvv": "126"
+      "cvv": "126",
+      "user": 5
     }
   },
   {
@@ -614,7 +619,8 @@
     "fields": {
       "owner": "6",
       "code": "12345680",
-      "cvv": "126"
+      "cvv": "126",
+      "user": 6
     }
   },
   {
@@ -622,8 +628,7 @@
     "pk": 1,
     "fields": {
       "user": 1,
-      "avatar": "imagen",
-      "credit_card": 1
+      "avatar": "imagen"
     }
   },
   {
@@ -631,8 +636,7 @@
     "pk": 2,
     "fields": {
       "user": 2,
-      "avatar": "imagen",
-      "credit_card": 2
+      "avatar": "imagen"
     }
   },
   {
@@ -640,8 +644,7 @@
     "pk": 3,
     "fields": {
       "user": 3,
-      "avatar": "imagen",
-      "credit_card": 3
+      "avatar": "imagen"
     }
   },
   {
@@ -649,8 +652,7 @@
     "pk": 4,
     "fields": {
       "user": 4,
-      "avatar": "imagen",
-      "credit_card": 4
+      "avatar": "imagen"
     }
   },
   {
@@ -658,8 +660,7 @@
     "pk": 5,
     "fields": {
       "user": 5,
-      "avatar": "imagen",
-      "credit_card": 5
+      "avatar": "imagen"
     }
   },
   {
@@ -667,16 +668,16 @@
     "pk": 6,
     "fields": {
       "user": 6,
-      "avatar": "imagen",
-      "credit_card": 6
+      "avatar": "imagen"
     }
   },
   {
     "model": "RoomBnB.flat",
     "pk": 1,
     "fields": {
+      "title": "Piso 1",
+      "address": "Calle 1",
       "description": "Piso en Bami",
-      "pictures": "img",
       "owner": 1
     }
   },
@@ -684,8 +685,9 @@
     "model": "RoomBnB.flat",
     "pk": 2,
     "fields": {
+      "title": "Piso 2",
+      "address": "Calle 3",
       "description": "Piso en Bermejales",
-      "pictures": "img",
       "owner": 2
     }
   },
@@ -695,7 +697,6 @@
     "fields": {
       "description": "Habitacion luminosa",
       "price": 200,
-      "pictures": "img",
       "temporal_owner": 3,
       "belong_to": 1
     }
@@ -706,7 +707,6 @@
     "fields": {
       "description": "Habitacion con balcon",
       "price": 200,
-      "pictures": "img",
       "temporal_owner": 4,
       "belong_to": 1
     }
@@ -717,7 +717,6 @@
     "fields": {
       "description": "Habitacion grande",
       "price": 200,
-      "pictures": "img",
       "temporal_owner": 5,
       "belong_to": 2
     }
@@ -728,8 +727,6 @@
     "fields": {
       "description": "Habitacion peque\u00f1a",
       "price": 200,
-      "pictures": "img",
-      "temporal_owner": 6,
       "belong_to": 2
     }
   },
