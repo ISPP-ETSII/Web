@@ -7,4 +7,4 @@ install:
   - pip3 install -r deploy/requirements.txt
 
 script:
-  - python3 manage.py test
+  - ./manage.py test
