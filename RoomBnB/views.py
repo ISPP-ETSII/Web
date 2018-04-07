@@ -287,7 +287,7 @@ def userReview(request,flat_id, user_id):
 
 
 @login_required
-def writeReviewUser(request, user_id):
+def writeReviewUser(request, user_id, flat_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -295,11 +295,11 @@ def writeReviewUser(request, user_id):
             rev = UserReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
                              rating = form.cleaned_data.get("rating"), user = user)
             rev.save()
-            return HttpResponseRedirect('/userReview/'+ str(user_id))
+            return HttpResponseRedirect('/userReview/'+ str(flat_id) + '/' + str(user_id))
     else:
         form = ReviewForm()
     print(form.errors)
-    return render(request, 'user/writeReview.html', {'form': form, 'userid': user_id})
+    return render(request, 'user/writeReview.html', {'form': form, 'flatid': flat_id, 'userid': user_id})
 
 
 @login_required
