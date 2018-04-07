@@ -68,9 +68,9 @@
         {% endif %}
     {% endif %}
 
-  <br>
-  <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatReview' flat.id %}'">Flat reviews</button>
-  <button class="pure-button pure-button-primary" onclick="location.href='{% url 'ownerReview' flat.id flat.owner.id %}'">Owner Reviews</button>
+    <br>
+    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatReview' flat.id %}'">Flat reviews</button>
+    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'userReview' flat.id flat.owner.user.id %}'">Owner Reviews</button>
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 

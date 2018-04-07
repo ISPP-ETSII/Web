@@ -266,37 +266,24 @@ def detailRoom(request, room_id):
 
 
 def roomReview(request, room_id):
-    loggedUser = request.user
     room = Room.objects.get(id=room_id)
     reviews = RoomReview.objects.filter(room = room)
-    return render(request, 'room/review.html', {'roomRev': reviews, 'room': room, 'profile':loggedUser})
+    return render(request, 'room/review.html', {'roomRev': reviews, 'room': room})
 
 
 def flatReview(request, flat_id):
-    loggedUser = request.user
     flat = Flat.objects.get(id=flat_id)
     rooms = Room.objects.filter(belong_to=flat)
     review = FlatReview.objects.filter(flat = flat)
-    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms':rooms, 'profile':loggedUser})
+    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms':rooms})
 
 
 def userReview(request,flat_id, user_id):
-    loggedUser = request.user
     user = User.objects.get(id = user_id)
     flat = Flat.objects.get(id = flat_id)
     rooms = Room.objects.filter(belong_to=flat)
     review = UserReview.objects.filter(user = user)
-    return render(request, 'user/review.html', {'userRev': review, 'profile':loggedUser, 'rooms':rooms})
-
-
-def ownerReview(request,flat_id, user_id):
-    loggedUser = request.user
-    user = User.objects.get(id = user_id)
-    flat = Flat.objects.get(id = flat_id)
-    owner = flat.owner.user
-    rooms = Room.objects.filter(belong_to=flat)
-    review = UserReview.objects.filter(user = user)
-    return render(request, 'owner/review.html', {'userRev': review, 'user': user, 'profile':loggedUser, 'rooms':rooms, 'owner':owner})
+    return render(request, 'user/review.html', {'userRev': review, 'flat':flat, 'rooms':rooms})
 
 
 @login_required

@@ -27,8 +27,8 @@
     <br>
 
     {% for room in rooms %}
-        {% if profile == room.temporal_owner %}
-        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' user.id %}'">Write a review</button>
+        {% if user == room.temporal_owner or user == flat.owner %}
+            <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' user.id %}'">Write a review</button>
         {% endif %}
     {% endfor %}
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}

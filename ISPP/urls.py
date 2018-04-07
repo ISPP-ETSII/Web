@@ -43,7 +43,6 @@ urlpatterns = [
     path('roomReview/<int:room_id>/', views.roomReview, name='roomReview'),
     path('flatReview/<int:flat_id>/', views.flatReview, name='flatReview'),
     path('userReview/<int:flat_id>/<int:user_id>/', views.userReview, name='userReview'),
-    path('ownerReview/<int:flat_id>/<int:user_id>/', views.ownerReview, name='ownerReview'),
     path('writeRoomReview/<int:room_id>/', views.writeReviewRoom, name='writeRoomReview'),
     path('writeFlatReview/<int:flat_id>/', views.writeReviewFlat, name='writeFlatReview'),
     path('writeUserReview/<int:user_id>/', views.writeReviewUser, name='writeUserReview'),
