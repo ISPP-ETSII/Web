@@ -9,8 +9,8 @@ services:
   - postgresql
 
 install:
-  - apt-get update && apt upgrade -y
-  - apt-get install sshpass
+  - sudo apt-get update
+  - sudo apt-get install sshpass
   - pip3 install -r deploy/requirements.txt
 
 before_script:
