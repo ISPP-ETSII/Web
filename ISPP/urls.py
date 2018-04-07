@@ -33,7 +33,8 @@ urlpatterns = [
     path('requests/deny/<int:request_id>/', views.deny_request, name='denyRequest'),
     # ex: /flats/5/
     path('flats/<int:flat_id>/', views.detail, name='flatDetail'),
-    path('flats/keyword=<keyword>/elevator=<elevator>/washdisher=<washdisher>/balcony=<balcony>/window=<window>/air_conditioner=<air_conditioner>/', views.listWithKeyword, name='flatListWithKeyword'),
+    path('flats/keyword=<keyword>/elevator=<elevator>/washdisher=<washdisher>/balcony=<balcony>/window=<window>/air_conditioner=<air_conditioner>/', views.listWithProperties, name='flatListWithProperties'),
+    path('flats/keyword=<keyword>', views.listWithKeyword, name='flatListWithKeyword'),
     path('flats/create',views.flatCreate, name='flatCreate'),
     path('profile/create',views.profileCreate, name='profileCreate'),
     path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),

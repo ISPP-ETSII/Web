@@ -97,9 +97,20 @@ def list(request):
     context = {'flatList': flatList}
     return render(request, 'flat/list.html', context)
 
-def listWithKeyword(request,keyword,elevator,washdisher,balcony,window,air_conditioner):
+
+def listWithKeyword(request, keyword):
+    query = Q(title__icontains=keyword)
+    query.add(Q(description__icontains=keyword), Q.OR)
+    query.add(Q(address__icontains=keyword), Q.OR)
+    flatList = Flat.objects.all().filter(query)
+
+    return render(request, 'flat/list.html', {'flatList': flatList})
+
+
+def listWithProperties(request,keyword,elevator,washdisher,balcony,window,air_conditioner):
     list = []
     res=[]
+
     query = Q(title__icontains=keyword)
     query.add(Q(description__icontains=keyword), Q.OR)
     query.add(Q(address__icontains=keyword), Q.OR)
@@ -130,6 +141,7 @@ def listWithKeyword(request,keyword,elevator,washdisher,balcony,window,air_condi
                 res.append(flat)
 
     return render(request, 'flat/list.html', {'flatList': res})
+
 
 def detail(request, flat_id):
     flat = Flat.objects.get(id=flat_id)
@@ -162,6 +174,7 @@ def flatCreate(request):
 
     return render(request, 'flat/create.html', {'form': form})
 
+
 @login_required
 def roomCreate(request, flat_id):
     # if this is a POST request we need to process the form data
@@ -185,6 +198,7 @@ def roomCreate(request, flat_id):
         form = RoomForm()
 
     return render(request, 'room/create.html', {'form': form, 'flatid': flat_id})
+
 
 @login_required
 def profileCreate(request):
@@ -211,6 +225,7 @@ def profileCreate(request):
 
     return render(request, 'profile/create.html', {'form': form})
 
+
 @login_required
 def flatDelete(request, flat_id):
     flatList = Flat.objects.all()
@@ -220,10 +235,10 @@ def flatDelete(request, flat_id):
 
     return render(request, 'flat/list.html', context)
 
+
 @login_required
 def root(request):
     return render(request, template_name='root.html')
-
 
 
 def base(request):
@@ -243,16 +258,19 @@ def base(request):
 
     return render(request, 'index.html', {'form': form})
 
+
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
     room_details = get_room_details(room)
     return render(request, 'room/detail.html', {'room': room, 'roomDetails': room_details})
+
 
 def roomReview(request, room_id):
     loggedUser = request.user
     room = Room.objects.get(id=room_id)
     reviews = RoomReview.objects.filter(room = room)
     return render(request, 'room/review.html', {'roomRev': reviews, 'room': room, 'profile':loggedUser})
+
 
 def flatReview(request, flat_id):
     loggedUser = request.user
@@ -261,6 +279,7 @@ def flatReview(request, flat_id):
     review = FlatReview.objects.filter(flat = flat)
     return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms':rooms, 'profile':loggedUser})
 
+
 def userReview(request,flat_id, user_id):
     loggedUser = request.user
     user = User.objects.get(id = user_id)
@@ -268,6 +287,7 @@ def userReview(request,flat_id, user_id):
     rooms = Room.objects.filter(belong_to=flat)
     review = UserReview.objects.filter(user = user)
     return render(request, 'user/review.html', {'userRev': review, 'profile':loggedUser, 'rooms':rooms})
+
 
 def ownerReview(request,flat_id, user_id):
     loggedUser = request.user

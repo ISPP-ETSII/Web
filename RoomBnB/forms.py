@@ -71,3 +71,4 @@ class SearchFlatForm(forms.Form):
     balcony = forms.BooleanField(required=False, initial=False)
     window = forms.BooleanField(required=False, initial=False)
     air_conditioner = forms.BooleanField(required=False, initial=False)
+
