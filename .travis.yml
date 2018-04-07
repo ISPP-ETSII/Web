@@ -21,4 +21,5 @@ script:
   - python3 manage.py test
 
 after_success:
-  - sshpass -p $DEPLOY_PASSWORD ssh alejandrohall@rentinpeace.ml './deploy develop > deploy.log'
+  - sshpass -p $DEPLOY_PASSWORD ssh alejandrohall@rentinpeace.ml './deploy master' > deploy.log
+  - cat deploy.log
