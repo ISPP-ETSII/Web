@@ -22,4 +22,4 @@ before_script:
 
 script:
   - python3 manage.py test
-  - sshpass -p qwerty12 ssh alejandrohall@rentinpeace.ml -o stricthostkeychecking=no 'touch /home/alejandrohall/deploy.txt'
+  - sshpass -e ssh alejandrohall@rentinpeace.ml -o stricthostkeychecking=no 'touch /home/alejandrohall/deploy.txt'
