@@ -8,9 +8,12 @@ python:
 services:
   - postgresql
 
+addons:
+  apt:
+    packages:
+    - sshpass
+
 install:
-  - sudo apt-get update
-  - sudo apt-get install sshpass
   - pip3 install -r deploy/requirements.txt
 
 before_script:
