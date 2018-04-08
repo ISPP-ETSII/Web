@@ -9,8 +9,6 @@ services:
   - postgresql
 
 addons:
-  ssh_known_hosts:
-    - rentinpeace.ml
   apt:
     packages:
     - sshpass
