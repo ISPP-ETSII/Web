@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'RoomBnB.apps.RoombnbConfig',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +158,8 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, "ISPP", "static"),
 )
+
+#Paypal
+
+PAYPAL_RECEIVER_EMAIL= 'roombnbispp-facilitator@gmail.com'
+PAYPAL_TEST= True

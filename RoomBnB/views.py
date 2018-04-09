@@ -19,12 +19,16 @@ from RoomBnB.models import FlatReview
 from RoomBnB.models import RoomReview
 from RoomBnB.models import UserReview
 from RoomBnB.models import FlatProperties
+from RoomBnB.models import Contract
 from RoomBnB.forms import ReviewForm
 from RoomBnB.models import User
 from RoomBnB.forms import SearchFlatForm
 from RoomBnB.models import RentRequest
 from django.contrib.auth.models import User
 from RoomBnB.services import create_flat, create_rent_request, get_flat_details, get_room_details
+from django.urls import reverse
+from django.shortcuts import render, redirect
+from paypal.standard.forms import PayPalPaymentsForm
 
 
 def signup(request):
@@ -49,7 +53,6 @@ def signup(request):
 @login_required
 def request_rent_room(request, room_id):
     response = create_rent_request(request.user, room_id)
-
     return response
 
 
@@ -78,6 +81,7 @@ def accept_request(request, request_id):
     room = rent_request.requested
     room.temporal_owner = rent_request.requester
     room.save()
+
 
     rent_request.delete()
 
@@ -110,7 +114,6 @@ def listWithKeyword(request, keyword):
 def listWithProperties(request,keyword,elevator,washdisher,balcony,window,air_conditioner):
     list = []
     res=[]
-
     query = Q(title__icontains=keyword)
     query.add(Q(description__icontains=keyword), Q.OR)
     query.add(Q(address__icontains=keyword), Q.OR)
@@ -261,8 +264,14 @@ def base(request):
 
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
+    user=request.user
+    rentRequest= RentRequest.objects.all()
+    flat= Flat.objects.get(id=room.belong_to.id)
+    rooms=rooms = Room.objects.filter(belong_to=flat)
     room_details = get_room_details(room)
-    return render(request, 'room/detail.html', {'room': room, 'roomDetails': room_details})
+
+    return render(request, 'room/detail.html', {'room': room, 'rooms':rooms, 'user':user, 'rentRequest':rentRequest,'roomDetails': room_details})
+
 
 
 def roomReview(request, room_id):
@@ -333,3 +342,33 @@ def writeReviewFlat(request, flat_id):
     print(form.errors)
     return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
 
+
+def view_that_asks_for_money(request, room_id):
+    room = Room.objects.get(id=room_id)
+
+    # What you want the button to do.
+    paypal_dict = {
+        "business": "roombnbispp-facilitator@gmail.com",
+        "amount":  room.price,
+        "item_name": Room.description,
+        "invoice": room_id,
+        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        #"return": request.build_absolute_uri(reverse('payment')),
+        #"cancel_return": request.build_absolute_uri(reverse('payment')),
+        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+
+        "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
+    }
+    # Create the instance.
+    form = PayPalPaymentsForm(initial=paypal_dict)
+   # context = {"form": form}
+
+    date_signed = timezone.now()
+    flat = Flat.objects.get(id=room.belong_to.id)
+    owner = flat.owner
+    user = room.temporal_owner
+    tenant = Profile.objects.get(user=request.user)
+    contract = Contract(date_signed=date_signed, landlord=owner, tenant=tenant, room=room)
+    contract.save()
+
+    return render(request, "paypal/payment.html", {'contract': contract,'form': form})

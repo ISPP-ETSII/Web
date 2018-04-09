@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PAGO</title>
+</head>
+<body>
+ <h1> Leer contrato siguiente: </h1>
+ <h1>
+     {{ contract.date_signed }}
+     {{ contract.tenant.user.first_name}}
+     {{ contract.landlord.user.first_name}}
+     {{ contract.room.description}}
+     {{ contract.room.price}}
+</h1>
+
+<h1> Pagar: </h1>
+{{form.render}}
+</body>
+</html>
