@@ -1,6 +1,7 @@
 {% extends 'base_home.html' %}
+{% load i18n %}
 
-{% block title %}Welcome to RentInPeace{% endblock %}
+{% block title %}{% trans "Welcome to RentInPeace" %}{% endblock %}
 
 {% block content %}
     <div class="pure-g">
@@ -9,12 +10,12 @@
             <p>
                 <form class="pure-form" action="{% url 'base' %}" method="post">
                     <fieldset>
-                        <h2>Search your flat</h2>
+                        <h2>{% trans "Search your flat" %}</h2>
                         {% csrf_token %}
 
                         {% for field in form %}
                             {% if field.name == 'keyword' %}
-                                <input class="pure-input-2-3" type="text" placeholder="Bami" id="{{ field.name }}" name="{{ field.name }}">
+                                <input class="pure-input-2-3" type="text" placeholder="{% trans "Search by name, description or address" %}" id="{{ field.name }}" name="{{ field.name }}">
                                 <br><br>
                             {% endif %}
                         {% endfor %}
@@ -22,7 +23,7 @@
                         <table class="pure-table">
                             <thead>
                                 <tr>
-                                    <th>Properties</th>
+                                    <th>{% trans "Properties" %}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,7 +38,7 @@
                         </table>
 
                         <br><br>
-                        <p><input class="pure-button pure-button-primary" type="submit" value="Search" /></p>
+                        <p><input class="pure-button pure-button-primary" type="submit" value="{% trans "Search" %}" /></p>
                     </fieldset>
                 </form>
             </p>

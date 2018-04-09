@@ -1,25 +1,26 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Flat details{% endblock %}
+{% block title %}{% trans "Flat details" %}{% endblock %}
 
 {% block content %}
 
     <h1>{{ flat.description }}</h1>
     <h3>{{ flat.address }}</h3>
 
-    <h2>Details</h2>
+    <h2>{% trans "Details" %}</h2>
 
     <div class="pure-button-group" role="group">
         {% if flatDetails.elevator == True %}
-            <button class="pure-button">Elevator</button>
+            <button class="pure-button">{% trans "Elevator" %}</button>
         {% else %}
-            <button class="pure-button pure-button-disabled">Elevator</button>
+            <button class="pure-button pure-button-disabled">{% trans "Elevator" %}</button>
         {% endif %}
 
         {% if flatDetails.washdisher == True %}
-            <button class="pure-button">Washdisher</button>
+            <button class="pure-button">{% trans "Dishwasher" %}</button>
         {% else %}
-            <button class="pure-button pure-button-disabled">Washdisher</button>
+            <button class="pure-button pure-button-disabled">{% trans "Dishwasher" %}</button>
         {% endif %}
 
         <br><br>
@@ -27,13 +28,13 @@
 
     {% if roomList %}
 
-        <h2>Available rooms</h2>
+        <h2>{% trans "Available rooms" %}</h2>
 
         <section class="listings">
             <div class="wrapper">
 
                 {% if flat.owner.user == user %}
-                    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomCreate' flat.id %}'">Create room</button>
+                    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomCreate' flat.id %}'">{% trans "Create room" %}</button>
                     <br><br>
                 {% endif %}
 
@@ -49,9 +50,9 @@
                                     <a href="{% url 'roomDetail' room.id %}">{{ room.description }}</a>
                                 </h1>
                                 {% if room.temporal_owner %}
-                                    <button class="pure-button" onclick="location.href='{% url 'userReview' flat.id room.temporal_owner_id%}'">Tenant's opinions</button>
+                                    <button class="pure-button" onclick="location.href='{% url 'userReview' flat.id room.temporal_owner_id%}'">{% trans "Tenant's opinions" %}</button>
                                 {% else %}
-                                    <th><a class="pure-button" href="/room/rent/{{ room.id }}">Request rent</a></th>
+                                    <th><a class="pure-button" href="/room/rent/{{ room.id }}">{% trans "Request rent" %}</a></th>
                                 {% endif %}
                             </div>
                          </li>
@@ -60,17 +61,23 @@
             </div>
         </section>
     {% else %}
-        <p>No rooms are available.</p>
+        <p>{% trans "No rooms are available." %}</p>
 
         {% if flat.owner.user == user %}
-            <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomCreate' flat.id %}'">Create room</button>
+            <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomCreate' flat.id %}'">{% trans "Create room" %}</button>
             <br><br>
         {% endif %}
     {% endif %}
 
+<<<<<<< HEAD
     <br>
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatReview' flat.id %}'">Flat reviews</button>
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'userReview' flat.id flat.owner.user.id %}'">Owner Reviews</button>
+=======
+  <br>
+  <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatReview' flat.id %}'">{% trans "Flat reviews" %}</button>
+  <button class="pure-button pure-button-primary" onclick="location.href='{% url 'ownerReview' flat.owner.id %}'">{% trans "Owner reviews" %}</button>
+>>>>>>> develop
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 

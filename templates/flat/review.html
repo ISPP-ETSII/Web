@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Flat reviews{% endblock %}
+{% block title %}{% trans "Flat reviews" %}{% endblock %}
 
 {% block content %}
 
     <table class="pure-table">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Rating</th>
+                <th>{% trans "Title" %}</th>
+                <th>{% trans "Date" %}</th>
+                <th>{% trans "Description" %}</th>
+                <th>{% trans "Rating" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -25,11 +26,13 @@
         </tbody>
     </table>
     <br>
+
     {% for room in rooms %}
         {% if user == room.temporal_owner  %}
-        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeFlatReview' flat.id %}'">Write a review</button>
+        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeFlatReview' flat.id %}'">{% trans "Write a review" %}</button>
         {% endif %}
     {% endfor %}
+
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Write a flat review{% endblock %}
+{% block title %}{% trans "Write a flat review" %}{% endblock %}
 
 {% block content %}
 
@@ -8,18 +9,18 @@
 
         <form class="pure-form pure-form-stacked" action="{% url 'writeFlatReview' flatid %}" method="post">
             <fieldset>
-                <legend>Create a review</legend>
+                <legend>{% trans "Create a review" %}</legend>
                 {% csrf_token %}
 
-                <label for="title">Title: </label>
+                <label for="title">{% trans "Title" %}: </label>
                 <input id="title" type="text" name="title" value="{{ title }}">
 
                 <br>
-                <label for="description">Description: </label>
+                <label for="description">{% trans "Description" %}: </label>
                 <input id="description" type="text" name="description" value="{{ description }}">
 
                 <br>
-                <label for="rating">Rating:</label>
+                <label for="rating">{% trans "Rating" %}:</label>
                 <select name="rating">
                    <option value="1" selected="selected">1</option>
                    <option value="2">2</option>
@@ -29,7 +30,7 @@
                 </select>
                 <br>
 
-                <input class="pure-button pure-button-primary" type="submit" value="Save" />
+                <input class="pure-button pure-button-primary" type="submit" value="{% trans "Create" %}" />
             </fieldset>
         </form>
 
