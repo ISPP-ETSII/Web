@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Flat reviews{% endblock %}
+{% block title %}{% trans "Flat reviews" %}{% endblock %}
 
 {% block content %}
 
@@ -12,23 +13,23 @@
 
     <h2>{{ room.price }} €</h2>
 
-    <h2>Details</h2>
+    <h2>{% trans "Details" %}</h2>
 
     <div class="pure-button-group" role="group">
         {% if roomDetails.balcony == True %}
-            <button class="pure-button">Balcony</button>
+            <button class="pure-button">{% trans "Balcony" %}</button>
         {% else %}
-            <button class="pure-button pure-button-disabled">Balcony</button>
+            <button class="pure-button pure-button-disabled">{% trans "Balcony" %}</button>
         {% endif %}
 
         {% if flatDetails.window == True %}
-            <button class="pure-button">Window</button>
+            <button class="pure-button">{% trans "Window" %}</button>
         {% else %}
-            <button class="pure-button pure-button-disabled">Window</button>
+            <button class="pure-button pure-button-disabled">{% trans "Window" %}</button>
         {% endif %}
 
         {% if flatDetails.air_conditioner == True %}
-            <button class="pure-button">Air Conditioner</button>
+            <button class="pure-button">{% trans "Air conditioner" %}</button>
         {% else %}
             <button class="pure-button pure-button-disabled">Air Conditioner</button>
         {% endif %}
