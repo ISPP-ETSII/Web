@@ -16,25 +16,32 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
+from django.conf.urls.i18n import i18n_patterns
 
 
 from RoomBnB import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # ex: /flats/
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
+]
+
+urlpatterns += i18n_patterns(
+    path('', views.base, name='base'),
+    path('login/', auth_views.login, name='login'),
+    path('signup/', views.signup, name='signup'),
     path('flats', views.list, name='flatList'),
     path('flats/', views.list, name='flatList'),
+    path('flats/create',views.flatCreate, name='flatCreate'),
     path('room/rent/<int:room_id>', views.request_rent_room, name='requestRentRoom'),
     path('requests/list', views.requests_list, name='requestsList'),
     path('requests/accept/<int:request_id>/', views.accept_request, name='acceptRequest'),
     path('requests/deny/<int:request_id>/', views.deny_request, name='denyRequest'),
-    # ex: /flats/5/
     path('flats/<int:flat_id>/', views.detail, name='flatDetail'),
     path('flats/keyword=<keyword>', views.listWithKeyword, name='flatListWithKeyword'),
-    path('flats/create',views.flatCreate, name='flatCreate'),
     path('profile/create',views.profileCreate, name='profileCreate'),
     path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),
     path('rooms/create/<int:flat_id>/', views.roomCreate, name='roomCreate'),
@@ -46,14 +53,9 @@ urlpatterns = [
     path('writeRoomReview/<int:room_id>/', views.writeReviewRoom, name='writeRoomReview'),
     path('writeFlatReview/<int:flat_id>/', views.writeReviewFlat, name='writeFlatReview'),
     path('writeUserReview/<int:user_id>/', views.writeReviewUser, name='writeUserReview'),
-    path('signup/', views.signup, name='signup'),
     path('rooms/request/<int:room_id>', views.request_rent_room, name='request_rent_room'),
-    path('login/', auth_views.login, name='login'),
-    path('logout/', auth_views.logout, {'next_page': '/'}, name='logout'),
-    path('', views.base, name='base'),
-    #path('', views.root, name='root'),
+)
 
-]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
