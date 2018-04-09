@@ -1,0 +1,30 @@
+sudo: required
+
+language: python
+
+python:
+  - "3.5"
+
+services:
+  - postgresql
+
+branches:
+  only:
+    - master
+    - develop
+
+install:
+  - pip3 install -r deploy/requirements.txt
+
+before_script:
+  - psql -c "CREATE USER test_user WITH PASSWORD 'password';" -U postgres
+  - psql -c "ALTER USER test_user CREATEDB;" -U postgres
+
+script:
+  - python3 manage.py test
+
+after_success:
+  - if [[ "$TRAVIS_BRANCH" = "master" ]]; then
+      echo "Deploying RentInPeace..." ;
+      curl http://rentinpeace.ml:30000/deploy/master?key=$DEPLOY_KEY ;
+    fi
