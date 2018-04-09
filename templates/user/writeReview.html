@@ -7,7 +7,7 @@
 
     {% if user.is_authenticated %}
 
-        <form class="pure-form pure-form-stacked" action="{% url 'writeUserReview' userid %}" method="post">
+        <form class="pure-form pure-form-stacked" action="{% url 'writeUserReview' flatid userid %}" method="post">
             <fieldset>
                 <legend>{% trans "Create a review" %}</legend>
                 {% csrf_token %}

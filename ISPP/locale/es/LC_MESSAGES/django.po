@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-09 16:21+0000\n"
+"POT-Creation-Date: 2018-04-09 16:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,6 +72,30 @@ msgstr "Correo electrónico"
 msgid "Rating"
 msgstr "Calificación"
 
+#: RoomBnB/forms.py:70 templates/flat/detail.html:15
+#: templates/flat/detail.html:17
+msgid "Elevator"
+msgstr "Ascensor"
+
+#: RoomBnB/forms.py:71 templates/flat/detail.html:21
+#: templates/flat/detail.html:23
+msgid "Dishwasher"
+msgstr "Lavavajillas"
+
+#: RoomBnB/forms.py:72 templates/room/detail.html:20
+#: templates/room/detail.html:22
+msgid "Balcony"
+msgstr "Balcón"
+
+#: RoomBnB/forms.py:73 templates/room/detail.html:26
+#: templates/room/detail.html:28
+msgid "Window"
+msgstr "Ventana"
+
+#: RoomBnB/forms.py:74 templates/room/detail.html:32
+msgid "Air conditioner"
+msgstr "Aire acondicionado"
+
 #: templates/base.html:25 templates/base_home.html:25
 msgid "Home"
 msgstr "Inicio"
@@ -123,14 +147,6 @@ msgstr "Detalles del piso"
 msgid "Details"
 msgstr "Detalles"
 
-#: templates/flat/detail.html:15 templates/flat/detail.html:17
-msgid "Elevator"
-msgstr "Ascensor"
-
-#: templates/flat/detail.html:21 templates/flat/detail.html:23
-msgid "Dishwasher"
-msgstr "Lavavajillas"
-
 #: templates/flat/detail.html:31
 msgid "Available rooms"
 msgstr "Habitaciones disponibles"
@@ -151,12 +167,12 @@ msgstr "Solicitar alquiler"
 msgid "No rooms are available."
 msgstr "No hay habitaciones disponibles."
 
-#: templates/flat/detail.html:73 templates/flat/review.html:4
+#: templates/flat/detail.html:78 templates/flat/review.html:4
 #: templates/room/detail.html:4
 msgid "Flat reviews"
 msgstr "Opiniones del piso"
 
-#: templates/flat/detail.html:74
+#: templates/flat/detail.html:79
 msgid "Owner reviews"
 msgstr "Opiniones del propietario"
 
@@ -177,8 +193,8 @@ msgstr "No hay pisos disponibles."
 msgid "Date"
 msgstr "Fecha"
 
-#: templates/flat/review.html:31 templates/room/review.html:31
-#: templates/user/review.html:31
+#: templates/flat/review.html:32 templates/room/review.html:31
+#: templates/user/review.html:32
 msgid "Write a review"
 msgstr "Escribir una opinión"
 
@@ -190,6 +206,26 @@ msgstr "Crear una opinión de piso"
 #: templates/user/writeReview.html:12
 msgid "Create a review"
 msgstr "Crear una opinión"
+
+#: templates/index.html:4
+msgid "Welcome to RentInPeace"
+msgstr "Bienvenido a RentInPeace"
+
+#: templates/index.html:13
+msgid "Search your flat"
+msgstr "Buscar un piso"
+
+#: templates/index.html:18
+msgid "Search by name, description or address"
+msgstr "Buscar por nombre, descripción o dirección"
+
+#: templates/index.html:26
+msgid "Properties"
+msgstr "Propiedades"
+
+#: templates/index.html:41
+msgid "Search"
+msgstr "Buscar"
 
 #: templates/profile/create.html:10
 msgid "Create a profile"
@@ -222,18 +258,6 @@ msgstr "Solicitudes realizadas por mi"
 #: templates/room/create.html:4 templates/room/create.html:10
 msgid "Create a room"
 msgstr "Crear una habitación"
-
-#: templates/room/detail.html:20 templates/room/detail.html:22
-msgid "Balcony"
-msgstr "Balcón"
-
-#: templates/room/detail.html:26 templates/room/detail.html:28
-msgid "Window"
-msgstr "Ventana"
-
-#: templates/room/detail.html:32
-msgid "Air conditioner"
-msgstr "Aire acondicionado"
 
 #: templates/room/review.html:4
 msgid "Room reviews"

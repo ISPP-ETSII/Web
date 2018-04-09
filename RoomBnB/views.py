@@ -97,13 +97,51 @@ def list(request):
     context = {'flatList': flatList}
     return render(request, 'flat/list.html', context)
 
-def listWithKeyword(request,keyword):
+
+def listWithKeyword(request, keyword):
     query = Q(title__icontains=keyword)
     query.add(Q(description__icontains=keyword), Q.OR)
     query.add(Q(address__icontains=keyword), Q.OR)
     flatList = Flat.objects.all().filter(query)
 
     return render(request, 'flat/list.html', {'flatList': flatList})
+
+
+def listWithProperties(request,keyword,elevator,washdisher,balcony,window,air_conditioner):
+    list = []
+    res=[]
+
+    query = Q(title__icontains=keyword)
+    query.add(Q(description__icontains=keyword), Q.OR)
+    query.add(Q(address__icontains=keyword), Q.OR)
+    flatList = Flat.objects.all().filter(query)
+    flatList2 = FlatProperties.objects.all()
+    for flat in flatList:
+        query2 = Q(elevator=elevator)
+        query2.add(Q(washdisher=washdisher), Q.AND)
+        query2.add(Q(flat=flat), Q.AND)
+        flatList2 = flatList2.filter(query2)
+        if flatList2.exists():
+            list.append(flat)
+    roomList2= RoomProperties.objects.all()
+    query3 = Q(balcony=balcony)
+    query3.add(Q(window=window), Q.AND)
+    query3.add(Q(air_conditioner=air_conditioner), Q.AND)
+
+
+    for flat in list:
+        roomList = Room.objects.filter(belong_to=flat)
+        for room in roomList:
+            query3 = Q(balcony=balcony)
+            query3.add(Q(window=window), Q.AND)
+            query3.add(Q(air_conditioner=air_conditioner), Q.AND)
+            query3.add(Q(room=room), Q.AND)
+            roomList2 = roomList2.filter(query3)
+            if roomList2.exists():
+                res.append(flat)
+
+    return render(request, 'flat/list.html', {'flatList': res})
+
 
 def detail(request, flat_id):
     flat = Flat.objects.get(id=flat_id)
@@ -136,6 +174,7 @@ def flatCreate(request):
 
     return render(request, 'flat/create.html', {'form': form})
 
+
 @login_required
 def roomCreate(request, flat_id):
     # if this is a POST request we need to process the form data
@@ -159,6 +198,7 @@ def roomCreate(request, flat_id):
         form = RoomForm()
 
     return render(request, 'room/create.html', {'form': form, 'flatid': flat_id})
+
 
 @login_required
 def profileCreate(request):
@@ -185,6 +225,7 @@ def profileCreate(request):
 
     return render(request, 'profile/create.html', {'form': form})
 
+
 @login_required
 def flatDelete(request, flat_id):
     flatList = Flat.objects.all()
@@ -194,10 +235,10 @@ def flatDelete(request, flat_id):
 
     return render(request, 'flat/list.html', context)
 
+
 @login_required
 def root(request):
     return render(request, template_name='root.html')
-
 
 
 def base(request):
@@ -205,36 +246,48 @@ def base(request):
         form = SearchFlatForm(request.POST)
         if form.is_valid():
             keyword=form.cleaned_data.get('keyword')
-            return HttpResponseRedirect('/flats/keyword=' + keyword)
-
+            elevator=form.cleaned_data.get('elevator')
+            washdisher=form.cleaned_data.get('washdisher')
+            balcony=form.cleaned_data.get('balcony')
+            window=form.cleaned_data.get('window')
+            air_conditioner=form.cleaned_data.get('air_conditioner')
+            return HttpResponseRedirect('/flats/keyword=' + keyword + '/elevator=' + str(elevator) + '/washdisher=' + str(washdisher)
+                                        + '/balcony=' + str(balcony) + '/window=' + str(window) + '/air_conditioner=' + str(air_conditioner))
     else:
         form = SearchFlatForm()
 
     return render(request, 'index.html', {'form': form})
+
 
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
     room_details = get_room_details(room)
     return render(request, 'room/detail.html', {'room': room, 'roomDetails': room_details})
 
+
 def roomReview(request, room_id):
     room = Room.objects.get(id=room_id)
     reviews = RoomReview.objects.filter(room = room)
     return render(request, 'room/review.html', {'roomRev': reviews, 'room': room})
 
+
 def flatReview(request, flat_id):
     flat = Flat.objects.get(id=flat_id)
+    rooms = Room.objects.filter(belong_to=flat)
     review = FlatReview.objects.filter(flat = flat)
-    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat})
+    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms':rooms})
 
-def userReview(request, user_id):
-    user= User.objects.get(id = user_id)
+
+def userReview(request,flat_id, user_id):
+    user = User.objects.get(id = user_id)
+    flat = Flat.objects.get(id = flat_id)
+    rooms = Room.objects.filter(belong_to=flat)
     review = UserReview.objects.filter(user = user)
-    return render(request, 'user/review.html', {'userRev': review, 'user': user})
+    return render(request, 'user/review.html', {'userRev': review, 'flat':flat, 'rooms':rooms})
 
 
 @login_required
-def writeReviewUser(request, user_id):
+def writeReviewUser(request, user_id, flat_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -242,11 +295,11 @@ def writeReviewUser(request, user_id):
             rev = UserReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
                              rating = form.cleaned_data.get("rating"), user = user)
             rev.save()
-            return HttpResponseRedirect('/userReview/'+ str(user_id))
+            return HttpResponseRedirect('/userReview/'+ str(flat_id) + '/' + str(user_id))
     else:
         form = ReviewForm()
     print(form.errors)
-    return render(request, 'user/writeReview.html', {'form': form, 'userid': user_id})
+    return render(request, 'user/writeReview.html', {'form': form, 'flatid': flat_id, 'userid': user_id})
 
 
 @login_required

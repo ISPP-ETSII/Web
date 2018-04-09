@@ -27,7 +27,7 @@
     </table>
     <br>
 
-    {% if user.is_authenticated %}
+    {% if user == room.temporal_owner %}
         <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeRoomReview' room.id %}'">{% trans "Write a review" %}</button>
     {% endif %}
 

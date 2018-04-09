@@ -27,10 +27,12 @@
     </table>
     <br>
 
-    {% if user.is_authenticated %}
+    {% for room in rooms %}
+        {% if user == room.temporal_owner  %}
         <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeFlatReview' flat.id %}'">{% trans "Write a review" %}</button>
-    {% endif %}
-    
+        {% endif %}
+    {% endfor %}
+
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% endblock %}

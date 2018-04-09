@@ -41,6 +41,7 @@ urlpatterns += i18n_patterns(
     path('requests/accept/<int:request_id>/', views.accept_request, name='acceptRequest'),
     path('requests/deny/<int:request_id>/', views.deny_request, name='denyRequest'),
     path('flats/<int:flat_id>/', views.detail, name='flatDetail'),
+    path('flats/keyword=<keyword>/elevator=<elevator>/washdisher=<washdisher>/balcony=<balcony>/window=<window>/air_conditioner=<air_conditioner>/', views.listWithProperties, name='flatListWithProperties'),
     path('flats/keyword=<keyword>', views.listWithKeyword, name='flatListWithKeyword'),
     path('profile/create',views.profileCreate, name='profileCreate'),
     path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),
@@ -48,11 +49,10 @@ urlpatterns += i18n_patterns(
     path('rooms/<int:room_id>/', views.detailRoom, name='roomDetail'),
     path('roomReview/<int:room_id>/', views.roomReview, name='roomReview'),
     path('flatReview/<int:flat_id>/', views.flatReview, name='flatReview'),
-    path('userReview/<int:user_id>/', views.userReview, name='userReview'),
-    path('ownerReview/<int:user_id>/', views.userReview, name='ownerReview'),
+    path('userReview/<int:flat_id>/<int:user_id>/', views.userReview, name='userReview'),
     path('writeRoomReview/<int:room_id>/', views.writeReviewRoom, name='writeRoomReview'),
     path('writeFlatReview/<int:flat_id>/', views.writeReviewFlat, name='writeFlatReview'),
-    path('writeUserReview/<int:user_id>/', views.writeReviewUser, name='writeUserReview'),
+    path('writeUserReview/<int:flat_id>/<int:user_id>/', views.writeReviewUser, name='writeUserReview'),
     path('rooms/request/<int:room_id>', views.request_rent_room, name='request_rent_room'),
 )
 
