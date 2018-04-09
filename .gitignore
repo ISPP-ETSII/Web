@@ -181,5 +181,9 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# MacOS Files
+
+.DS_Store
+
 
 # End of https://www.gitignore.io/api/django,python,pycharm

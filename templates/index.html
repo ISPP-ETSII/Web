@@ -1,0 +1,26 @@
+{% extends 'base_home.html' %}
+
+{% block title %}Welcome to RentInPeace{% endblock %}
+
+{% block content %}
+    <div class="pure-g">
+        <div class="pure-u-1-5"><p></p></div>
+        <div class="pure-u-3-5" align="center">
+            <p>
+                <form class="pure-form" action="{% url 'base' %}" method="post">
+                    {% csrf_token %}
+                    <fieldset>
+                        <h2>Search your flat</h2>
+
+                        <input class="pure-input-2-3" type="text" placeholder="Bami" id="keyword" name="keyword">
+
+                        <br><br>
+                        <p><input class="pure-button pure-button-primary" type="submit" value="Search" /></p>
+                    </fieldset>
+                </form>
+
+            </p>
+        </div>
+        <div class="pure-u-1-5"><p></p></div>
+    </div>
+{% endblock %}
