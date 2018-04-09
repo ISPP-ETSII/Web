@@ -24,4 +24,6 @@ script:
   - python3 manage.py test
 
 after_success:
-  - curl http://rentinpeace.ml:30000/deploy/develop?key=$DEPLOY_KEY
+  - if [[ "$TRAVIS_BRANCH" = "master" ]]; then
+      curl http://rentinpeace.ml:30000/deploy/master?key=$DEPLOY_KEY ;
+    fi
