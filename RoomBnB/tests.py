@@ -1,37 +1,69 @@
 from django.test import TestCase
 from django.core.files import File
+from django.contrib.auth.models import User
+from django.core.management import call_command
 from RoomBnB.services import *
 from RoomBnB.views import *
+from RoomBnB.models import *
+from django.utils.timezone import localtime, now
+
 
 # Create your tests here.
 
+class Test(TestCase):
+    def setUp(self):
+        #call_command('loaddata', 'deploy/populate.json')
+        user1 = User.objects.create_user(username='user1', email='user1@prueba.com')
+        user1.set_password('user1')
+        user1.save()
 
-class TestFlat(TestCase):
+        profile1 = Profile(user=user1)
+        profile1.save()
 
-    # Tests de piso
+        user2 = User.objects.create_user(username='user2', email='user2@prueba.com')
+        user2.set_password('user2')
+        user2.save()
 
-    def testRegisterFlatPositive(self):
-        flats = Flat.objects.all()
-        user = User.objects.get(id=1)
-        create_flat(title='Piso en teruel', description='Piso', address='Calle Teruel', owner=user)
-        flats2 = Flat.objects.all()
-        self.assertEqual(flats, flats2, False)
+        profile2 = Profile(user=user2)
+        profile2.save()
 
-    def testRegisterFlatNegativeDescription(self):
+        user3 = User.objects.create_user(username='user3', email='user3@prueba.com')
+        user3.set_password('user3')
+        user3.save()
+
+    def testCreateFlat(self):
+        user = User.objects.get(username='user1')
+        profile = Profile.objects.get(user=user)
+
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
+        self.assertEqual(flat_saved.title, title)
+        self.assertEqual(flat_saved.address, address)
+        self.assertEqual(flat_saved.description, description)
+        self.assertEqual(flat_saved.owner, profile)
+
+
+    def testCreateFlatPositiveDescription(self):
+        user = User.objects.get(username='user1')
+        profile = Profile.objects.get(user=user)
+
+        title, address, description = 'Piso', 'Calle betis', ''
+
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
+        self.assertEqual(flat_saved.title, title)
+        self.assertEqual(flat_saved.address, address)
+        self.assertEqual(flat_saved.description, description)
+        self.assertEqual(flat_saved.owner, profile)
+
+    def testCreateFlatNegativeTitle(self):
         exception = False
+        user = User.objects.get(username='user1')
 
-        user = User.objects.get(id=1)
-        try:
-            create_flat(title='Piso Betis', description='', address='Calle Teruel', owner=user)
-        except:
-            exception = True
-
-        self.assertEqual(exception, True)
-
-    def testRegisterFlatNegativeTitle(self):
-        exception = False
-
-        user = User.objects.get(id=1)
         try:
             create_flat(title='', description='Piso en TerraBIB', address='Calle Teruel', owner=user)
         except:
@@ -39,94 +71,180 @@ class TestFlat(TestCase):
 
         self.assertEqual(exception, True)
 
-    def testRegisterFlatNegativeAddress(self):
-        exception = False
-
-        user = User.objects.get(id=1)
-        try:
-            create_flat(title='Piso Sevilla', description='Piso en la calle H', address='', owner=user)
-        except:
-            exception = True
-
-        self.assertEqual(exception, True)
 
     def testDeleteFlatPositive(self):
-        flats = Flat.objects.all()
-        f = flats.first()
-        self.assertEqual(Room.objects.filter(belong_to=f).exists(), True)
-        delete_flat(f.id)
-        self.assertEqual(Room.objects.filter(belong_to=f).exists(), False)
+        user = User.objects.get(username='user1')
+
+        title, address, description = 'Piso', 'Calle betis', ''
+
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
+        delete_flat(flat_saved.id)
+
+        flat_alls = Flat.objects.all()
+
+        self.assertTrue(flat_saved not in flat_alls)
+
+
+    def testShowFlatsPositive(self):
+        user = User.objects.get(username='user1')
+
+        title, address, description = 'Piso', 'Calle betis', ''
+
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
         flats2 = Flat.objects.all()
-        self.assertEqual(flats, flats2, False)
 
-    def testListFlatsPositive(self):
-        flat1 = Flat.objects.all()
-        user = User.objects.get(id=1)
-        f1 = Flat.objects.create(title='Piso en teruel', description='Pisitoo', address='Calle Teruel', owner=user)
-        create_flat(f1.title, f1.description, f1.address, f1.owner)
-        flat2 = Flat.objects.all()
-        self.assertEqual(flat1, flat2, False)
-
-    # Tests de opiniones de usuario
-
-    def testRegisterReviewUserPositive(self):
-        user = User.objects.get(id=1)
-        reviews = UserReview.objects.filter(user=user)
-
-        create_userreview(title='Bien', description='Buen compañero', date='15/02/2017', rating='1', user=user)
-        reviews2 = UserReview.objects.filter(user=user)
-        self.assertEqual(reviews, reviews2, False)
-
-    def testRegisterReviewUserPositiveDescription(self):
-        user = User.objects.get(id=1)
-        reviews = UserReview.objects.filter(user=user)
-
-        create_userreview(title='Bien', description='', date='15/02/2017', rating='4', user=user)
-        reviews2 = UserReview.objects.filter(user=user)
-        self.assertEqual(reviews, reviews2, False)
+        self.assertTrue(flat_saved in flats2)
 
 
-    def testRegisterReviewUserNegativeTitle(self):
+    def testShowRoomsPositive(self):
+        user = User.objects.get(username='user1')
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
+        description, price = 'Bien', '500.5'
+        create_room(description, price, '', user, flat_saved)
+        room_saved = Room.objects.get(description=description)
+
+        rooms2 = Room.objects.all().filter(belong_to=flat_saved)
+
+        self.assertTrue(room_saved in rooms2)
+
+
+    def testCreateProfilePositive(self):
+        user3 = User.objects.get(username='user3')
+        create_profile(user3, '')
+        profile_saved = Profile.objects.get(user=user3)
+
+        self.assertEqual(profile_saved.user, user3)
+
+
+    def testCreateProfileExitsNegative(self):
         exception = False
+        user = User.objects.get(username='user1')
 
-        user = User.objects.get(id=1)
         try:
-            create_userreview(title='', description='Bien', date='11/04/2017', rating='2', user=user)
+            create_profile(user=user, avatar='')
         except:
             exception = True
 
         self.assertEqual(exception, True)
 
+
+    def testShowPayments(self):
+        user1 = User.objects.get(username='user1')
+        user2 = User.objects.get(username='user2')
+        picture = ''
+        data = localtime(now()).date()
+
+
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user1)
+        flat_saved = Flat.objects.get(title=title)
+
+        description, price = 'Bien', '500.5'
+        create_room(description, price, '', user1, flat_saved)
+        room_saved = Room.objects.get(description=description)
+
+        create_contract(picture, data, user1, user2, room_saved.id)
+        contract_saved = Contract.objects.get(room=room_saved)
+
+        amount = 300.0
+        data1 = localtime(now()).date()
+
+        create_payment(amount, data1, contract_saved.id)
+        payment_saved = Payment.objects.get(contract=contract_saved)
+
+        self.assertEqual(payment_saved.amount, amount)
+        self.assertEqual(payment_saved.date, data1)
+        self.assertEqual(payment_saved.contract, contract_saved)
+
+
+
+    def testRegisterReviewUserPositive(self):
+        user = User.objects.get(username='user1')
+
+        title, description, date, rating, user = 'Bien', 'Bien', localtime(now()).date(), '2', user
+
+        create_userreview(title, description, date, rating, user)
+        review_saved = UserReview.objects.get(title=title)
+
+        self.assertEqual(review_saved.title, title)
+        self.assertEqual(review_saved.description, description)
+        self.assertEqual(review_saved.date, date)
+        self.assertEqual(review_saved.rating, rating)
+        self.assertEqual(review_saved.user, user)
+
+
+    def testRegisterReviewUserPositiveDescription(self):
+        user = User.objects.get(username='user1')
+
+        title, description, date, rating, user = 'Bien', '', localtime(now()).date(), '2', user
+
+        create_userreview(title, description, date, rating, user)
+        review_saved = UserReview.objects.get(title=title)
+
+        self.assertEqual(review_saved.title, title)
+        self.assertEqual(review_saved.description, description)
+        self.assertEqual(review_saved.date, date)
+        self.assertEqual(review_saved.rating, rating)
+        self.assertEqual(review_saved.user, user)
+
+    def testRegisterReviewUserEmptyTitle(self):
+
+        exception = False
+
+        user = User.objects.get(username='user1')
+        try:
+            create_userreview(title='', description='Bien', date=localtime(now()).date(), rating='2', user=user)
+        except:
+            exception = True
+
+        self.assertEqual(exception, True)
 
     def testRegisterReviewUserNegativeRating(self):
         exception = False
-
-        user = User.objects.get(id=1)
+        user = User.objects.get(username='user1')
         try:
-            create_userreview(title='Muy mal ', description='Fumaba en exceso', date='05/01/2018', rating='', user=user)
+            create_userreview(title='Muy mal ', description='Fumaba en exceso', date='05/01/2018', rating='-4', user=user)
         except:
             exception = True
 
         self.assertEqual(exception, True)
 
-    # Test de opiniones al piso
 
     def testRegisterReviewFlatPositive(self):
-        flats = Flat.objects.all()
-        f = flats.first()
-        reviews = FlatReview.objects.filter(flat=f)
+        user = User.objects.get(username='user1')
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
 
-        create_flatreview(title='Excelente', description='Buen piso', date='15/02/2017', rating='5', flat=f)
-        reviews2 = FlatReview.objects.filter(flat=f)
-        self.assertEqual(reviews, reviews2, False)
+
+        title, description, date, rating, flat = 'Bien', 'Bien', localtime(now()).date(), '2', flat_saved
+
+        create_flatreview(title, description, date, rating, flat)
+        review_saved = FlatReview.objects.get(title=title)
+
+        self.assertEqual(review_saved.title, title)
+        self.assertEqual(review_saved.description, description)
+        self.assertEqual(review_saved.date, date)
+        self.assertEqual(review_saved.rating, rating)
+        self.assertEqual(review_saved.flat, flat_saved)
 
     def testRegisterReviewFlatNegativeTitle(self):
         exception = False
 
-        flats = Flat.objects.all()
-        f = flats.first()
+        user = User.objects.get(username='user1')
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
         try:
-            create_flatreview(title='', description='Bien', date='05/11/2017', rating='3', flat=f)
+            create_flatreview(title='', description='Bien', date=localtime(now()).date(), rating='3', flat=flat_saved)
         except:
             exception = True
 
@@ -135,10 +253,13 @@ class TestFlat(TestCase):
     def testRegisterReviewFlatNegativeRating(self):
         exception = False
 
-        flats = Flat.objects.all()
-        f = flats.first()
+        user = User.objects.get(username='user1')
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
         try:
-            create_flatreview(title='Bien', description='Mejor imposible', date='30/07/2016', rating='-3', flat=f)
+            create_flatreview(title='Bien', description='Mejor imposible', date=localtime(now()).date(), rating='-3', flat=flat_saved)
         except:
             exception = True
 
@@ -147,62 +268,104 @@ class TestFlat(TestCase):
     def testRegisterReviewFlatNegativeTitleLong(self):
         exception = False
 
-        flats = Flat.objects.all()
-        f = flats.first()
+        user = User.objects.get(username='user1')
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
         try:
-            create_flatreview(title='El titulo es demasiado largo porque supera los 50 caracteres maximos', description='Bien', date='15/02/2017', rating='3', flat=f)
+            create_flatreview(title='El titulo es demasiado largo porque supera los 50 caracteres maximos',
+                              description='Bien', date=localtime(now()).date(), rating='3', flat=flat_saved)
         except:
             exception = True
 
         self.assertEqual(exception, True)
 
-    # Test de opiniones a la habitacion
+
 
     def testRegisterReviewRoomPositive(self):
-        rooms = Room.objects.all()
-        r = rooms.first()
-        reviews = RoomReview.objects.filter(room=r)
+        user = User.objects.get(username='user1')
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
 
-        create_roomreview(title='Bien', description='Buen habitacion', date='09/02/2017', rating='1', room=r)
-        reviews2 = RoomReview.objects.filter(room=r)
-        self.assertEqual(reviews, reviews2, False)
+        description, price = 'Bien', '500.5'
+        create_room(description, price, '', user, flat_saved)
+        room_saved = Room.objects.get(description=description)
+
+        title, description, date, rating, room = 'Bien', 'Bien', localtime(now()).date(), '2', room_saved
+
+        create_roomreview(title, description, date, rating, room)
+        review_saved = RoomReview.objects.get(description=description)
+
+
+        self.assertEqual(review_saved.title, title)
+        self.assertEqual(review_saved.description, description)
+        self.assertEqual(review_saved.date, date)
+        self.assertEqual(review_saved.rating, rating)
+        self.assertEqual(review_saved.room, room_saved)
+
 
     def testRegisterReviewRoomNegativeTitle(self):
         exception = False
 
-        rooms = Room.objects.all()
-        r = rooms.first()
+        user = User.objects.get(username='user1')
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
+        description, price = 'Bien', '500.5'
+        create_room(description, price, '', user, flat_saved)
+        room_saved = Room.objects.get(description=description)
+
         try:
-            create_roomreview(title='', description='Bien', date='15/02/2017', rating='3', room=r)
+            create_roomreview(title='', description='Bien', date=localtime(now()).date(), rating='3', room=room_saved)
         except:
             exception = True
 
         self.assertEqual(exception, True)
+
 
     def testRegisterReviewRoomNegativeRating(self):
         exception = False
 
-        rooms = Room.objects.all()
-        r = rooms.first()
+        user = User.objects.get(username='user1')
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
+        description, price = 'Bien', '500.5'
+        create_room(description, price, '', user, flat_saved)
+        room_saved = Room.objects.get(description=description)
+
         try:
-            create_roomreview(title='Bien', description='Bien', date='27/05/2017', rating='0', room=r)
+            create_roomreview(title='Bien', description='Mejor imposible', date=localtime(now()).date(), rating='-3', room=room_saved)
         except:
             exception = True
 
         self.assertEqual(exception, True)
+
 
     def testRegisterReviewRoomNegativeTitleLong(self):
         exception = False
 
-        rooms = Room.objects.all()
-        r = rooms.first()
+        user = User.objects.get(username='user1')
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
+        description, price = 'Bien', '500.5'
+        create_room(description, price, '', user, flat_saved)
+        room_saved = Room.objects.get(description=description)
+
         try:
-            create_roomreview(title='El titulo es demasiado largo porque supera los 50 caracteres maximos asi que...',
-                              description='Bien', date='15/02/2017', rating='3', room=r)
+            create_roomreview(title='El titulo es demasiado largo porque supera los 50 caracteres maximos',
+                              description='Bien', date=localtime(now()).date(), rating='3', room=room_saved)
         except:
             exception = True
 
         self.assertEqual(exception, True)
+
 
 
 
