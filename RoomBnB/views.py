@@ -343,6 +343,12 @@ def writeReviewFlat(request, flat_id):
     return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
 
 
+
+
+def retur(request):
+    return render(request, 'index.html')
+
+
 def view_that_asks_for_money(request, room_id):
     room = Room.objects.get(id=room_id)
 
@@ -353,9 +359,12 @@ def view_that_asks_for_money(request, room_id):
         "item_name": Room.description,
         "invoice": room_id,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-        #"return": request.build_absolute_uri(reverse('payment')),
-        #"cancel_return": request.build_absolute_uri(reverse('payment')),
+        "return": request.build_absolute_uri(reverse('base')),
+        "cancel_return": request.build_absolute_uri(reverse('base')),
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+
+
+
 
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
     }
@@ -372,3 +381,5 @@ def view_that_asks_for_money(request, room_id):
     contract.save()
 
     return render(request, "paypal/payment.html", {'contract': contract,'form': form})
+
+

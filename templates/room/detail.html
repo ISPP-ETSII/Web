@@ -43,9 +43,9 @@
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomReview' room.id %}'">Room reviews</button>
 
 
-      {% for rent in rentRequest %}#
-       {% if room.temporal_owner == user %}#
-               <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  room.id %}'">Realizar pago</button
+      {% for rent in rentRequest %}
+       {% if room.temporal_owner == user %}
+               <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  room.id %}'">Realizar pago</button>
        {% endif %}
     {% endfor %}
 
