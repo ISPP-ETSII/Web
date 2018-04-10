@@ -11,7 +11,7 @@ from RoomBnB.forms import FlatForm
 from RoomBnB.forms import ProfileForm
 from RoomBnB.forms import SignUpForm
 from RoomBnB.forms import RoomForm
-from RoomBnB.models import Flat
+from RoomBnB.models import Flat, Contract, Payment
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
 from RoomBnB.models import RoomProperties
@@ -333,3 +333,14 @@ def writeReviewFlat(request, flat_id):
     print(form.errors)
     return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
 
+def paymentList(request):
+    loggedUser= request.user
+    profileLoggedUser = Profile(user=loggedUser)
+    contracts=Contract(landlord=profileLoggedUser)
+
+
+    paymentList = Payment.objects.all().filter(contract=contracts)
+
+    context = {'paymentList': paymentList}
+
+    return render(request, 'payment/list.html', context)

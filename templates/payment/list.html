@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Payments" %}{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        {% if paymentList %}
+
+            <section class="listings">
+
+                <div class="wrapper">
+
+                    <ul class="properties_list">
+                        <table style="width:100%">
+
+                            <tr>
+                                <th>Amount</th>
+                                <th>Date</th>
+                            </tr>
+                        {% for payment in paymentList %}
+
+
+                          <tr>
+                            <td>{{ payment.amount }}</td>
+                            <td>{{ payment.date }}</td>
+
+                          </tr>
+
+
+                        {% endfor %}
+                        </table>
+                    </ul>
+                </div>
+            </section>
+
+        {% else %}
+            <p>{% trans "No payments are available." %}</p>
+        {% endif %}
+
+    {% endif %}
+{% endblock %}

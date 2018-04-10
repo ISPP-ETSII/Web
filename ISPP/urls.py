@@ -54,6 +54,7 @@ urlpatterns += i18n_patterns(
     path('writeFlatReview/<int:flat_id>/', views.writeReviewFlat, name='writeFlatReview'),
     path('writeUserReview/<int:flat_id>/<int:user_id>/', views.writeReviewUser, name='writeUserReview'),
     path('rooms/request/<int:room_id>', views.request_rent_room, name='request_rent_room'),
+    path('payments', views.paymentList, name='paymentList'),
 )
 
 
