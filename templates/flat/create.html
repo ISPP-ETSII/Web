@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Create a flat{% endblock %}
+{% block title %}{% trans "Create a flat" %}{% endblock %}
 
 {% block content %}
 
@@ -8,7 +9,7 @@
 
         <form class="pure-form pure-form-stacked" action="{% url 'flatCreate' %}" method="post" enctype="multipart/form-data">
             <fieldset>
-                <legend>Create a flat</legend>
+                <legend>{% trans "Create a flat" %}</legend>
                 {% csrf_token %}
                 {{ form.as_p }}
 
@@ -23,13 +24,13 @@
                 <label for="description">Description: </label>
                 <input placeholder="Sample description" id="description" type="text" name="description" value="{{ description }}">-->
 
-                <input class="pure-button pure-button-primary" type="submit" value="Save" />
+                <input class="pure-button pure-button-primary" type="submit" value="{% trans "Create" %}" />
             </fieldset>
         </form>
 
      {% else %}
 
-        <h2>You are not logged in.</h2>
+        <h2>{% trans "You are not logged in." %}</h2>
 
     {% endif %}
 
