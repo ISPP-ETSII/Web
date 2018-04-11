@@ -4,6 +4,7 @@ from RoomBnB.models import Profile
 from RoomBnB.models import Room
 from RoomBnB.models import RoomProperties
 from RoomBnB.models import RentRequest
+from RoomBnB.models import Review, UserReview, FlatReview, RoomReview, Contract, Payment
 from django.shortcuts import render, redirect
 
 
@@ -16,6 +17,67 @@ def create_flat(form_title, form_address, form_description, form_picture, user):
               picture=form_picture,
               owner=profile)
     return f1.save()
+
+
+def create_profile(user, form_avatar):
+
+    f1 = Profile(user=user, avatar=form_avatar)
+    return f1.save()
+
+
+def create_contract(form_picture, form_data_signed, landlord, tenant, room_id):
+    profile1 = Profile.objects.get(user=landlord)
+    profile2 = Profile.objects.get(user=tenant)
+    room = Room.objects.get(id=room_id)
+
+    c1= Contract(picture=form_picture,
+                 date_signed=form_data_signed,
+                 landlord=profile1,
+                 tenant=profile2,
+                 room=room)
+    return c1.save()
+
+def create_payment(form_amount, form_date, contract_id):
+    contract = Contract.objects.get(id=contract_id)
+
+    p1 = Payment(amount=form_amount,
+                 date=form_date,
+                 contract=contract)
+    return p1.save()
+
+
+def create_room(form_description, form_price, form_picture, user1, flat1):
+
+    f1 = Room(description=form_description,
+              price=form_price,
+              picture=form_picture,
+              temporal_owner=user1,
+              belong_to=flat1)
+    return f1.save()
+
+
+def create_userreview(form_title, form_description, form_date, form_rating, user1):
+
+    r1 = UserReview(title=form_title, description=form_description, date=form_date, rating=form_rating, user=user1)
+    return r1.save()
+
+
+def create_flatreview(form_title, form_description, form_date, form_rating, flat1):
+
+    r1 = FlatReview(title=form_title, description=form_description, date=form_date, rating=form_rating, flat=flat1)
+    return r1.save()
+
+
+def create_roomreview(form_title, form_description, form_date, form_rating, room1):
+
+    r1 = RoomReview(title=form_title, description=form_description,
+                    date=form_date, rating=form_rating, room=room1)
+    return r1.save()
+
+
+def delete_flat(flat_id):
+    flat = Flat.objects.get(id=flat_id)
+    return flat.delete()
 
 
 def get_flat_details(flat):
