@@ -1,14 +1,11 @@
 from django.test import TestCase
-from django.core.files import File
-from django.contrib.auth.models import User
-from django.core.management import call_command
 from RoomBnB.services import *
-from RoomBnB.views import *
 from RoomBnB.models import *
 from django.utils.timezone import localtime, now
+from django.contrib.auth.models import User
+from RoomBnB.models import Profile, Flat
+from RoomBnB.services import create_flat
 
-
-# Create your tests here.
 
 class Test(TestCase):
     def setUp(self):
@@ -30,6 +27,7 @@ class Test(TestCase):
         user3 = User.objects.create_user(username='user3', email='user3@prueba.com')
         user3.set_password('user3')
         user3.save()
+
 
     def testCreateFlat(self):
         user = User.objects.get(username='user1')
@@ -368,7 +366,5 @@ class Test(TestCase):
             exception = True
 
         self.assertEqual(exception, True)
-
-
 
 
