@@ -20,6 +20,7 @@ from RoomBnB.models import RoomReview
 from RoomBnB.models import UserReview
 from RoomBnB.models import FlatProperties
 from RoomBnB.models import Contract
+from RoomBnB.models import Payment
 from RoomBnB.forms import ReviewForm
 from RoomBnB.models import User
 from RoomBnB.forms import SearchFlatForm
@@ -29,6 +30,8 @@ from RoomBnB.services import create_flat, create_rent_request, get_flat_details,
 from django.urls import reverse
 from django.shortcuts import render, redirect
 from paypal.standard.forms import PayPalPaymentsForm
+from paypal.standard.ipn.signals import payment_was_successful
+
 
 
 def signup(request):
@@ -259,6 +262,10 @@ def base(request):
     else:
         form = SearchFlatForm()
 
+    """ if request.method == 'POST':
+        if request.payment_was_succesful:
+            return HttpResponseRedirect( "EL pago se a realizado")
+    """
     return render(request, 'index.html', {'form': form})
 
 
@@ -349,25 +356,27 @@ def retur(request):
     return render(request, 'index.html')
 
 
+def paypal_response(request, room_id):
+
+    print(request)
+
 def view_that_asks_for_money(request, room_id):
     room = Room.objects.get(id=room_id)
 
     # What you want the button to do.
+    import random
     paypal_dict = {
         "business": "roombnbispp-facilitator@gmail.com",
         "amount":  room.price,
         "item_name": Room.description,
-        "invoice": room_id,
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
+        "invoice": random.randint(0, 9999999999999),
+        "notify_url": request.build_absolute_uri('paypal'),
         "return": request.build_absolute_uri(reverse('base')),
         "cancel_return": request.build_absolute_uri(reverse('base')),
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-
-
-
-
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
     }
+
+
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
    # context = {"form": form}
@@ -380,6 +389,14 @@ def view_that_asks_for_money(request, room_id):
     contract = Contract(date_signed=date_signed, landlord=owner, tenant=tenant, room=room)
     contract.save()
 
+    """
+        if request.payment_was_succesful:
+            amount = room.price
+            date = timezone.now()
+            contract = contract
+            pay=Payment(amount=amount, date=date, contract=contract)
+            pay.save()
+    """
     return render(request, "paypal/payment.html", {'contract': contract,'form': form})
 
 
