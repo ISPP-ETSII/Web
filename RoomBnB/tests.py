@@ -44,6 +44,30 @@ class Test(TestCase):
         self.assertEqual(flat_saved.owner, profile)
 
 
+    def testFilteredHouse(self):
+        user = User.objects.get(username='user1')
+
+        title, address, description1 = "PisoTest", "Bami", "Piso muy guay"
+        create_flat(title, address, description1, '', user)
+        flatSaved = Flat.objects.get(title=title)
+        flatSavedProps = FlatProperties.objects.create(flat=flatSaved, elevator=True, washdisher=True)
+
+        description2, price, belong_to = "buena habitacion", 150, flatSaved
+        roomSaved = Room.objects.create(description=description2, price=price, picture='', temporal_owner=None, belong_to=belong_to)
+        roomSavedProps = RoomProperties.objects.create(room=roomSaved, balcony=True, window=True, air_conditioner=True)
+
+        flats = get_flats_filtered("PisoTest", True, True, True, True, True)
+
+        for flat in flats:
+
+            self.assertEqual(flat, flatSaved)
+            self.assertEqual(FlatProperties.objects.get(flat=flat), flatSavedProps)
+            roomToCheckList = Room.objects.filter(belong_to=flat)
+            roomToCheck = roomToCheckList[0]
+            self.assertEqual(roomToCheck, roomSaved)
+            self.assertEqual(RoomProperties.objects.get(room=roomToCheck), roomSavedProps)
+
+
     def testCreateFlatNegativeTitle(self):
         exception = False
         user = User.objects.get(username='user1')

@@ -6,6 +6,7 @@ from RoomBnB.models import RoomProperties
 from RoomBnB.models import RentRequest
 from RoomBnB.models import Review, UserReview, FlatReview, RoomReview, Contract, Payment
 from django.shortcuts import render, redirect
+from django.db.models import Q
 
 
 def create_flat(form_title, form_address, form_description, form_picture, user):
@@ -106,3 +107,37 @@ def create_rent_request(user, room_id):
         return redirect('/requests/list')
     else:
         return redirect('/requests/list')
+
+def get_flats_filtered(keyword,elevator,washdisher,balcony,window,air_conditioner):
+    list = []
+    res = []
+
+    query = Q(title__icontains=keyword)
+    query.add(Q(description__icontains=keyword), Q.OR)
+    query.add(Q(address__icontains=keyword), Q.OR)
+    flatList = Flat.objects.all().filter(query)
+    flatList2 = FlatProperties.objects.all()
+    for flat in flatList:
+        query2 = Q(elevator=elevator)
+        query2.add(Q(washdisher=washdisher), Q.AND)
+        query2.add(Q(flat=flat), Q.AND)
+        flatList2 = flatList2.filter(query2)
+        if flatList2.exists():
+            list.append(flat)
+    roomList2 = RoomProperties.objects.all()
+    query3 = Q(balcony=balcony)
+    query3.add(Q(window=window), Q.AND)
+    query3.add(Q(air_conditioner=air_conditioner), Q.AND)
+
+    for flat in list:
+        roomList = Room.objects.filter(belong_to=flat)
+        for room in roomList:
+            query3 = Q(balcony=balcony)
+            query3.add(Q(window=window), Q.AND)
+            query3.add(Q(air_conditioner=air_conditioner), Q.AND)
+            query3.add(Q(room=room), Q.AND)
+            roomList2 = roomList2.filter(query3)
+            if roomList2.exists():
+                res.append(flat)
+
+    return res
