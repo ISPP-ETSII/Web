@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Create a room{% endblock %}
+{% block title %}{% trans "Create a room" %}{% endblock %}
 
 {% block content %}
 
     <form class="pure-form pure-form-stacked" action="{% url 'roomCreate' flatid %}" method="post" enctype="multipart/form-data">
         <fieldset>
-            <legend>Create a room</legend>
+            <legend>{% trans "Create a room" %}</legend>
             {% csrf_token %}
             {{ form.as_p }}
-            <input class="pure-button pure-button-primary" type="submit" value="Save" />
+            <input class="pure-button pure-button-primary" type="submit" value="{% trans "Create" %}" />
         </fieldset>
     </form>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}

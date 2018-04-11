@@ -3,15 +3,39 @@ from django.test import TestCase
 from django.core.files import File
 from RoomBnB.services import *
 from RoomBnB.views import *
+from django.contrib.auth.models import User
+from RoomBnB.models import Profile, Flat
+from RoomBnB.services import create_flat
+from django.core.management import call_command
 
-# Create your tests here.
 
-class TestHouseFilter(TestCase):
+class Test(TestCase):
+    def setUp(self):
+        #call_command('loaddata', 'deploy/populate.json')
+        user1 = User.objects.create_user(username='user1', email='user1@prueba.com')
+        user1.set_password('user1')
+        user1.save()
 
-    #Test de filtrado
+        profile1 = Profile(user=user1)
+        profile1.save()
+
+
+    def testCreateFlat(self):
+        user = User.objects.get(username='user1')
+        profile = Profile.objects.get(user=user)
+
+        title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
+        create_flat(title, address, description, '', user)
+        flat_saved = Flat.objects.get(title=title)
+
+        self.assertEqual(flat_saved.title, title)
+        self.assertEqual(flat_saved.address, address)
+        self.assertEqual(flat_saved.description, description)
+        self.assertEqual(flat_saved.owner, profile)
+
 
     def testFilteredHouse(self):
-
         #user creation for the test
         userTest = User.objects.create_user(username="userTest", email="user@prueba.com")
         userTest.set_password("userTest")
@@ -38,3 +62,4 @@ class TestHouseFilter(TestCase):
             roomToCheck = Room.objects.filter(belong_to=flat)
             self.assertEqual(roomToCheck, roomSaved)
             self.assertEqual(RoomProperties.objects.get(room=roomToCheck), roomSavedProps)
+

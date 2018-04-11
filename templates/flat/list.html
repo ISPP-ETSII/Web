@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
-{% block title %}Flats{% endblock %}
+{% block title %}{% trans "Flats" %}{% endblock %}
 
 {% block content %}
 
     {% if user.is_authenticated %}
-        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatCreate' %}'">Create</button>
+        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatCreate' %}'">{% trans "Create flat" %}</button>
         <!--<button class="pure-button pure-button-active" onclick="location.href='{% url 'profileCreate' %}'">Create profile</button>-->
         <br><br>
     {% endif %}
@@ -30,7 +31,7 @@
                                 <h2>{{ flat.description }} <span class="property_size">(288ftsq)</span></h2>
 
                                 {% if flat.owner.user == user %}
-                                    <button class="pure-button" onclick="location.href='{% url 'flatDelete' flat.id%}'">Delete</button>
+                                    <button class="pure-button" onclick="location.href='{% url 'flatDelete' flat.id%}'">{% trans "Delete" %}</button>
                                 {% endif %}
                             </div>
                         </li>
@@ -40,7 +41,7 @@
         </section>
 
     {% else %}
-        <p>No flats are available.</p>
+        <p>{% trans "No flats are available." %}</p>
     {% endif %}
 
 {% endblock %}
