@@ -134,7 +134,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, "ISPP", "locale"),
 )
 
-print(LOCALE_PATHS)
 
 LANGUAGES = (
     ('en', _('English')),
