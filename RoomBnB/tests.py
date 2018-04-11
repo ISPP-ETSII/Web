@@ -44,20 +44,6 @@ class Test(TestCase):
         self.assertEqual(flat_saved.owner, profile)
 
 
-    def testCreateFlatPositiveDescription(self):
-        user = User.objects.get(username='user1')
-        profile = Profile.objects.get(user=user)
-
-        title, address, description = 'Piso', 'Calle betis', ''
-
-        create_flat(title, address, description, '', user)
-        flat_saved = Flat.objects.get(title=title)
-
-        self.assertEqual(flat_saved.title, title)
-        self.assertEqual(flat_saved.address, address)
-        self.assertEqual(flat_saved.description, description)
-        self.assertEqual(flat_saved.owner, profile)
-
     def testCreateFlatNegativeTitle(self):
         exception = False
         user = User.objects.get(username='user1')
@@ -72,10 +58,38 @@ class Test(TestCase):
         self.assertEqual(exception, True)
 
 
+    def testCreateFlatNegativeDescription(self):
+        exception = False
+        user = User.objects.get(username='user1')
+
+        try:
+            title, description, address, owner = 'Titulo', '', 'Calle pal pozo', user
+
+            create_flat(title, description, address, owner)
+        except:
+            exception = True
+
+        self.assertEqual(exception, True)
+
+
+    def testCreateFlatNegativeAddress(self):
+        exception = False
+        user = User.objects.get(username='user1')
+
+        try:
+            title, description, address, owner = 'Titulo', 'Descripcion casa', '', user
+
+            create_flat(title, description, address, owner)
+        except:
+            exception = True
+
+        self.assertEqual(exception, True)
+
+
     def testDeleteFlatPositive(self):
         user = User.objects.get(username='user1')
 
-        title, address, description = 'Piso', 'Calle betis', ''
+        title, address, description = 'Piso', 'Calle betis', 'piso calle'
 
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
@@ -90,7 +104,7 @@ class Test(TestCase):
     def testShowFlatsPositive(self):
         user = User.objects.get(username='user1')
 
-        title, address, description = 'Piso', 'Calle betis', ''
+        title, address, description = 'Piso', 'Calle betis', 'pisito en calle betis'
 
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
@@ -103,6 +117,7 @@ class Test(TestCase):
     def testShowRoomsPositive(self):
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
 
@@ -119,7 +134,6 @@ class Test(TestCase):
         user3 = User.objects.get(username='user3')
         create_profile(user3, '')
         profile_saved = Profile.objects.get(user=user3)
-
         self.assertEqual(profile_saved.user, user3)
 
 
@@ -166,11 +180,10 @@ class Test(TestCase):
         self.assertEqual(payment_saved.contract, contract_saved)
 
 
-
     def testRegisterReviewUserPositive(self):
         user = User.objects.get(username='user1')
 
-        title, description, date, rating, user = 'Bien', 'Bien', localtime(now()).date(), '2', user
+        title, description, date, rating, user = 'Bien', 'Bien', localtime(now()).date(), '3', user
 
         create_userreview(title, description, date, rating, user)
         review_saved = UserReview.objects.get(title=title)
@@ -196,6 +209,7 @@ class Test(TestCase):
         self.assertEqual(review_saved.rating, rating)
         self.assertEqual(review_saved.user, user)
 
+
     def testRegisterReviewUserNegativeTitle(self):
 
         user = User.objects.get(username='user1')
@@ -203,6 +217,7 @@ class Test(TestCase):
 
         userReview_saved = create_userreview(title, description, date, rating, user)
         self.assertIsNone(userReview_saved)
+
 
     def testRegisterReviewUserNegativeRating(self):
         exception = False
@@ -217,12 +232,27 @@ class Test(TestCase):
         self.assertEqual(exception, True)
 
 
+    def testRegisterReviewUserNegativeTitleLong(self):
+        exception = False
+        user = User.objects.get(username='user1')
+        try:
+            title, description, date, rating, user = \
+                'Titulo es demasiado largo como para ponerse de titulo de una review', 'Bien',\
+                localtime(now()).date(), '3', user
+
+            create_userreview(title, description, date, rating, user)
+        except:
+            exception = True
+
+        self.assertEqual(exception, True)
+
+
     def testRegisterReviewFlatPositive(self):
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
-
 
         title, description, date, rating, flat = 'Bien', 'Bien', localtime(now()).date(), '2', flat_saved
 
@@ -235,9 +265,11 @@ class Test(TestCase):
         self.assertEqual(review_saved.rating, rating)
         self.assertEqual(review_saved.flat, flat_saved)
 
+
     def testRegisterReviewFlatNegativeTitle(self):
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
 
@@ -251,6 +283,7 @@ class Test(TestCase):
 
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
 
@@ -263,16 +296,20 @@ class Test(TestCase):
 
         self.assertEqual(exception, True)
 
+
     def testRegisterReviewFlatNegativeTitleLong(self):
         exception = False
 
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
 
         try:
-            title, description, date, rating, flat = 'El titulo es demasiado largo porque supera los 50 caracteres maximos', 'Bien', localtime(now()).date(), '3', flat_saved
+            title, description, date, rating, flat = \
+                'El titulo es demasiado largo porque supera los 50 caracteres maximos', 'Bien', \
+                localtime(now()).date(), '3', flat_saved
 
             create_flatreview(title, description, date, rating, flat)
         except:
@@ -281,10 +318,10 @@ class Test(TestCase):
         self.assertEqual(exception, True)
 
 
-
     def testRegisterReviewRoomPositive(self):
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
 
@@ -297,7 +334,6 @@ class Test(TestCase):
         create_roomreview(title, description, date, rating, room)
         review_saved = RoomReview.objects.get(description=description)
 
-
         self.assertEqual(review_saved.title, title)
         self.assertEqual(review_saved.description, description)
         self.assertEqual(review_saved.date, date)
@@ -309,6 +345,7 @@ class Test(TestCase):
 
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
 
@@ -322,12 +359,12 @@ class Test(TestCase):
         self.assertIsNone(roomReview_saved)
 
 
-
     def testRegisterReviewRoomNegativeRating(self):
         exception = False
 
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
 
@@ -351,6 +388,7 @@ class Test(TestCase):
 
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
+
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
 
