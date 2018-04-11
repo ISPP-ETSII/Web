@@ -146,8 +146,9 @@ def listWithProperties(request,keyword,elevator,washdisher,balcony,window,air_co
 def detail(request, flat_id):
     flat = Flat.objects.get(id=flat_id)
     flat_details = get_flat_details(flat)
-    rooms = Room.objects.filter(belong_to=flat)
-    return render(request, 'flat/detail.html', {'flat': flat, 'flatDetails': flat_details, 'roomList':rooms})
+    availableRooms = Room.objects.filter(belong_to=flat, temporal_owner=None)
+    notAvailableRooms = Room.objects.filter(belong_to=flat, temporal_owner=not None)
+    return render(request, 'flat/detail.html', {'flat': flat, 'flatDetails': flat_details, 'roomAvailableList':availableRooms, 'roomNotAvailableList': notAvailableRooms})
 
 
 @login_required
