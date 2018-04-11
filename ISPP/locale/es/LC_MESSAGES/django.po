@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-09 16:30+0000\n"
+"POT-Creation-Date: 2018-04-11 09:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ISPP/settings.py:136 templates/base.html:38 templates/base_home.html:38
-msgid "Spanish"
-msgstr "Español"
-
-#: ISPP/settings.py:137 templates/base.html:40 templates/base_home.html:40
+#: ISPP/settings.py:140
 msgid "English"
 msgstr "Inglés"
+
+#: ISPP/settings.py:141
+msgid "Spanish"
+msgstr "Español"
 
 #: RoomBnB/forms.py:13 RoomBnB/forms.py:22 RoomBnB/forms.py:26
 #: RoomBnB/forms.py:51 templates/flat/review.html:11
@@ -167,12 +167,12 @@ msgstr "Solicitar alquiler"
 msgid "No rooms are available."
 msgstr "No hay habitaciones disponibles."
 
-#: templates/flat/detail.html:78 templates/flat/review.html:4
+#: templates/flat/detail.html:73 templates/flat/review.html:4
 #: templates/room/detail.html:4
 msgid "Flat reviews"
 msgstr "Opiniones del piso"
 
-#: templates/flat/detail.html:79
+#: templates/flat/detail.html:74
 msgid "Owner reviews"
 msgstr "Opiniones del propietario"
 
