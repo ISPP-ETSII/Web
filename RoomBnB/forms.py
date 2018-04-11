@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -9,26 +10,26 @@ from django.db import models
 
 
 class FlatForm(forms.Form):
-    title = forms.CharField(label='Title', max_length=100)
-    address = forms.CharField(label='Address', max_length=100)
-    description = forms.CharField(label='Description', max_length=500)
-    picture = forms.ImageField()
+    title = forms.CharField(label=_('Title'), max_length=100)
+    address = forms.CharField(label=_('Address'), max_length=100)
+    description = forms.CharField(label=_('Description'), max_length=500)
+    picture = forms.ImageField(label=_('Image'))
 
 
 class RoomForm(forms.Form):
-    description = forms.CharField(label='Description', max_length=500)
-    price = forms.FloatField(required=True, max_value=1000, min_value=0)
-    picture = forms.ImageField()
+    description = forms.CharField(label=_('Description'), max_length=500)
+    price = forms.FloatField(label=_('Price'), required=True, max_value=1000, min_value=0)
+    picture = forms.ImageField(label=_('Title'))
 
 
 class ProfileForm(forms.Form):
-    avatar = forms.ImageField()
+    avatar = forms.ImageField(label=_('Title'))
 
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30)
-    last_name = forms.CharField(max_length=30)
-    email = forms.EmailField(max_length=254)
+    first_name = forms.CharField(label=_('First name'), max_length=30)
+    last_name = forms.CharField(label=_('Last name'), max_length=30)
+    email = forms.EmailField(label=_('Email'), max_length=254)
 
     class Meta:
         model = User
@@ -47,9 +48,9 @@ class ReviewForm(forms.Form):
         ('5', '5'),
     )
 
-    title = forms.CharField(label='title', max_length=50)
-    description = forms.CharField(label='description', max_length=500)
-    rating = forms.CharField(label='rating', max_length=1)
+    title = forms.CharField(label=_('Title'), max_length=50)
+    description = forms.CharField(label=_('Description'), max_length=500)
+    rating = forms.CharField(label=_('Rating'), max_length=1)
 
 
 class UserReviewForm(ReviewForm):
@@ -66,3 +67,9 @@ class RoomReviewForm(ReviewForm):
 
 class SearchFlatForm(forms.Form):
     keyword = forms.CharField(max_length=100)
+    elevator = forms.BooleanField(label=_('Elevator'), required=False, initial=False)
+    washdisher = forms.BooleanField(label=_('Dishwasher'), required=False, initial=False)
+    balcony = forms.BooleanField(label=_('Balcony'), required=False, initial=False)
+    window = forms.BooleanField(label=_('Window'), required=False, initial=False)
+    air_conditioner = forms.BooleanField(label=_('Air conditioner'), required=False, initial=False)
+

@@ -1,6 +1,7 @@
 {% extends 'base_home.html' %}
+{% load i18n %}
 
-{% block title %}Welcome to RentInPeace{% endblock %}
+{% block title %}{% trans "Welcome to RentInPeace" %}{% endblock %}
 
 {% block content %}
     <div class="pure-g">
@@ -8,17 +9,38 @@
         <div class="pure-u-3-5" align="center">
             <p>
                 <form class="pure-form" action="{% url 'base' %}" method="post">
-                    {% csrf_token %}
                     <fieldset>
-                        <h2>Search your flat</h2>
+                        <h2>{% trans "Search your flat" %}</h2>
+                        {% csrf_token %}
 
-                        <input class="pure-input-2-3" type="text" placeholder="Bami" id="keyword" name="keyword">
+                        {% for field in form %}
+                            {% if field.name == 'keyword' %}
+                                <input class="pure-input-2-3" type="text" placeholder="{% trans "Search by name, description or address" %}" id="{{ field.name }}" name="{{ field.name }}">
+                                <br><br>
+                            {% endif %}
+                        {% endfor %}
+
+                        <table class="pure-table">
+                            <thead>
+                                <tr>
+                                    <th>{% trans "Properties" %}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for field in form %}
+                                    <tr>
+                                        {% if field.name != 'keyword' %}
+                                            <th>{{ field }} {{ field.label }}</th>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
 
                         <br><br>
-                        <p><input class="pure-button pure-button-primary" type="submit" value="Search" /></p>
+                        <p><input class="pure-button pure-button-primary" type="submit" value="{% trans "Search" %}" /></p>
                     </fieldset>
                 </form>
-
             </p>
         </div>
         <div class="pure-u-1-5"><p></p></div>
