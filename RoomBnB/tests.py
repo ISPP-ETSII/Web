@@ -65,7 +65,9 @@ class Test(TestCase):
         user = User.objects.get(username='user1')
 
         try:
-            create_flat(title='', description='Piso en TerraBIB', address='Calle Teruel', owner=user)
+            title, description, address, owner = '', 'Piso de Terra', 'Calle pal pozo', user
+
+            create_flat(title, description, address, owner)
         except:
             exception = True
 
@@ -128,7 +130,9 @@ class Test(TestCase):
         user = User.objects.get(username='user1')
 
         try:
-            create_profile(user=user, avatar='')
+            user, avatar = user, '',
+
+            create_profile(user, avatar)
         except:
             exception = True
 
@@ -194,23 +198,21 @@ class Test(TestCase):
         self.assertEqual(review_saved.rating, rating)
         self.assertEqual(review_saved.user, user)
 
-    def testRegisterReviewUserEmptyTitle(self):
-
-        exception = False
+    def testRegisterReviewUserNegativeTitle(self):
 
         user = User.objects.get(username='user1')
-        try:
-            create_userreview(title='', description='Bien', date=localtime(now()).date(), rating='2', user=user)
-        except:
-            exception = True
+        title, description, date, rating, user = '', 'Bien', localtime(now()).date(), '3', user
 
-        self.assertEqual(exception, True)
+        userReview_saved = create_userreview(title, description, date, rating, user)
+        self.assertIsNone(userReview_saved)
 
     def testRegisterReviewUserNegativeRating(self):
         exception = False
         user = User.objects.get(username='user1')
         try:
-            create_userreview(title='Muy mal ', description='Fumaba en exceso', date='05/01/2018', rating='-4', user=user)
+            title, description, date, rating, user = 'Titulo', 'Bien', localtime(now()).date(), '-3', user
+
+            create_userreview(title, description, date, rating, user)
         except:
             exception = True
 
@@ -236,19 +238,15 @@ class Test(TestCase):
         self.assertEqual(review_saved.flat, flat_saved)
 
     def testRegisterReviewFlatNegativeTitle(self):
-        exception = False
-
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
         create_flat(title, address, description, '', user)
         flat_saved = Flat.objects.get(title=title)
 
-        try:
-            create_flatreview(title='', description='Bien', date=localtime(now()).date(), rating='3', flat=flat_saved)
-        except:
-            exception = True
+        title, description, date, rating, flat = '', 'Bien', localtime(now()).date(), '3', flat_saved
+        flatReview_saved = create_flatreview(title, description, date, rating, flat)
+        self.assertIsNone(flatReview_saved)
 
-        self.assertEqual(exception, True)
 
     def testRegisterReviewFlatNegativeRating(self):
         exception = False
@@ -259,7 +257,9 @@ class Test(TestCase):
         flat_saved = Flat.objects.get(title=title)
 
         try:
-            create_flatreview(title='Bien', description='Mejor imposible', date=localtime(now()).date(), rating='-3', flat=flat_saved)
+            title, description, date, rating, flat = 'Titulo', 'Bien', localtime(now()).date(), '-3', flat_saved
+
+            create_flatreview(title, description, date, rating, flat)
         except:
             exception = True
 
@@ -274,8 +274,9 @@ class Test(TestCase):
         flat_saved = Flat.objects.get(title=title)
 
         try:
-            create_flatreview(title='El titulo es demasiado largo porque supera los 50 caracteres maximos',
-                              description='Bien', date=localtime(now()).date(), rating='3', flat=flat_saved)
+            title, description, date, rating, flat = 'El titulo es demasiado largo porque supera los 50 caracteres maximos', 'Bien', localtime(now()).date(), '3', flat_saved
+
+            create_flatreview(title, description, date, rating, flat)
         except:
             exception = True
 
@@ -307,7 +308,6 @@ class Test(TestCase):
 
 
     def testRegisterReviewRoomNegativeTitle(self):
-        exception = False
 
         user = User.objects.get(username='user1')
         title, address, description = 'Piso', 'Bami', 'Piso luminoso'
@@ -318,12 +318,11 @@ class Test(TestCase):
         create_room(description, price, '', user, flat_saved)
         room_saved = Room.objects.get(description=description)
 
-        try:
-            create_roomreview(title='', description='Bien', date=localtime(now()).date(), rating='3', room=room_saved)
-        except:
-            exception = True
+        title, description, date, rating, room = '', 'Bien', localtime(now()).date(), '3', room_saved
 
-        self.assertEqual(exception, True)
+        roomReview_saved = create_roomreview(title, description, date, rating, room)
+        self.assertIsNone(roomReview_saved)
+
 
 
     def testRegisterReviewRoomNegativeRating(self):
@@ -339,7 +338,10 @@ class Test(TestCase):
         room_saved = Room.objects.get(description=description)
 
         try:
-            create_roomreview(title='Bien', description='Mejor imposible', date=localtime(now()).date(), rating='-3', room=room_saved)
+            title, description, date, rating, room = 'Bien', 'Bien', localtime(now()).date(), '-3', room_saved
+
+            create_roomreview(title, description, date, rating, room)
+
         except:
             exception = True
 
@@ -359,8 +361,9 @@ class Test(TestCase):
         room_saved = Room.objects.get(description=description)
 
         try:
-            create_roomreview(title='El titulo es demasiado largo porque supera los 50 caracteres maximos',
-                              description='Bien', date=localtime(now()).date(), rating='3', room=room_saved)
+            title, description, date, rating, room = 'El titulo es demasiado largo porque supera los 50 caracteres maximos', 'Bien',localtime(now()).date(), '3', room_saved
+
+            create_roomreview(title, description, date, rating, room)
         except:
             exception = True
 
