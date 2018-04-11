@@ -41,6 +41,9 @@ class Test(TestCase):
         userTest.set_password("userTest")
         userTest.save()
 
+        profile1 = Profile(user=userTest)
+        profile1.save()
+
         #flat creation for the test
         title, address, description1 = "PisoTest", "Bami", "Piso muy guay"
         create_flat(title, address, description1, '', userTest)
@@ -49,7 +52,7 @@ class Test(TestCase):
 
         #room creation for the test
         description2, price, belong_to = "buena habitacion", 150, flatSaved
-        roomSaved = Room.objects.create(description=description2, price=price, picture='', temporal_owner='', belong_to=belong_to)
+        roomSaved = Room.objects.create(description=description2, price=price, picture='', temporal_owner=None, belong_to=belong_to)
         roomSavedProps = RoomProperties.objects.create(room=roomSaved, balcony=True, window=True, air_conditioner=True)
 
         #get flats with properties
@@ -59,7 +62,8 @@ class Test(TestCase):
 
             self.assertEqual(flat, flatSaved)
             self.assertEqual(FlatProperties.objects.get(flat=flat), flatSavedProps)
-            roomToCheck = Room.objects.filter(belong_to=flat)
+            roomToCheckList = Room.objects.filter(belong_to=flat)
+            roomToCheck = roomToCheckList[0]
             self.assertEqual(roomToCheck, roomSaved)
             self.assertEqual(RoomProperties.objects.get(room=roomToCheck), roomSavedProps)
 
