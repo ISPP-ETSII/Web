@@ -1,4 +1,4 @@
-from typing import re
+from django.views.decorators.csrf import csrf_exempt
 
 from django.core.serializers import unregister_serializer
 from django.http.multipartparser import parse_boundary_stream
@@ -35,7 +35,6 @@ from django.urls import reverse
 from django.shortcuts import render, redirect
 from paypal.standard.forms import PayPalPaymentsForm
 from paypal.standard.ipn.signals import payment_was_successful
-
 
 
 def signup(request):
@@ -82,6 +81,7 @@ def requests_list(request):
     return render(request, 'request/list.html', {'requests_by_me': rent_requests_by_me,
                                                  'requests_to_me': rent_requests_to_me})
 
+
 @login_required
 def accept_request(request, request_id):
     rent_request = RentRequest.objects.get(pk=request_id)
@@ -89,10 +89,10 @@ def accept_request(request, request_id):
     room.temporal_owner = rent_request.requester
     room.save()
 
-
     rent_request.delete()
 
     return redirect('/requests/list')
+
 
 @login_required
 def deny_request(request, request_id):
@@ -118,9 +118,9 @@ def listWithKeyword(request, keyword):
     return render(request, 'flat/list.html', {'flatList': flatList})
 
 
-def listWithProperties(request,keyword,elevator,washdisher,balcony,window,air_conditioner):
+def listWithProperties(request, keyword, elevator, washdisher, balcony, window, air_conditioner):
     list = []
-    res=[]
+    res = []
     query = Q(title__icontains=keyword)
     query.add(Q(description__icontains=keyword), Q.OR)
     query.add(Q(address__icontains=keyword), Q.OR)
@@ -133,11 +133,10 @@ def listWithProperties(request,keyword,elevator,washdisher,balcony,window,air_co
         flatList2 = flatList2.filter(query2)
         if flatList2.exists():
             list.append(flat)
-    roomList2= RoomProperties.objects.all()
+    roomList2 = RoomProperties.objects.all()
     query3 = Q(balcony=balcony)
     query3.add(Q(window=window), Q.AND)
     query3.add(Q(air_conditioner=air_conditioner), Q.AND)
-
 
     for flat in list:
         roomList = Room.objects.filter(belong_to=flat)
@@ -157,7 +156,7 @@ def detail(request, flat_id):
     flat = Flat.objects.get(id=flat_id)
     flat_details = get_flat_details(flat)
     rooms = Room.objects.filter(belong_to=flat)
-    return render(request, 'flat/detail.html', {'flat': flat, 'flatDetails': flat_details, 'roomList':rooms})
+    return render(request, 'flat/detail.html', {'flat': flat, 'flatDetails': flat_details, 'roomList': rooms})
 
 
 @login_required
@@ -215,17 +214,16 @@ def profileCreate(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = ProfileForm(request.POST,request.FILES)
+        form = ProfileForm(request.POST, request.FILES)
 
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            loggedUser=request.user
+            loggedUser = request.user
 
             profile = Profile(user=loggedUser,
                               avatar=form.cleaned_data['avatar'])
             profile.save()
-
 
             return HttpResponseRedirect('/flats')
 
@@ -255,14 +253,15 @@ def base(request):
     if request.method == 'POST':
         form = SearchFlatForm(request.POST)
         if form.is_valid():
-            keyword=form.cleaned_data.get('keyword')
-            elevator=form.cleaned_data.get('elevator')
-            washdisher=form.cleaned_data.get('washdisher')
-            balcony=form.cleaned_data.get('balcony')
-            window=form.cleaned_data.get('window')
-            air_conditioner=form.cleaned_data.get('air_conditioner')
-            return HttpResponseRedirect('/flats/keyword=' + keyword + '/elevator=' + str(elevator) + '/washdisher=' + str(washdisher)
-                                        + '/balcony=' + str(balcony) + '/window=' + str(window) + '/air_conditioner=' + str(air_conditioner))
+            keyword = form.cleaned_data.get('keyword')
+            elevator = form.cleaned_data.get('elevator')
+            washdisher = form.cleaned_data.get('washdisher')
+            balcony = form.cleaned_data.get('balcony')
+            window = form.cleaned_data.get('window')
+            air_conditioner = form.cleaned_data.get('air_conditioner')
+            return HttpResponseRedirect(
+                '/flats/keyword=' + keyword + '/elevator=' + str(elevator) + '/washdisher=' + str(washdisher)
+                + '/balcony=' + str(balcony) + '/window=' + str(window) + '/air_conditioner=' + str(air_conditioner))
     else:
         form = SearchFlatForm()
 
@@ -275,35 +274,35 @@ def base(request):
 
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
-    user=request.user
-    rentRequest= RentRequest.objects.all()
-    flat= Flat.objects.get(id=room.belong_to.id)
-    rooms=rooms = Room.objects.filter(belong_to=flat)
+    user = request.user
+    rentRequest = RentRequest.objects.all()
+    flat = Flat.objects.get(id=room.belong_to.id)
+    rooms = rooms = Room.objects.filter(belong_to=flat)
     room_details = get_room_details(room)
 
-    return render(request, 'room/detail.html', {'room': room, 'rooms':rooms, 'user':user, 'rentRequest':rentRequest,'roomDetails': room_details})
-
+    return render(request, 'room/detail.html',
+                  {'room': room, 'rooms': rooms, 'user': user, 'rentRequest': rentRequest, 'roomDetails': room_details})
 
 
 def roomReview(request, room_id):
     room = Room.objects.get(id=room_id)
-    reviews = RoomReview.objects.filter(room = room)
+    reviews = RoomReview.objects.filter(room=room)
     return render(request, 'room/review.html', {'roomRev': reviews, 'room': room})
 
 
 def flatReview(request, flat_id):
     flat = Flat.objects.get(id=flat_id)
     rooms = Room.objects.filter(belong_to=flat)
-    review = FlatReview.objects.filter(flat = flat)
-    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms':rooms})
+    review = FlatReview.objects.filter(flat=flat)
+    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms': rooms})
 
 
-def userReview(request,flat_id, user_id):
-    user = User.objects.get(id = user_id)
-    flat = Flat.objects.get(id = flat_id)
+def userReview(request, flat_id, user_id):
+    user = User.objects.get(id=user_id)
+    flat = Flat.objects.get(id=flat_id)
     rooms = Room.objects.filter(belong_to=flat)
-    review = UserReview.objects.filter(user = user)
-    return render(request, 'user/review.html', {'userRev': review, 'flat':flat, 'rooms':rooms})
+    review = UserReview.objects.filter(user=user)
+    return render(request, 'user/review.html', {'userRev': review, 'flat': flat, 'rooms': rooms})
 
 
 @login_required
@@ -311,11 +310,11 @@ def writeReviewUser(request, user_id, flat_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            user = User.objects.get(id = user_id)
+            user = User.objects.get(id=user_id)
             rev = UserReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
-                             rating = form.cleaned_data.get("rating"), user = user)
+                             rating=form.cleaned_data.get("rating"), user=user)
             rev.save()
-            return HttpResponseRedirect('/userReview/'+ str(flat_id) + '/' + str(user_id))
+            return HttpResponseRedirect('/userReview/' + str(flat_id) + '/' + str(user_id))
     else:
         form = ReviewForm()
     print(form.errors)
@@ -327,11 +326,11 @@ def writeReviewRoom(request, room_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            room = Room.objects.get(id = room_id)
+            room = Room.objects.get(id=room_id)
             rev = RoomReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
-                             rating = form.cleaned_data.get("rating"), room = room)
+                             rating=form.cleaned_data.get("rating"), room=room)
             rev.save()
-            return HttpResponseRedirect('/roomReview/'+ str(room_id))
+            return HttpResponseRedirect('/roomReview/' + str(room_id))
     else:
         form = ReviewForm()
     print(form.errors)
@@ -343,33 +342,32 @@ def writeReviewFlat(request, flat_id):
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
-            flat = Flat.objects.get(id = flat_id)
+            flat = Flat.objects.get(id=flat_id)
             rev = FlatReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
-                             rating= form.cleaned_data.get("rating"), flat = flat)
+                             rating=form.cleaned_data.get("rating"), flat=flat)
             rev.save()
-            return HttpResponseRedirect('/flatReview/'+ str(flat_id))
+            return HttpResponseRedirect('/flatReview/' + str(flat_id))
     else:
         form = ReviewForm()
     print(form.errors)
     return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
 
 
-
-
 def retur(request):
     return render(request, 'index.html')
 
-
+@csrf_exempt
 def paypal_response(request, room_id):
-    if request.POST.get('payment_status[0]'=="Completed"):
-        amount = request.POST.get('mc_currency[0]')
-        date = request.POST.get('payment_date[0]')
-        room=Room.objects.get(id=room_id)
-        contract=Contract.objects.get(room=room)
-        pay=Payment(amount=amount,date_signed=date,contract=contract)
+    if request.POST.get('payment_status') == 'Completed':
+        print('Entra pago')
+        amount = request.POST.get('mc_gross')
+        room = Room.objects.get(id=room_id)
+        contract = Contract.objects.filter(room=room)[0]
+        pay = Payment(amount=amount, contract=contract)
         pay.save()
 
-    print(request)
+    return HttpResponse('')
+
 
 def view_that_asks_for_money(request, room_id):
     room = Room.objects.get(id=room_id)
@@ -379,19 +377,18 @@ def view_that_asks_for_money(request, room_id):
     paypal_dict = {
         "business": "roombnbispp-facilitator@gmail.com",
         "currency_code": "EUR",
-        "amount":  room.price,
+        "amount": room.price,
         "item_name": Room.description,
         "invoice": random.randint(0, 9999999999999),
-        "notify_url": request.build_absolute_uri('paypal' + str(room_id)),
+        "notify_url": 'http://217.216.240.169:8000/paymentroom/1/paypal',
         "return": request.build_absolute_uri(reverse('base')),
         "cancel_return": request.build_absolute_uri(reverse('base')),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
     }
 
-
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
-   # context = {"form": form}
+    # context = {"form": form}
 
     date_signed = timezone.now()
     flat = Flat.objects.get(id=room.belong_to.id)
@@ -401,7 +398,4 @@ def view_that_asks_for_money(request, room_id):
     contract = Contract(date_signed=date_signed, landlord=owner, tenant=tenant, room=room)
     contract.save()
 
-
-    return render(request, "paypal/payment.html", {'contract': contract,'form': form})
-
-
+    return render(request, "paypal/payment.html", {'contract': contract, 'form': form})
