@@ -53,7 +53,7 @@ class Test(TestCase):
         landlordTest.set_password("landlordTest")
         landlordTest.save()
 
-        profileLand = Profile(landlordTest)
+        profileLand = Profile(user=landlordTest)
         profileLand.save()
 
         tenantTest = User.objects.create_user(username="tenantTest", email="tenant@prueba.com")
@@ -84,6 +84,8 @@ class Test(TestCase):
         self.assertEqual(contractCreated.landlord, landlordTest)
 
         sign_contractCreated(roomSaved, tenantTest)
+
+        contractCreated = Contract.objects.get(room=roomSaved)
 
         self.assertEqual(contractCreated.room, roomSaved)
         self.assertEqual(contractCreated.text, "textTest")
