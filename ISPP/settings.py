@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('IS_DEBUG', True))
 
 ALLOWED_HOSTS = ['rentinpeace.ml', '127.0.0.1']
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'RoomBnB.apps.RoombnbConfig',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -136,8 +137,8 @@ LOCALE_PATHS = (
 
 
 LANGUAGES = (
-    ('en', _('Spanish')),
-    ('es', _('English')),
+    ('en', _('English')),
+    ('es', _('Spanish')),
 )
 
 
@@ -157,3 +158,8 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, "ISPP", "static"),
 )
+
+#Paypal
+
+PAYPAL_RECEIVER_EMAIL= 'roombnbispp-facilitator@gmail.com'
+PAYPAL_TEST= True
