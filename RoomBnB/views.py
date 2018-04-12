@@ -361,7 +361,7 @@ def retur(request):
 
 
 def paypal_response(request, room_id):
-    if request.POST.get('payment_status'=="Completed"):
+    if request.POST.get('payment_status[0]'=="Completed"):
         amount = request.POST.get('mc_currency[0]')
         date = request.POST.get('payment_date[0]')
         room=Room.objects.get(id=room_id)
