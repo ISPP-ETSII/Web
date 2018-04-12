@@ -5,6 +5,7 @@ from RoomBnB.models import Room
 from RoomBnB.models import RoomProperties
 from RoomBnB.models import RentRequest
 from django.shortcuts import render, redirect
+from RoomBnB.models import Contract
 
 
 def create_flat(form_title, form_address, form_description, form_picture, user):
@@ -44,3 +45,17 @@ def create_rent_request(user, room_id):
         return redirect('/requests/list')
     else:
         return redirect('/requests/list')
+
+
+def sign_contractCreate(room, text, landlord):
+    # A new contract
+    contract = Contract.objects.create(room=room,
+                                        text = text,
+                                        landlord = landlord)
+    contract.save()
+
+def sign_contractCreated(room, tenant):
+    # Tenant is signing the contract
+    contract = Contract.objects.get(room=room)
+    contract.tenant = tenant
+    contract.save()
