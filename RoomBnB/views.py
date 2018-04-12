@@ -117,7 +117,7 @@ def detail(request, flat_id):
     flat = Flat.objects.get(id=flat_id)
     flat_details = get_flat_details(flat)
     availableRooms = Room.objects.filter(belong_to=flat, temporal_owner=None)
-    notAvailableRooms = Room.objects.filter(belong_to=flat, temporal_owner=not None)
+    notAvailableRooms = set(Room.objects.filter(belong_to=flat)) - set(availableRooms)
     return render(request, 'flat/detail.html', {'flat': flat, 'flatDetails': flat_details, 'roomAvailableList':availableRooms, 'roomNotAvailableList': notAvailableRooms})
 
 
