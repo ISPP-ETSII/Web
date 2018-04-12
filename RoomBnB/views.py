@@ -231,7 +231,7 @@ def profileCreate(request):
 
 
 @login_required
-def editUserProperties(request, user_id):
+def editUserProperties(request):
     profile = Profile.objects.get(user=request.user)
     profileProperties = get_user_details(profile)
 
@@ -246,14 +246,20 @@ def editUserProperties(request, user_id):
             profileProperties.degree = form.cleaned_data.get('degree')
             profileProperties.save()
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/profile/' + str(request.user.id))
 
-    # if a GET (or any other method) we'll create a blank form
     else:
         form = UserPropertiesForm(instance=profileProperties)
 
-    return render(request, 'profile/update.html', {'form': form,'user_id':user_id})
+    return render(request, 'profile/update.html', {'form': form,'user_id':request.user.id})
 
+
+@login_required
+def showUserProperties(request, user_id):
+    profile = Profile.objects.get(user=user_id)
+    profileProperties = get_user_details(profile)
+
+    return render(request, 'profile/detail.html', {'userProperties': profileProperties})
 
 
 @login_required

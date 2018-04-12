@@ -5,35 +5,19 @@
 
 {% block content %}
 
-    {% if user.is_authenticated %}
+    <form class="pure-form pure-form-stacked" action="{% url 'editUserProperties' %}" method="post">
+        <fieldset>
+            <legend>{% trans "Edit profile properties" %}</legend>
+            {% csrf_token %}
 
-        {% if user_id == user.id %}
+            {{ form.profile.as_hidden }}
 
-            <form class="pure-form pure-form-stacked" action="{% url 'editUserProperties' user_id %}" method="post">
-                <fieldset>
-                    <legend>{% trans "Edit profile properties" %}</legend>
-                    {% csrf_token %}
-
-                    {{ form.profile.as_hidden }}
-
-                    {{ form.as_p }}
+            {{ form.as_p }}
 
 
-                    <br>
-                    <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
-                </fieldset>
-            </form>
-
-        {% else %}
-
-            <h2>{% trans "Invalid" %}</h2>
-
-        {% endif %}
-
-     {% else %}
-
-        <h2>{% trans "You are not logged in." %}</h2>
-
-    {% endif %}
+            <br>
+            <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+        </fieldset>
+    </form>
 
 {% endblock %}

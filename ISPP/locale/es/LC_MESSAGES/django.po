@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 16:22+0000\n"
+"POT-Creation-Date: 2018-04-12 17:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -82,17 +82,17 @@ msgstr "Ascensor"
 msgid "Dishwasher"
 msgstr "Lavavajillas"
 
-#: RoomBnB/forms.py:87 templates/room/detail.html:20
-#: templates/room/detail.html:22
+#: RoomBnB/forms.py:87 templates/room/detail.html:26
+#: templates/room/detail.html:28
 msgid "Balcony"
 msgstr "Balcón"
 
-#: RoomBnB/forms.py:88 templates/room/detail.html:26
-#: templates/room/detail.html:28
+#: RoomBnB/forms.py:88 templates/room/detail.html:32
+#: templates/room/detail.html:34
 msgid "Window"
 msgstr "Ventana"
 
-#: RoomBnB/forms.py:89 templates/room/detail.html:32
+#: RoomBnB/forms.py:89 templates/room/detail.html:38
 msgid "Air conditioner"
 msgstr "Aire acondicionado"
 
@@ -120,6 +120,7 @@ msgid "Payments"
 msgstr "Pagos"
 
 #: templates/base.html:33 templates/base_home.html:33
+#: templates/profile/detail.html:4
 msgid "Profile"
 msgstr "Perfil"
 
@@ -156,8 +157,7 @@ msgid "Create"
 msgstr "Crear"
 
 #: templates/flat/create.html:33 templates/flat/updateProperties.html:29
-#: templates/profile/create.html:26 templates/profile/update.html:35
-#: templates/room/writeReview.html:37
+#: templates/profile/create.html:26 templates/room/writeReview.html:37
 msgid "You are not logged in."
 msgstr "No estás logueado"
 
@@ -165,7 +165,8 @@ msgstr "No estás logueado"
 msgid "Flat details"
 msgstr "Detalles del piso"
 
-#: templates/flat/detail.html:11 templates/room/detail.html:16
+#: templates/flat/detail.html:11 templates/profile/detail.html:10
+#: templates/room/detail.html:22
 msgid "Details"
 msgstr "Detalles"
 
@@ -229,7 +230,7 @@ msgstr "Escribir una opinión"
 msgid "Edit flat properties"
 msgstr "Editar propiedades de piso"
 
-#: templates/flat/updateProperties.html:23 templates/profile/update.html:23
+#: templates/flat/updateProperties.html:23 templates/profile/update.html:19
 msgid "Update"
 msgstr "Actualizar"
 
@@ -270,13 +271,37 @@ msgstr "No hay pagos disponibles."
 msgid "Create a profile"
 msgstr "Crear un perfil"
 
-#: templates/profile/update.html:4 templates/profile/update.html:14
+#: templates/profile/detail.html:14 templates/profile/detail.html:16
+msgid "Smoker"
+msgstr "Fumador"
+
+#: templates/profile/detail.html:20 templates/profile/detail.html:22
+msgid "Pets"
+msgstr "Mascotas"
+
+#: templates/profile/detail.html:25
+msgid "Sporty"
+msgstr "Deportista"
+
+#: templates/profile/detail.html:26
+msgid "Gamer"
+msgstr "Friki"
+
+#: templates/profile/detail.html:27
+msgid "Sociable"
+msgstr "Sociable"
+
+#: templates/profile/detail.html:28
+msgid "Degree"
+msgstr "Universidad"
+
+#: templates/profile/detail.html:34
+msgid "Edit profile"
+msgstr "Editar perfil"
+
+#: templates/profile/update.html:4 templates/profile/update.html:10
 msgid "Edit profile properties"
 msgstr "Editar propiedades de perfil"
-
-#: templates/profile/update.html:29
-msgid "Invalid"
-msgstr "Inválido"
 
 #: templates/request/list.html:8
 msgid "Requests pending to answer"
@@ -311,7 +336,15 @@ msgstr "Contratos pendientes de firmar"
 msgid "Create a room"
 msgstr "Crear una habitación"
 
-#: templates/room/review.html:4
+#: templates/room/detail.html:16
+msgid "Show profile"
+msgstr "Mostrar perfil"
+
+#: templates/room/detail.html:43
+msgid "Bed"
+msgstr "Cama"
+
+#: templates/room/detail.html:51 templates/room/review.html:4
 msgid "Room reviews"
 msgstr "Opiniones de la habitación"
 
@@ -326,6 +359,9 @@ msgstr "Mostrar opiniones del usuario"
 #: templates/user/writeReview.html:4
 msgid "Write an user review"
 msgstr "Escribir una opinión de usuario"
+
+#~ msgid "Invalid"
+#~ msgstr "Inválido"
 
 #~ msgid "No rooms are available."
 #~ msgstr "No hay habitaciones disponibles."
@@ -345,21 +381,6 @@ msgstr "Escribir una opinión de usuario"
 #~ msgid "Architecture"
 #~ msgstr "Arquitectura"
 
-#~ msgid "Smoker"
-#~ msgstr "Fumador"
-
-#~ msgid "Pets"
-#~ msgstr "Mascotas"
-
-#~ msgid "Sporty"
-#~ msgstr "Deportista"
-
-#~ msgid "Gamer"
-#~ msgstr "Friki"
-
-#~ msgid "Sociable"
-#~ msgstr "Sociable"
-
 #~ msgid "Couple"
 #~ msgstr "Matrimonio"
 
@@ -371,9 +392,6 @@ msgstr "Escribir una opinión de usuario"
 
 #~ msgid "None"
 #~ msgstr "Ninguna"
-
-#~ msgid "Bed"
-#~ msgstr "Cama"
 
 #~ msgid "Creation date"
 #~ msgstr "Crear un piso"

@@ -30,7 +30,7 @@
                          <li><a href="/{{ LANGUAGE_CODE }}/payments">{% trans "Payments" %}</a></li>
                       </ul>
                     {% if user.is_authenticated %}
-                        <a href="/{{ LANGUAGE_CODE }}/profile/{{ user.id }}/edit" class="login_btn">{% trans "Profile" %}</a>
+                        <a href="/{{ LANGUAGE_CODE }}/profile/{{ user.id }}" class="login_btn">{% trans "Profile" %}</a>
                         <a href="/logout" class="login_btn">{% trans "Log out" %}</a>
                     {% else %}
                         <a href="/{{ LANGUAGE_CODE }}/login" class="login_btn">{% trans "Log in" %}</a>
