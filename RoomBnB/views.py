@@ -1,3 +1,5 @@
+from typing import re
+
 from django.core.serializers import unregister_serializer
 from django.http.multipartparser import parse_boundary_stream
 from django.shortcuts import render, redirect
@@ -7,6 +9,8 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.db.models import Q
+from requests import request
+
 from RoomBnB.forms import FlatForm
 from RoomBnB.forms import ProfileForm
 from RoomBnB.forms import SignUpForm
@@ -357,6 +361,14 @@ def retur(request):
 
 
 def paypal_response(request, room_id):
+    if request.POST.get('payment_status'=="Completed"):
+        amount = request.POST.get('mc_currency[0]')
+        date = request.POST.get('payment_date[0]')
+        room=Room.objects.get(id=room_id)
+        temporal_owner=room.temporal_owner
+        contract=Contract.objects.get(room=room)
+        con=Contract(amount=amount,date_signed=date,contract=contract)
+        con.save()
 
     print(request)
 
@@ -367,10 +379,11 @@ def view_that_asks_for_money(request, room_id):
     import random
     paypal_dict = {
         "business": "roombnbispp-facilitator@gmail.com",
+        "currency_code": "EUR",
         "amount":  room.price,
         "item_name": Room.description,
         "invoice": random.randint(0, 9999999999999),
-        "notify_url": request.build_absolute_uri('paypal'),
+        "notify_url": request.build_absolute_uri('paypal' + str(room_id)),
         "return": request.build_absolute_uri(reverse('base')),
         "cancel_return": request.build_absolute_uri(reverse('base')),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
@@ -389,14 +402,7 @@ def view_that_asks_for_money(request, room_id):
     contract = Contract(date_signed=date_signed, landlord=owner, tenant=tenant, room=room)
     contract.save()
 
-    """
-        if request.payment_was_succesful:
-            amount = room.price
-            date = timezone.now()
-            contract = contract
-            pay=Payment(amount=amount, date=date, contract=contract)
-            pay.save()
-    """
+
     return render(request, "paypal/payment.html", {'contract': contract,'form': form})
 
 
