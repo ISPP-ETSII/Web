@@ -205,6 +205,29 @@ def roomCreate(request, flat_id):
 
 
 @login_required
+def editRoomProperties(request,room_id):
+    room = Room.objects.get(id=room_id)
+    roomProperties = RoomProperties.objects.get(room=room)
+
+    if request.method == 'POST':
+        form = RoomPropertiesForm(request.POST)
+        if form.is_valid():
+            roomProperties.balcony = form.cleaned_data.get('balcony')
+            roomProperties.window = form.cleaned_data.get('window')
+            roomProperties.air_conditioner = form.cleaned_data.get('air_conditioner')
+            roomProperties.bed = form.cleaned_data.get('bed')
+            roomProperties.save()
+
+            return HttpResponseRedirect('/rooms/'+ str(room_id))
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = RoomPropertiesForm(instance=roomProperties)
+
+    return render(request, 'room/updateProperties.html', {'form': form,'room_id':room_id})
+
+
+@login_required
 def profileCreate(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':

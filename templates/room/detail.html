@@ -45,18 +45,15 @@
         <br><br>
     </div>
 
-
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomReview' room.id %}'">{% trans "Room reviews" %}</button>
 
+    {% if room.belong_to.owner.user == user %}
+        <button class="pure-button" onclick="location.href='{% url 'editRoomProperties' room.id %}'">{% trans "Update properties" %}</button>
+    {% endif %}
 
-
-       {% if room.temporal_owner == user %}
-               <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  room.id %}'">{% trans "Make payment" %}</button>
-       {% endif %}
-
-
+    {% if room.temporal_owner == user %}
+           <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  room.id %}'">{% trans "Make payment" %}</button>
+    {% endif %}
 
 {% endblock %}
 

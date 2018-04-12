@@ -59,6 +59,7 @@ urlpatterns += i18n_patterns(
     path('contracts/sign/<int:room_id>/', views.signContract, name='signContract'),
     path('payments', views.paymentList, name='paymentList'),
     path('flats/<int:flat_id>/editProperties', views.editFlatProperties, name='editFlatProperties'),
+    path('rooms/<int:room_id>/editProperties', views.editRoomProperties, name='editRoomProperties'),
     # PAYPAL
     path(r'^paypal/', include('paypal.standard.ipn.urls')),
     path('paymentroom/<int:room_id>/', views.view_that_asks_for_money, name='payment'),
