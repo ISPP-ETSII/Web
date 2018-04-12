@@ -465,7 +465,7 @@ def view_that_asks_for_money(request, room_id):
         "amount": room.price,
         "item_name": Room.description,
         "invoice": random.randint(0, 9999999999999),
-        "notify_url": 'http://217.216.240.169:8000/paymentroom/1/paypal',
+        "notify_url": request.build_absolute_uri('paypal'),
         "return": request.build_absolute_uri(reverse('base')),
         "cancel_return": request.build_absolute_uri(reverse('base')),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
@@ -475,13 +475,5 @@ def view_that_asks_for_money(request, room_id):
     form = PayPalPaymentsForm(initial=paypal_dict)
     # context = {"form": form}
 
-    date_signed = timezone.now()
-    flat = Flat.objects.get(id=room.belong_to.id)
-    owner = flat.owner
-    user = room.temporal_owner
-    tenant = Profile.objects.get(user=request.user)
-    contract = Contract(date_signed=date_signed, landlord=owner, tenant=tenant, room=room)
-    contract.save()
-
-    return render(request, "paypal/payment.html", {'contract': contract, 'form': form})
+    return render(request, "paypal/payment.html", {'form': form})
 
