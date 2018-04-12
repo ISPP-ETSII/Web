@@ -365,10 +365,9 @@ def paypal_response(request, room_id):
         amount = request.POST.get('mc_currency[0]')
         date = request.POST.get('payment_date[0]')
         room=Room.objects.get(id=room_id)
-        temporal_owner=room.temporal_owner
         contract=Contract.objects.get(room=room)
-        con=Contract(amount=amount,date_signed=date,contract=contract)
-        con.save()
+        pay=Payment(amount=amount,date_signed=date,contract=contract)
+        pay.save()
 
     print(request)
 
