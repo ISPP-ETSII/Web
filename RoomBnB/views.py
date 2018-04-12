@@ -184,8 +184,8 @@ def editFlatProperties(request,flat_id):
             flatProperties = FlatProperties.objects.get(flat=flat)
 
 
-            flatProperties.washdisher(form.cleaned_data['washdisher'])
-            flatProperties.elevator(form.cleaned_data['elevator'])
+            flatProperties.washdisher = form.cleaned_data['washdisher']
+            flatProperties.elevator = form.cleaned_data['elevator']
             flatProperties.save()
 
 
