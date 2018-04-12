@@ -205,6 +205,29 @@ def roomCreate(request, flat_id):
 
 
 @login_required
+def editRoomProperties(request,room_id):
+    room = Room.objects.get(id=room_id)
+    roomProperties = RoomProperties.objects.get(room=room)
+
+    if request.method == 'POST':
+        form = RoomPropertiesForm(request.POST)
+        if form.is_valid():
+            roomProperties.balcony = form.cleaned_data.get('balcony')
+            roomProperties.window = form.cleaned_data.get('window')
+            roomProperties.air_conditioner = form.cleaned_data.get('air_conditioner')
+            roomProperties.bed = form.cleaned_data.get('bed')
+            roomProperties.save()
+
+            return HttpResponseRedirect('/rooms/'+ str(room_id))
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = RoomPropertiesForm(instance=roomProperties)
+
+    return render(request, 'room/updateProperties.html', {'form': form,'room_id':room_id})
+
+
+@login_required
 def profileCreate(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -442,7 +465,7 @@ def view_that_asks_for_money(request, room_id):
         "amount": room.price,
         "item_name": Room.description,
         "invoice": random.randint(0, 9999999999999),
-        "notify_url": 'http://217.216.240.169:8000/paymentroom/1/paypal',
+        "notify_url": request.build_absolute_uri('paypal'),
         "return": request.build_absolute_uri(reverse('base')),
         "cancel_return": request.build_absolute_uri(reverse('base')),
         "custom": "premium_plan",  # Custom command to correlate to some function later (optional)
@@ -452,13 +475,5 @@ def view_that_asks_for_money(request, room_id):
     form = PayPalPaymentsForm(initial=paypal_dict)
     # context = {"form": form}
 
-    date_signed = timezone.now()
-    flat = Flat.objects.get(id=room.belong_to.id)
-    owner = flat.owner
-    user = room.temporal_owner
-    tenant = Profile.objects.get(user=request.user)
-    contract = Contract(date_signed=date_signed, landlord=owner, tenant=tenant, room=room)
-    contract.save()
-
-    return render(request, "paypal/payment.html", {'contract': contract, 'form': form})
+    return render(request, "paypal/payment.html", {'form': form})
 
