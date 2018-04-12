@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Sign a contract" %}{% endblock %}
+
+{% block content %}
+
+    <form class="pure-form pure-form-stacked" action="{% url 'signContract' room.id %}" method="post">
+        {% csrf_token %}
+        <textarea id="text" name="text" rows="16" cols="100" readonly>
+This Room Rental Agreement is being made between {{ room.belong_to.owner.user.first_name }} {{ room.belong_to.owner.user.last_name }} (“Homeowner”) and {{ room.temporal_owner.profile.user.first_name }} {{ room.temporal_owner.profile.user.last_name }} (“Renter”).  It is a legally binding agreement that sets forth the rights and obligations of the Parties and is intended to promote household harmony.
+
+Renter is renting from Homeowner a room in the residence located at {{ room.belong_to.address }} (“Home”).
+
+1.         Term of rental.  This Room Rental Agreement is on a month-to-month basis beginning on {% now "jS F Y H:i" %}.  If this Room Rental Agreement starts partway through the month, the first month’s rent will be prorated and the month-to-month terms will then proceed from the 1st day of each month.
+
+2.         Termination.  Either Party may terminate this Agreement with 30 days written notice personally delivered to the other Party.  Homeowner may terminate this Agreement with seven (7) days written notice (and a seven-day period to cure) if the Renter is in default under this Room Rental Agreement.
+
+3.         Rent and security deposit.  Monthly rent to be paid by Renter to Homeowner is {{ room.price }} euros per month, due on or before the 1st day of each calendar month during the term of this Room Rental Agreement.  The first and last month’s rent must be paid in advance upon the signing of this Room Rental Agreement.  If this Room Rental Agreement begins partway through the month, the first month’s rent will be prorated.  Rent must be paid in cash, money order, or cashier’s check.  In addition, Renter will pay Homeowner a security deposit of $[SECURITY DEPOSIT] as security for any damages to the House caused by Renter.  The Security Deposit will be returned to Renter within [DAYS FOR DEPOSIT RETURN] of termination of this Room Rental Agreement, less any deductions for damages, with an accompanying itemized statement explaining any deductions.
+
+4.         Utilities.  Rent includes utilities, except as indicated below.  Renter will be responsible for payment of the following bills:
+
+        Gas/Electricity
+
+        Water
+
+        Garbage
+
+        Phone
+
+        Internet
+
+        Cable/Satellite TV
+
+        Other
+
+Payment for the portions of any utilities noted above will be due with the following month’s rent payment.
+
+5.         Conflict resolution.  In the interest of household harmony, the Parties each agree to make reasonable efforts to maintain a peaceful environment within the House work together to resolve any differences.
+
+6.         Modifications.  This Room Rental Agreement constitutes the entire agreement between the Parties and cannot be changed unless both agree in writing to do so.  There are not any understandings or representations that contradict any terms in this document.
+
+Signed and agreed to by the Parties as dated below.
+
+Date: {% now "jS F Y H:i" %}
+
+_________________________________________
+
+{{ room.belong_to.owner.user.first_name }} {{ room.belong_to.owner.user.last_name }}, Homeowner
+
+Date: {% now "jS F Y H:i" %}
+
+_________________________________________
+
+{{ room.temporal_owner.profile.user.first_name }} {{ room.temporal_owner.profile.user.last_name }}, Renter
+        </textarea>
+
+        <br><br>
+        {{ form.as_p }}
+
+        <br><br>
+        <input class="pure-button pure-button-primary" type="submit" value="{% trans "Sign" %}" />
+    </form>
+
+{% endblock %}

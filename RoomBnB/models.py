@@ -80,10 +80,10 @@ class RentRequest(models.Model):
 
 
 class Contract(models.Model):
-    picture = models.ImageField()
+    text = models.TextField()
     date_signed = models.DateField(auto_now_add=True)
-    landlord = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, related_name='landlord')
-    tenant = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, related_name='tenant')
+    landlord = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='landlord')
+    tenant = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='tenant', null=True)
     room = models.ForeignKey(Room, on_delete=models.DO_NOTHING)
 
 

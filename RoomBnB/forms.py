@@ -1,9 +1,10 @@
 from django import forms
+from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from RoomBnB.models import Room
+from RoomBnB.models import Room, FlatProperties, UserProperties
 from RoomBnB.models import User
 from RoomBnB.models import Flat
 from django.db import models
@@ -16,6 +17,14 @@ class FlatForm(forms.Form):
     picture = forms.ImageField(label=_('Image'))
 
 
+class FlatPropertiesForm(ModelForm):
+    class Meta:
+        model = FlatProperties
+        fields = ['elevator','washdisher']
+        #fields = '__all__'
+        #widgets = {'flat': forms.HiddenInput()}
+
+
 class RoomForm(forms.Form):
     description = forms.CharField(label=_('Description'), max_length=500)
     price = forms.FloatField(label=_('Price'), required=True, max_value=1000, min_value=0)
@@ -24,6 +33,12 @@ class RoomForm(forms.Form):
 
 class ProfileForm(forms.Form):
     avatar = forms.ImageField(label=_('Title'))
+
+
+class UserPropertiesForm(ModelForm):
+    class Meta:
+        model = UserProperties
+        fields = ['smoker','pets','sporty','gamer','sociable','degree']
 
 
 class SignUpForm(UserCreationForm):
@@ -72,4 +87,9 @@ class SearchFlatForm(forms.Form):
     balcony = forms.BooleanField(label=_('Balcony'), required=False, initial=False)
     window = forms.BooleanField(label=_('Window'), required=False, initial=False)
     air_conditioner = forms.BooleanField(label=_('Air conditioner'), required=False, initial=False)
+
+
+class ContractForm(forms.Form):
+    agree = forms.BooleanField(label=_('I agree'), required=True, initial=False)
+
 
