@@ -73,3 +73,8 @@ class SearchFlatForm(forms.Form):
     window = forms.BooleanField(label=_('Window'), required=False, initial=False)
     air_conditioner = forms.BooleanField(label=_('Air conditioner'), required=False, initial=False)
 
+
+class ContractForm(forms.Form):
+    agree = forms.BooleanField(label=_('I agree'), required=True, initial=False)
+
+

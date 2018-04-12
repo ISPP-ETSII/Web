@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.serializers import unregister_serializer
 from django.http.multipartparser import parse_boundary_stream
 from django.shortcuts import render, redirect
@@ -11,6 +12,7 @@ from RoomBnB.forms import FlatForm
 from RoomBnB.forms import ProfileForm
 from RoomBnB.forms import SignUpForm
 from RoomBnB.forms import RoomForm
+from RoomBnB.forms import ContractForm
 from RoomBnB.models import Flat
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
@@ -18,6 +20,7 @@ from RoomBnB.models import RoomProperties
 from RoomBnB.models import FlatReview
 from RoomBnB.models import RoomReview
 from RoomBnB.models import UserReview
+from RoomBnB.models import Contract
 from RoomBnB.models import FlatProperties
 from RoomBnB.forms import ReviewForm
 from RoomBnB.models import User
@@ -57,6 +60,7 @@ def request_rent_room(request, room_id):
 def requests_list(request):
     my_flats = request.user.profile.flats.all()
     rent_requests_to_me = []
+    pending_contracts = []
 
     if my_flats:
         for flat in my_flats:
@@ -69,8 +73,22 @@ def requests_list(request):
 
     rent_requests_by_me = RentRequest.objects.filter(requester=request.user)
 
+    for room in Room.objects.filter(temporal_owner=request.user):
+        contracts = Contract.objects.filter(room=room)
+        for contract in contracts:
+            if contract.tenant is None:
+                pending_contracts.append(room)
+
+    for room in Room.objects.filter(belong_to__owner__user=request.user):
+        if room.temporal_owner is not None and room not in pending_contracts:
+            try:
+                Contract.objects.get(room=room)
+            except ObjectDoesNotExist:
+                pending_contracts.append(room)
+
     return render(request, 'request/list.html', {'requests_by_me': rent_requests_by_me,
-                                                 'requests_to_me': rent_requests_to_me})
+                                                 'requests_to_me': rent_requests_to_me,
+                                                 'pending_contracts': pending_contracts})
 
 @login_required
 def accept_request(request, request_id):
@@ -81,7 +99,7 @@ def accept_request(request, request_id):
 
     rent_request.delete()
 
-    return redirect('/requests/list')
+    return redirect('/contracts/sign/' + str(room.id))
 
 @login_required
 def deny_request(request, request_id):
@@ -303,4 +321,29 @@ def writeReviewFlat(request, flat_id):
         form = ReviewForm()
     print(form.errors)
     return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
+
+
+@login_required
+def signContract(request, room_id):
+    room = Room.objects.get(id = room_id)
+    if request.method == 'POST':
+        form = ContractForm(request.POST)
+        if form.is_valid():
+            try:
+                # Tenant is signing the contract
+                contract = Contract.objects.get(room=room)
+                contract.tenant = request.user
+                contract.save()
+            except ObjectDoesNotExist:
+                # A new contract
+                contract = Contract.objects.create(room=room,
+                                                   text=request.POST.get('text'),
+                                                   landlord=request.user)
+                contract.save()
+
+            return HttpResponseRedirect('/requests/list')
+    else:
+        form = ContractForm()
+    return render(request, 'contract/create.html', {'form': form, 'room': room})
+
 

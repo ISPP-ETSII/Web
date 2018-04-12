@@ -32,4 +32,15 @@
         </li>
     {% endfor %}
     </ul>
+
+    <h2>{% trans "Contracts pending to be signed" %}</h2>
+    <ul>
+    {% for room in pending_contracts %}
+        <li>
+            <p>{{ room.description }}</p>
+            <a class="pure-button" href="/contracts/sign/{{ room.id }}/">{% trans "Sign" %}</a>
+            <a class="pure-button" href="/rooms/{{ room.id }}/">{% trans "View room" %}</a>
+        </li>
+    {% endfor %}
+    </ul>
 {% endblock %}

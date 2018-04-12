@@ -47,8 +47,10 @@
                                 {% if room.temporal_owner %}
                                     <button class="pure-button" onclick="location.href='{% url 'userReview' flat.id room.temporal_owner_id%}'">{% trans "Tenant's opinions" %}</button>
                                 {% else %}
-                                    <th><a class="pure-button" href="/room/rent/{{ room.id }}">{% trans "Request rent" %}</a></th>
-                                {% endif %}
+                                    {% if room.belong_to.owner.user != user %}
+                                        <th><a class="pure-button" href="/room/rent/{{ room.id }}">{% trans "Request rent" %}</a></th>
+                                    {% endif %}
+                                {%  endif %}
                             </div>
                          </li>
                     {% endfor %}
@@ -78,7 +80,9 @@
                                 {% if room.temporal_owner %}
                                     <button class="pure-button" onclick="location.href='{% url 'userReview' flat.id room.temporal_owner_id%}'">{% trans "Tenant's opinions" %}</button>
                                 {% else %}
-                                    <th><a class="pure-button" href="/room/rent/{{ room.id }}">{% trans "Request rent" %}</a></th>
+                                    {% if room.belong_to.owner.user != user %}
+                                        <th><a class="pure-button" href="/room/rent/{{ room.id }}">{% trans "Request rent" %}</a></th>
+                                    {% endif %}
                                 {% endif %}
                             </div>
                          </li>

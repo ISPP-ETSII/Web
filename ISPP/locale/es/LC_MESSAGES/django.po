@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-11 11:56+0000\n"
+"POT-Creation-Date: 2018-04-12 13:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,6 +96,10 @@ msgstr "Ventana"
 msgid "Air conditioner"
 msgstr "Aire acondicionado"
 
+#: RoomBnB/forms.py:78
+msgid "I agree"
+msgstr "Acepto"
+
 #: templates/base.html:25 templates/base_home.html:25
 msgid "Home"
 msgstr "Inicio"
@@ -124,6 +128,14 @@ msgstr "Iniciar sesión"
 msgid "Sign up"
 msgstr "Registrarse"
 
+#: templates/contract/create.html:4
+msgid "Sign a contract"
+msgstr "Firmar un contrato"
+
+#: templates/contract/create.html:62 templates/request/list.html:41
+msgid "Sign"
+msgstr "Firmar"
+
 #: templates/flat/create.html:4 templates/flat/create.html:12
 msgid "Create a flat"
 msgstr "Crear un piso"
@@ -151,28 +163,28 @@ msgstr "Detalles"
 msgid "Available rooms"
 msgstr "Habitaciones disponibles"
 
-#: templates/flat/detail.html:48 templates/flat/detail.html:79
+#: templates/flat/detail.html:48 templates/flat/detail.html:81
 msgid "Tenant's opinions"
 msgstr "Opiniones del inquilino"
 
-#: templates/flat/detail.html:50 templates/flat/detail.html:81
+#: templates/flat/detail.html:51 templates/flat/detail.html:84
 msgid "Request rent"
 msgstr "Solicitar alquiler"
 
-#: templates/flat/detail.html:62
+#: templates/flat/detail.html:64
 msgid "Rented rooms"
 msgstr "Habitaciones alquiladas"
 
-#: templates/flat/detail.html:92
+#: templates/flat/detail.html:96
 msgid "Create room"
 msgstr "Crear habitación"
 
-#: templates/flat/detail.html:97 templates/flat/review.html:4
+#: templates/flat/detail.html:101 templates/flat/review.html:4
 #: templates/room/detail.html:4
 msgid "Flat reviews"
 msgstr "Opiniones del piso"
 
-#: templates/flat/detail.html:98
+#: templates/flat/detail.html:102
 msgid "Owner reviews"
 msgstr "Opiniones del propietario"
 
@@ -240,6 +252,7 @@ msgid "View user reviews"
 msgstr "Ver opiniones del usuario"
 
 #: templates/request/list.html:15 templates/request/list.html:31
+#: templates/request/list.html:42
 msgid "View room"
 msgstr "Ver habitación"
 
@@ -254,6 +267,10 @@ msgstr "Rechazar"
 #: templates/request/list.html:24
 msgid "Requests made by me"
 msgstr "Solicitudes realizadas por mi"
+
+#: templates/request/list.html:36
+msgid "Contracts pending to be signed"
+msgstr "Contratos pendientes de firmar"
 
 #: templates/room/create.html:4 templates/room/create.html:10
 msgid "Create a room"
@@ -307,9 +324,6 @@ msgstr "Escribir una opinión de usuario"
 
 #~ msgid "Sociable"
 #~ msgstr "Sociable"
-
-#~ msgid "Degree"
-#~ msgstr "Carrera"
 
 #~ msgid "Couple"
 #~ msgstr "Matrimonio"
