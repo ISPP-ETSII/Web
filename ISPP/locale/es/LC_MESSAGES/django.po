@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 14:00+0000\n"
+"POT-Creation-Date: 2018-04-12 16:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgid "Spanish"
 msgstr "Español"
 
 #: RoomBnB/forms.py:14 RoomBnB/forms.py:31 RoomBnB/forms.py:35
-#: RoomBnB/forms.py:60 templates/flat/review.html:11
+#: RoomBnB/forms.py:66 templates/flat/review.html:11
 #: templates/flat/writeReview.html:15 templates/room/review.html:11
 #: templates/room/writeReview.html:14 templates/user/review.html:11
 #: templates/user/writeReview.html:15
@@ -38,7 +38,7 @@ msgstr "Título"
 msgid "Address"
 msgstr "Dirección"
 
-#: RoomBnB/forms.py:16 RoomBnB/forms.py:29 RoomBnB/forms.py:61
+#: RoomBnB/forms.py:16 RoomBnB/forms.py:29 RoomBnB/forms.py:67
 #: templates/flat/review.html:13 templates/flat/writeReview.html:19
 #: templates/room/review.html:13 templates/room/writeReview.html:18
 #: templates/user/review.html:13 templates/user/writeReview.html:19
@@ -53,46 +53,46 @@ msgstr "Imagen"
 msgid "Price"
 msgstr "Precio"
 
-#: RoomBnB/forms.py:39
+#: RoomBnB/forms.py:45
 msgid "First name"
 msgstr "Nombre"
 
-#: RoomBnB/forms.py:40
+#: RoomBnB/forms.py:46
 msgid "Last name"
 msgstr "Apellido"
 
-#: RoomBnB/forms.py:41
+#: RoomBnB/forms.py:47
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: RoomBnB/forms.py:62 templates/flat/review.html:14
+#: RoomBnB/forms.py:68 templates/flat/review.html:14
 #: templates/flat/writeReview.html:23 templates/room/review.html:14
 #: templates/room/writeReview.html:22 templates/user/review.html:14
 #: templates/user/writeReview.html:23
 msgid "Rating"
 msgstr "Calificación"
 
-#: RoomBnB/forms.py:79 templates/flat/detail.html:15
+#: RoomBnB/forms.py:85 templates/flat/detail.html:15
 #: templates/flat/detail.html:17
 msgid "Elevator"
 msgstr "Ascensor"
 
-#: RoomBnB/forms.py:80 templates/flat/detail.html:21
+#: RoomBnB/forms.py:86 templates/flat/detail.html:21
 #: templates/flat/detail.html:23
 msgid "Dishwasher"
 msgstr "Lavavajillas"
 
-#: RoomBnB/forms.py:81 templates/room/detail.html:20
+#: RoomBnB/forms.py:87 templates/room/detail.html:20
 #: templates/room/detail.html:22
 msgid "Balcony"
 msgstr "Balcón"
 
-#: RoomBnB/forms.py:82 templates/room/detail.html:26
+#: RoomBnB/forms.py:88 templates/room/detail.html:26
 #: templates/room/detail.html:28
 msgid "Window"
 msgstr "Ventana"
 
-#: RoomBnB/forms.py:83 templates/room/detail.html:32
+#: RoomBnB/forms.py:89 templates/room/detail.html:32
 msgid "Air conditioner"
 msgstr "Aire acondicionado"
 
@@ -120,15 +120,19 @@ msgid "Payments"
 msgstr "Pagos"
 
 #: templates/base.html:33 templates/base_home.html:33
+msgid "Profile"
+msgstr "Perfil"
+
+#: templates/base.html:34 templates/base_home.html:34
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: templates/base.html:35 templates/base_home.html:35
+#: templates/base.html:36 templates/base_home.html:36
 #: templates/registration/login.html:4 templates/registration/login.html:10
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-#: templates/base.html:36 templates/base_home.html:36
+#: templates/base.html:37 templates/base_home.html:37
 #: templates/registration/signup.html:5 templates/registration/signup.html:9
 msgid "Sign up"
 msgstr "Registrarse"
@@ -152,7 +156,8 @@ msgid "Create"
 msgstr "Crear"
 
 #: templates/flat/create.html:33 templates/flat/updateProperties.html:29
-#: templates/profile/create.html:26 templates/room/writeReview.html:37
+#: templates/profile/create.html:26 templates/profile/update.html:35
+#: templates/room/writeReview.html:37
 msgid "You are not logged in."
 msgstr "No estás logueado"
 
@@ -224,7 +229,7 @@ msgstr "Escribir una opinión"
 msgid "Edit flat properties"
 msgstr "Editar propiedades de piso"
 
-#: templates/flat/updateProperties.html:23
+#: templates/flat/updateProperties.html:23 templates/profile/update.html:23
 msgid "Update"
 msgstr "Actualizar"
 
@@ -264,6 +269,14 @@ msgstr "No hay pagos disponibles."
 #: templates/profile/create.html:10
 msgid "Create a profile"
 msgstr "Crear un perfil"
+
+#: templates/profile/update.html:4 templates/profile/update.html:14
+msgid "Edit profile properties"
+msgstr "Editar propiedades de perfil"
+
+#: templates/profile/update.html:29
+msgid "Invalid"
+msgstr "Inválido"
 
 #: templates/request/list.html:8
 msgid "Requests pending to answer"

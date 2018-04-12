@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from RoomBnB.models import Room, FlatProperties
+from RoomBnB.models import Room, FlatProperties, UserProperties
 from RoomBnB.models import User
 from RoomBnB.models import Flat
 from django.db import models
@@ -17,13 +17,13 @@ class FlatForm(forms.Form):
     picture = forms.ImageField(label=_('Image'))
 
 
-
 class FlatPropertiesForm(ModelForm):
     class Meta:
         model = FlatProperties
         fields = ['elevator','washdisher']
         #fields = '__all__'
         #widgets = {'flat': forms.HiddenInput()}
+
 
 class RoomForm(forms.Form):
     description = forms.CharField(label=_('Description'), max_length=500)
@@ -33,6 +33,12 @@ class RoomForm(forms.Form):
 
 class ProfileForm(forms.Form):
     avatar = forms.ImageField(label=_('Title'))
+
+
+class UserPropertiesForm(ModelForm):
+    class Meta:
+        model = UserProperties
+        fields = ['smoker','pets','sporty','gamer','sociable','degree']
 
 
 class SignUpForm(UserCreationForm):
