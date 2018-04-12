@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Profile" %}{% endblock %}
+
+{% block content %}
+
+    <h1>{{ userProperties.profile.user.first_name }}</h1>
+
+    <h2>{% trans "Details" %}</h2>
+
+    <div class="pure-button-group" role="group">
+        {% if userProperties.smoker == True %}
+            <button class="pure-button">{% trans "Smoker" %}</button>
+        {% else %}
+            <button class="pure-button pure-button-disabled">{% trans "Smoker" %}</button>
+        {% endif %}
+
+        {% if userProperties.pets == True %}
+            <button class="pure-button">{% trans "Pets" %}</button>
+        {% else %}
+            <button class="pure-button pure-button-disabled">{% trans "Pets" %}</button>
+        {% endif %}
+
+        <button class="pure-button">{% trans "Sporty" %}: {{ userProperties.sporty }}</button>
+        <button class="pure-button">{% trans "Gamer" %}: {{ userProperties.gamer }}</button>
+        <button class="pure-button">{% trans "Sociable" %}: {{ userProperties.sociable }}</button>
+        <button class="pure-button">{% trans "Degree" %}: {{ userProperties.get_degree_display }}</button>
+
+        <br><br>
+    </div>
+
+    {% if userProperties.profile.user == user %}
+        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'editUserProperties' %}'">{% trans "Edit profile" %}</button>
+    {% endif %}
+
+{% endblock %}
+

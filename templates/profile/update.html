@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Edit profile properties" %}{% endblock %}
+
+{% block content %}
+
+    <form class="pure-form pure-form-stacked" action="{% url 'editUserProperties' %}" method="post">
+        <fieldset>
+            <legend>{% trans "Edit profile properties" %}</legend>
+            {% csrf_token %}
+
+            {{ form.profile.as_hidden }}
+
+            {{ form.as_p }}
+
+
+            <br>
+            <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+        </fieldset>
+    </form>
+
+{% endblock %}
