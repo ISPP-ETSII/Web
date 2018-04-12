@@ -20,7 +20,7 @@ from RoomBnB.models import FlatProperties
 from RoomBnB.models import User
 from RoomBnB.models import RentRequest
 from django.contrib.auth.models import User
-from RoomBnB.services import create_flat, create_rent_request, get_flat_details, get_room_details, get_flats_filtered
+from RoomBnB.services import create_flat, create_profile, create_rent_request, get_user_details, get_flat_details, get_room_details, get_flats_filtered
 
 
 def signup(request):
@@ -32,8 +32,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
 
-            profile = Profile(user=user)
-            profile.save()
+            create_profile(user, '')
 
             login(request, user)
             return HttpResponseRedirect('/')
@@ -141,6 +140,7 @@ def flatCreate(request):
 
     return render(request, 'flat/create.html', {'form': form})
 
+
 @login_required
 def editFlatProperties(request,flat_id):
     # if this is a POST request we need to process the form data
@@ -221,6 +221,32 @@ def profileCreate(request):
         form = ProfileForm()
 
     return render(request, 'profile/create.html', {'form': form})
+
+
+@login_required
+def editUserProperties(request, user_id):
+    profile = Profile.objects.get(user=request.user)
+    profileProperties = get_user_details(profile)
+
+    if request.method == 'POST':
+        form = UserPropertiesForm(request.POST)
+        if form.is_valid():
+            profileProperties.smoker = form.cleaned_data.get('smoker')
+            profileProperties.pets = form.cleaned_data.get('pets')
+            profileProperties.sporty = form.cleaned_data.get('sporty')
+            profileProperties.gamer = form.cleaned_data.get('gamer')
+            profileProperties.sociable = form.cleaned_data.get('sociable')
+            profileProperties.degree = form.cleaned_data.get('degree')
+            profileProperties.save()
+
+            return HttpResponseRedirect('/')
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = UserPropertiesForm(instance=profileProperties)
+
+    return render(request, 'profile/update.html', {'form': form,'user_id':user_id})
+
 
 
 @login_required
