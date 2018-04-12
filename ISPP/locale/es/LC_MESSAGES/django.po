@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 16:14+0000\n"
+"POT-Creation-Date: 2018-04-12 16:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,7 +96,7 @@ msgstr "Ventana"
 msgid "Air conditioner"
 msgstr "Aire acondicionado"
 
-#: RoomBnB/forms.py:78
+#: RoomBnB/forms.py:93
 msgid "I agree"
 msgstr "Acepto"
 
@@ -198,7 +198,7 @@ msgstr "Opiniones del piso"
 msgid "Owner reviews"
 msgstr "Opiniones del propietario"
 
-#: templates/flat/detail.html:100
+#: templates/flat/detail.html:104
 msgid "Update properties"
 msgstr "Actualizar propiedades"
 
