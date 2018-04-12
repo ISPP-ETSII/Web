@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 17:10+0000\n"
+"POT-Creation-Date: 2018-04-12 17:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,7 +142,7 @@ msgstr "Registrarse"
 msgid "Sign a contract"
 msgstr "Firmar un contrato"
 
-#: templates/contract/create.html:62 templates/request/list.html:41
+#: templates/contract/create.html:62 templates/request/list.html:50
 msgid "Sign"
 msgstr "Firmar"
 
@@ -307,30 +307,38 @@ msgstr "Editar propiedades de perfil"
 msgid "Requests pending to answer"
 msgstr "Solicitudes pendientes de responder"
 
-#: templates/request/list.html:14 templates/request/list.html:30
+#: templates/request/list.html:15 templates/request/list.html:35
 msgid "View user reviews"
 msgstr "Ver opiniones del usuario"
 
-#: templates/request/list.html:15 templates/request/list.html:31
-#: templates/request/list.html:42
+#: templates/request/list.html:16 templates/request/list.html:36
+#: templates/request/list.html:51
 msgid "View room"
 msgstr "Ver habitación"
 
-#: templates/request/list.html:17
+#: templates/request/list.html:18
 msgid "Accept"
 msgstr "Aceptar"
 
-#: templates/request/list.html:18
+#: templates/request/list.html:19
 msgid "Deny"
 msgstr "Rechazar"
 
-#: templates/request/list.html:24
+#: templates/request/list.html:25 templates/request/list.html:41
+msgid "No requests are available."
+msgstr "No hay solicitudes disponibles."
+
+#: templates/request/list.html:28
 msgid "Requests made by me"
 msgstr "Solicitudes realizadas por mi"
 
-#: templates/request/list.html:36
+#: templates/request/list.html:44
 msgid "Contracts pending to be signed"
 msgstr "Contratos pendientes de firmar"
+
+#: templates/request/list.html:56
+msgid "No pending contracts."
+msgstr "No hay contratos pendientes."
 
 #: templates/room/create.html:4 templates/room/create.html:10
 msgid "Create a room"
