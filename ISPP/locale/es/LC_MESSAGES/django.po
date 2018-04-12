@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 13:56+0000\n"
+"POT-Creation-Date: 2018-04-12 14:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,12 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ISPP/settings.py:139
-msgid "Spanish"
-msgstr "Español"
-
-#: ISPP/settings.py:140
 msgid "English"
 msgstr "Inglés"
+
+#: ISPP/settings.py:140
+msgid "Spanish"
+msgstr "Español"
 
 #: RoomBnB/forms.py:14 RoomBnB/forms.py:31 RoomBnB/forms.py:35
 #: RoomBnB/forms.py:60 templates/flat/review.html:11
@@ -156,32 +156,32 @@ msgstr "Detalles"
 msgid "Available rooms"
 msgstr "Habitaciones disponibles"
 
-#: templates/flat/detail.html:37 templates/flat/detail.html:67
-msgid "Create room"
-msgstr "Crear habitación"
-
-#: templates/flat/detail.html:53
+#: templates/flat/detail.html:48 templates/flat/detail.html:79
 msgid "Tenant's opinions"
 msgstr "Opiniones del inquilino"
 
-#: templates/flat/detail.html:55
+#: templates/flat/detail.html:50 templates/flat/detail.html:81
 msgid "Request rent"
 msgstr "Solicitar alquiler"
 
-#: templates/flat/detail.html:64
-msgid "No rooms are available."
-msgstr "No hay habitaciones disponibles."
+#: templates/flat/detail.html:62
+msgid "Rented rooms"
+msgstr "Habitaciones alquiladas"
 
-#: templates/flat/detail.html:73 templates/flat/review.html:4
+#: templates/flat/detail.html:92
+msgid "Create room"
+msgstr "Crear habitación"
+
+#: templates/flat/detail.html:97 templates/flat/review.html:4
 #: templates/room/detail.html:4
 msgid "Flat reviews"
 msgstr "Opiniones del piso"
 
-#: templates/flat/detail.html:74
+#: templates/flat/detail.html:98
 msgid "Owner reviews"
 msgstr "Opiniones del propietario"
 
-#: templates/flat/detail.html:76
+#: templates/flat/detail.html:100
 msgid "Update properties"
 msgstr "Actualizar propiedades"
 
@@ -296,6 +296,9 @@ msgstr "Mostrar opiniones del usuario"
 #: templates/user/writeReview.html:4
 msgid "Write an user review"
 msgstr "Escribir una opinión de usuario"
+
+#~ msgid "No rooms are available."
+#~ msgstr "No hay habitaciones disponibles."
 
 #~ msgid "Nursing"
 #~ msgstr "Enfermería"

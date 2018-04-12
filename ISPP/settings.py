@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get('IS_DEBUG', True))
 
 ALLOWED_HOSTS = ['rentinpeace.ml', '127.0.0.1']
 
@@ -136,8 +136,8 @@ LOCALE_PATHS = (
 
 
 LANGUAGES = (
-    ('en', _('Spanish')),
-    ('es', _('English')),
+    ('en', _('English')),
+    ('es', _('Spanish')),
 )
 
 
