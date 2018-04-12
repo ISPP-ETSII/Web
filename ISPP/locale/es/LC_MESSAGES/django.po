@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-12 17:28+0000\n"
+"POT-Creation-Date: 2018-04-12 21:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ISPP/settings.py:139
+#: ISPP/settings.py:140
 msgid "English"
 msgstr "Inglés"
 
-#: ISPP/settings.py:140
+#: ISPP/settings.py:141
 msgid "Spanish"
 msgstr "Español"
 
@@ -355,6 +355,10 @@ msgstr "Cama"
 #: templates/room/detail.html:51 templates/room/review.html:4
 msgid "Room reviews"
 msgstr "Opiniones de la habitación"
+
+#: templates/room/detail.html:56
+msgid "Make payment"
+msgstr "Realizar pago"
 
 #: templates/room/writeReview.html:4
 msgid "Write a room review"
