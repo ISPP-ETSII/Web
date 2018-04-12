@@ -26,10 +26,10 @@ def create_profile(user, form_avatar):
     return f1.save()
 
 
-def create_contract(form_picture, form_data_signed, landlord, tenant, room_id):
+def create_contract(form_text, form_data_signed, landlord, tenant, room_id):
     room = Room.objects.get(id=room_id)
 
-    c1= Contract(picture=form_picture,
+    c1= Contract(text=form_text,
                  date_signed=form_data_signed,
                  landlord=landlord,
                  tenant=tenant,

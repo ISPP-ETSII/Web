@@ -178,7 +178,7 @@ class Test(TestCase):
     def testShowPayments(self):
         user1 = User.objects.get(username='user1')
         user2 = User.objects.get(username='user2')
-        picture = ''
+        text = 'An example agreement'
         data = localtime(now()).date()
 
 
@@ -190,7 +190,7 @@ class Test(TestCase):
         create_room(description, price, '', user1, flat_saved)
         room_saved = Room.objects.get(description=description)
 
-        create_contract(picture, data, user1, user2, room_saved.id)
+        create_contract(text, data, user1, user2, room_saved.id)
         contract_saved = Contract.objects.get(room=room_saved)
 
         amount = 300.0
