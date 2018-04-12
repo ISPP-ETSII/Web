@@ -1,4 +1,4 @@
-from RoomBnB.models import Flat
+from RoomBnB.models import Flat, UserProperties
 from RoomBnB.models import FlatProperties
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
@@ -79,6 +79,13 @@ def create_roomreview(form_title, form_description, form_date, form_rating, room
 def delete_flat(flat_id):
     flat = Flat.objects.get(id=flat_id)
     return flat.delete()
+
+
+def get_user_details(profile):
+    try:
+        return UserProperties.objects.get(profile=profile)
+    except UserProperties.DoesNotExist:
+        return UserProperties(profile=profile).save()
 
 
 def get_flat_details(flat):
