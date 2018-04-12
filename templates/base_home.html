@@ -27,6 +27,7 @@
                          {% if user.is_authenticated %}
                              <li><a href="/{{ LANGUAGE_CODE }}/requests/list">{% trans "Requests" %}</a></li>
                          {% endif %}
+                         <li><a href="/{{ LANGUAGE_CODE }}/payments">{% trans "Payments" %}</a></li>
                       </ul>
                     {% if user.is_authenticated %}
                         <a href="/logout" class="login_btn">{% trans "Log out" %}</a>

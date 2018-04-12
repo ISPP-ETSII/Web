@@ -97,6 +97,8 @@
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatReview' flat.id %}'">{% trans "Flat reviews" %}</button>
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'userReview' flat.id flat.owner.user.id %}'">{% trans "Owner reviews" %}</button>
 
+    <button class="pure-button" onclick="location.href='{% url 'editFlatProperties' flat.id%}'">{% trans "Update properties" %}</button>
+
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
 {% endblock %}
