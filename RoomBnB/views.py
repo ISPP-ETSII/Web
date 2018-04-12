@@ -2,15 +2,13 @@ from django.core.serializers import unregister_serializer
 from django.http.multipartparser import parse_boundary_stream
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic import UpdateView
 from pip.download import user_agent
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, authenticate
 from django.db.models import Q
-from RoomBnB.forms import FlatForm
-from RoomBnB.forms import ProfileForm
-from RoomBnB.forms import SignUpForm
-from RoomBnB.forms import RoomForm
+from RoomBnB.forms import *
 from RoomBnB.models import Flat, Contract, Payment
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
@@ -19,9 +17,7 @@ from RoomBnB.models import FlatReview
 from RoomBnB.models import RoomReview
 from RoomBnB.models import UserReview
 from RoomBnB.models import FlatProperties
-from RoomBnB.forms import ReviewForm
 from RoomBnB.models import User
-from RoomBnB.forms import SearchFlatForm
 from RoomBnB.models import RentRequest
 from django.contrib.auth.models import User
 from RoomBnB.services import create_flat, create_rent_request, get_flat_details, get_room_details
@@ -173,6 +169,36 @@ def flatCreate(request):
         form = FlatForm()
 
     return render(request, 'flat/create.html', {'form': form})
+
+@login_required
+def editFlatProperties(request,flat_id):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = FlatPropertiesForm(request.POST)
+        # check whether it's valid:
+        print("prueba3")
+        if form.is_valid():
+
+            flat = Flat.objects.get(id=flat_id)
+            flatProperties = FlatProperties.objects.get(flat=flat)
+
+
+            flatProperties.washdisher(form.cleaned_data['washdisher'])
+            flatProperties.elevator(form.cleaned_data['elevator'])
+            flatProperties.save()
+
+
+
+            return HttpResponseRedirect('/flats/'+ str(flat_id))
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        flat = Flat.objects.get(id=flat_id)
+        flatProperties = FlatProperties.objects.get(flat=flat)
+        form = FlatPropertiesForm(instance=flatProperties)
+
+    return render(request, 'flat/updateProperties.html', {'form': form,'flat_id':flat_id})
 
 
 @login_required

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Edit flat properties" %}{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        <form class="pure-form pure-form-stacked" action="{% url 'editFlatProperties' flat_id %}" method="post">
+            <fieldset>
+                <legend>{% trans "Edit flat properties" %}</legend>
+                {% csrf_token %}
+
+                {{ form.flat.as_hidden }}
+
+                {{ form.as_p }}
+
+
+
+
+                <br>
+                <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+            </fieldset>
+        </form>
+
+     {% else %}
+
+        <h2>{% trans "You are not logged in." %}</h2>
+
+    {% endif %}
+
+{% endblock %}
