@@ -17,7 +17,9 @@ def create_flat(form_title, form_address, form_description, form_picture, user):
               description=form_description,
               picture=form_picture,
               owner=profile)
-    return f1.save()
+    f1.save()
+
+    return f1
 
 
 def create_profile(user, form_avatar):
@@ -113,7 +115,8 @@ def create_rent_request(user, room_id):
     else:
         return redirect('/requests/list')
 
-def get_flats_filtered(keyword,elevator,washdisher,balcony,window,air_conditioner):
+
+def get_flats_filtered(keyword, elevator, washdisher, balcony, window, air_conditioner):
     res = []
 
     query = Q(title__icontains=keyword)
@@ -121,28 +124,27 @@ def get_flats_filtered(keyword,elevator,washdisher,balcony,window,air_conditione
     query.add(Q(address__icontains=keyword), Q.OR)
 
     query2 = Q()
-    if elevator==True:
-        query2.add(Q(elevator=elevator))
-    if washdisher:
-        query2.add(Q.AND,Q(washdisher=washdisher))
+    if elevator == 'True':
+        query2.add(Q(elevator=elevator), Q.AND)
+    if washdisher == 'True':
+        query2.add(Q(washdisher=washdisher), Q.AND)
 
     query3 = Q()
-    if balcony:
-        query3.add(Q.AND,Q(balcony=balcony))
-    if window:
-        query3.add(Q.AND,Q(window=window))
-    if air_conditioner:
-        query3.add(Q.AND,Q(air_conditioner=air_conditioner))
+    if balcony == 'True':
+        query3.add(Q(balcony=balcony), Q.AND)
+    if window == 'True':
+        query3.add(Q(window=window), Q.AND)
+    if air_conditioner == 'True':
+        query3.add(Q(air_conditioner=air_conditioner), Q.AND)
 
     flatList = Flat.objects.filter(query)
     flatPList = FlatProperties.objects.filter(query2)
     roomPList = RoomProperties.objects.filter(query3)
 
-
     for flat in flatList:
         for flatP in flatPList:
             for roomP in roomPList:
-                if flat == flatP.flat and flat == roomP.room.belong_to:
+                if flat == flatP.flat and flat == roomP.room.belong_to and flat not in res:
                     res.append(flat)
 
     return res
