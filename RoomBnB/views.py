@@ -1,3 +1,4 @@
+import os
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseRedirect
@@ -120,7 +121,25 @@ def detail(request, flat_id):
     flat_details = get_flat_details(flat)
     availableRooms = Room.objects.filter(belong_to=flat, temporal_owner=None)
     notAvailableRooms = set(Room.objects.filter(belong_to=flat)) - set(availableRooms)
-    return render(request, 'flat/detail.html', {'flat': flat, 'flatDetails': flat_details, 'roomAvailableList':availableRooms, 'roomNotAvailableList': notAvailableRooms})
+    direccion= flat.address.split() #Separo la cadena en palabras creando una lista
+    direc= '+'.join(direccion) #Uno la lista con +  porque asi lo tiene que recibir la url de google maps
+
+    #separo los numeros de las palabras para no mostrar la direccion exacta, solamente la calle
+    di=[]
+    nu=[]
+    for d in direc:
+        try:
+            nu.append(float(d))
+        except ValueError:
+            di.append(d)
+    #Este metodo me a separado cada palabra en un caracter
+    direcc=''.join(di) # me junta los caracteres por palabras
+
+    mapkey= os.environ.get('MAPKEY')
+    print(mapkey)
+    print(direcc)
+
+    return render(request, 'flat/detail.html', {'mapkey':mapkey,'direccion':direcc ,'flat': flat, 'flatDetails': flat_details, 'roomAvailableList':availableRooms, 'roomNotAvailableList': notAvailableRooms})
 
 
 @login_required
