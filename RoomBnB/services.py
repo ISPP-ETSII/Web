@@ -17,7 +17,9 @@ def create_flat(form_title, form_address, form_description, form_picture, user):
               description=form_description,
               picture=form_picture,
               owner=profile)
-    return f1.save()
+    f1.save()
+
+    return f1
 
 
 def create_profile(user, form_avatar):
@@ -113,36 +115,36 @@ def create_rent_request(user, room_id):
     else:
         return redirect('/requests/list')
 
-def get_flats_filtered(keyword,elevator,washdisher,balcony,window,air_conditioner):
-    list = []
+
+def get_flats_filtered(keyword, elevator, washdisher, balcony, window, air_conditioner):
     res = []
 
     query = Q(title__icontains=keyword)
     query.add(Q(description__icontains=keyword), Q.OR)
     query.add(Q(address__icontains=keyword), Q.OR)
-    flatList = Flat.objects.all().filter(query)
-    flatList2 = FlatProperties.objects.all()
-    for flat in flatList:
-        query2 = Q(elevator=elevator)
-        query2.add(Q(washdisher=washdisher), Q.AND)
-        query2.add(Q(flat=flat), Q.AND)
-        flatList2 = flatList2.filter(query2)
-        if flatList2.exists():
-            list.append(flat)
-    roomList2 = RoomProperties.objects.all()
-    query3 = Q(balcony=balcony)
-    query3.add(Q(window=window), Q.AND)
-    query3.add(Q(air_conditioner=air_conditioner), Q.AND)
 
-    for flat in list:
-        roomList = Room.objects.filter(belong_to=flat)
-        for room in roomList:
-            query3 = Q(balcony=balcony)
-            query3.add(Q(window=window), Q.AND)
-            query3.add(Q(air_conditioner=air_conditioner), Q.AND)
-            query3.add(Q(room=room), Q.AND)
-            roomList2 = roomList2.filter(query3)
-            if roomList2.exists():
-                res.append(flat)
+    query2 = Q()
+    if elevator == 'True':
+        query2.add(Q(elevator=elevator), Q.AND)
+    if washdisher == 'True':
+        query2.add(Q(washdisher=washdisher), Q.AND)
+
+    query3 = Q()
+    if balcony == 'True':
+        query3.add(Q(balcony=balcony), Q.AND)
+    if window == 'True':
+        query3.add(Q(window=window), Q.AND)
+    if air_conditioner == 'True':
+        query3.add(Q(air_conditioner=air_conditioner), Q.AND)
+
+    flatList = Flat.objects.filter(query)
+    flatPList = FlatProperties.objects.filter(query2)
+    roomPList = RoomProperties.objects.filter(query3)
+
+    for flat in flatList:
+        for flatP in flatPList:
+            for roomP in roomPList:
+                if flat == flatP.flat and flat == roomP.room.belong_to and flat not in res:
+                    res.append(flat)
 
     return res
