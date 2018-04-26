@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
@@ -19,20 +20,20 @@ class UserProperties(models.Model):
     )
 
     DEGREES = (
-        ('1', 'Enfermeria'),
-        ('2', 'Ing. Informatica'),
-        ('3', 'Medicina'),
-        ('4', 'Biologia'),
-        ('5', 'Arquitectura'),
+        ('1', _('Nursing')),
+        ('2', _('Computer Engineering')),
+        ('3', _('Medicine')),
+        ('4', _('Biology')),
+        ('5', _('Architecture')),
     )
 
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE)
-    smoker = models.BooleanField(default=False)
-    pets = models.BooleanField(default=False)
-    sporty = models.CharField(max_length=1, choices=RATINGS)
-    gamer = models.CharField(max_length=1, choices=RATINGS)
-    sociable = models.CharField(max_length=1, choices=RATINGS)
-    degree = models.CharField(max_length=1, choices=DEGREES)
+    smoker = models.BooleanField(_('Smoker'), default=False)
+    pets = models.BooleanField(_('Pets'), default=False)
+    sporty = models.CharField(_('Sporty'), max_length=1, choices=RATINGS)
+    gamer = models.CharField(_('Gamer'), max_length=1, choices=RATINGS)
+    sociable = models.CharField(_('Sociable'), max_length=1, choices=RATINGS)
+    degree = models.CharField(_('Degree'), max_length=1, choices=DEGREES)
 
 
 class Flat(models.Model):
@@ -45,8 +46,8 @@ class Flat(models.Model):
 
 class FlatProperties(models.Model):
     flat = models.OneToOneField(Flat, on_delete=models.CASCADE)
-    elevator = models.BooleanField(default=False)
-    washdisher = models.BooleanField(default=False)
+    elevator = models.BooleanField(_('Elevator'), default=False)
+    washdisher = models.BooleanField(_('Dishwasher'), default=False)
 
 
 class Room(models.Model):
@@ -59,17 +60,17 @@ class Room(models.Model):
 
 class RoomProperties(models.Model):
     BEDS = (
-        ('1', 'Couple'),
-        ('2', 'Single'),
-        ('3', 'Sofa'),
-        ('4', 'None'),
+        ('1', _('Couple')),
+        ('2', _('Single')),
+        ('3', _('Sofa')),
+        ('4', _('None')),
     )
 
     room = models.OneToOneField(Room, on_delete=models.CASCADE)
-    balcony = models.BooleanField(default=False)
-    window = models.BooleanField(default=False)
-    air_conditioner = models.BooleanField(default=False)
-    bed = models.CharField(max_length=1, choices=BEDS, default=2)
+    balcony = models.BooleanField(_('Balcony'), default=False)
+    window = models.BooleanField(_('Window'), default=False)
+    air_conditioner = models.BooleanField(_('Air conditioner'), default=False)
+    bed = models.CharField(_('Bed'), max_length=1, choices=BEDS, default=2)
 
 
 class RentRequest(models.Model):
