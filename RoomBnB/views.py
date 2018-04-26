@@ -325,13 +325,12 @@ def base(request):
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
     room_details = get_room_details(room)
-    user = request.user
     rentRequest = RentRequest.objects.all()
     flat = Flat.objects.get(id=room.belong_to.id)
     rooms = Room.objects.filter(belong_to=flat)
 
     return render(request, 'room/detail.html',
-                  {'room': room, 'rooms': rooms, 'user': user, 'rentRequest': rentRequest, 'roomDetails': room_details})
+                  {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details})
 
 
 def roomReview(request, room_id):
@@ -352,7 +351,7 @@ def userReview(request, flat_id, user_id):
     flat = Flat.objects.get(id=flat_id)
     rooms = Room.objects.filter(belong_to=flat)
     review = UserReview.objects.filter(user=user)
-    return render(request, 'user/review.html', {'userRev': review, 'flat': flat, 'rooms': rooms})
+    return render(request, 'user/review.html', {'userRev': review, 'flat': flat, 'userToReview': user, 'rooms': rooms})
 
 
 @login_required

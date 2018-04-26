@@ -29,7 +29,7 @@
 
     {% for room in rooms %}
         {% if user == room.temporal_owner or user == flat.owner.user %}
-            <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' flat.id flat.owner.user.id %}'">{% trans "Write a review" %}</button>
+            <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' flat.id userToReview.id %}'">{% trans "Write a review" %}</button>
         {% endif %}
     {% endfor %}
 
