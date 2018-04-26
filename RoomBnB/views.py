@@ -132,14 +132,14 @@ def flatCreate(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            create_flat(
+            flat = create_flat(
                 form_title=form.cleaned_data.get("title"),
                 form_address=form.cleaned_data.get("address"),
                 form_description=form.cleaned_data.get("description"),
                 form_picture=form.cleaned_data['picture'],
                 user=request.user)
 
-            return HttpResponseRedirect('/flats')
+            return HttpResponseRedirect('/flats/' + str(flat.id))
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -195,7 +195,7 @@ def roomCreate(request, flat_id):
                         belong_to=flat)
             room.save()
 
-            return HttpResponseRedirect('/flats/' + str(flat_id))
+            return HttpResponseRedirect('/rooms/' + str(room.id))
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -324,11 +324,11 @@ def base(request):
 
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
+    room_details = get_room_details(room)
     user = request.user
     rentRequest = RentRequest.objects.all()
     flat = Flat.objects.get(id=room.belong_to.id)
-    rooms = rooms = Room.objects.filter(belong_to=flat)
-    room_details = get_room_details(room)
+    rooms = Room.objects.filter(belong_to=flat)
 
     return render(request, 'room/detail.html',
                   {'room': room, 'rooms': rooms, 'user': user, 'rentRequest': rentRequest, 'roomDetails': room_details})
