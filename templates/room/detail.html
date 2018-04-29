@@ -52,7 +52,7 @@
     {% endif %}
 
     {% if room.temporal_owner == user %}
-           <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  room.id %}'">{% trans "Make payment" %}</button>
+        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  room.id %}'">{% trans "Make payment" %}</button>
     {% endif %}
 
 {% endblock %}

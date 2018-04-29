@@ -69,7 +69,7 @@
                  <ul class="properties_list">
                     {% for room in roomNotAvailableList %}
                          <li>
-                            <a href="{% url 'roomDetail' room.id %}">
+                            <a href="{% url 'roomDetail'  room.id %}">
                                 <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
                             </a>
                              <span class="price">{{ room.price }} €</span>

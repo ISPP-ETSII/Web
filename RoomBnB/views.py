@@ -349,6 +349,7 @@ def detailRoom(request, room_id):
     flat = Flat.objects.get(id=room.belong_to.id)
     rooms = Room.objects.filter(belong_to=flat)
 
+
     return render(request, 'room/detail.html',
                   {'room': room, 'rooms': rooms, 'user': user, 'rentRequest': rentRequest, 'roomDetails': room_details})
 
@@ -492,7 +493,7 @@ def view_that_asks_for_money(request, room_id):
 
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
-    # context = {"form": form}
+    context = {"form": form}
 
-    return render(request, "paypal/payment.html", {'form': form})
+    return render(request, "paypal/payment.html", context)
 
