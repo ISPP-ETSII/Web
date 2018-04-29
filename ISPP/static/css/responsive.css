@@ -694,6 +694,12 @@ footer ul li.about > ul > li a.instagram{
     height: 18px;
     background-position: -60px 0px;
 }
+footer ul li.about > ul > li a.email{
+    display: block;
+    width: 17px;
+    height: 18px;
+    background-position: -78px 0px;
+}
 
 footer .copyrights{
     display: block;

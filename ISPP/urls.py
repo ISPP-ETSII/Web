@@ -44,6 +44,8 @@ urlpatterns += i18n_patterns(
     path('flats/keyword=<keyword>/elevator=<elevator>/washdisher=<washdisher>/balcony=<balcony>/window=<window>/air_conditioner=<air_conditioner>/', views.listWithProperties, name='flatListWithProperties'),
     path('flats/keyword=<keyword>', views.listWithKeyword, name='flatListWithKeyword'),
     path('profile/create',views.profileCreate, name='profileCreate'),
+    path('profile/<int:user_id>/',views.showUserProperties, name='showUserProperties'),
+    path('profile/edit', views.editUserProperties, name='editUserProperties'),
     path('flats/delete/<int:flat_id>/', views.flatDelete, name='flatDelete'),
     path('rooms/create/<int:flat_id>/', views.roomCreate, name='roomCreate'),
     path('rooms/<int:room_id>/', views.detailRoom, name='roomDetail'),
@@ -54,6 +56,14 @@ urlpatterns += i18n_patterns(
     path('writeFlatReview/<int:flat_id>/', views.writeReviewFlat, name='writeFlatReview'),
     path('writeUserReview/<int:flat_id>/<int:user_id>/', views.writeReviewUser, name='writeUserReview'),
     path('rooms/request/<int:room_id>', views.request_rent_room, name='request_rent_room'),
+    path('contracts/sign/<int:room_id>/', views.signContract, name='signContract'),
+    path('payments', views.paymentList, name='paymentList'),
+    path('flats/<int:flat_id>/editProperties', views.editFlatProperties, name='editFlatProperties'),
+    path('rooms/<int:room_id>/editProperties', views.editRoomProperties, name='editRoomProperties'),
+    # PAYPAL
+    path(r'^paypal/', include('paypal.standard.ipn.urls')),
+    path('paymentroom/<int:room_id>/', views.view_that_asks_for_money, name='payment'),
+    path('paymentroom/<int:room_id>/paypal', views.paypal_response, name='paypal-response'),
 )
 
 

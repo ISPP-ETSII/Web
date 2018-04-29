@@ -11,6 +11,12 @@
 
     <h2>{{ room.temporal_owner.user }}</h2>
 
+    {% if room.temporal_owner %}
+
+        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'showUserProperties' room.temporal_owner.id %}'">{% trans "Show profile" %}</button>
+
+    {% endif %}
+
     <h2>{{ room.price }} €</h2>
 
     <h2>{% trans "Details" %}</h2>
@@ -22,26 +28,32 @@
             <button class="pure-button pure-button-disabled">{% trans "Balcony" %}</button>
         {% endif %}
 
-        {% if flatDetails.window == True %}
+        {% if roomDetails.window == True %}
             <button class="pure-button">{% trans "Window" %}</button>
         {% else %}
             <button class="pure-button pure-button-disabled">{% trans "Window" %}</button>
         {% endif %}
 
-        {% if flatDetails.air_conditioner == True %}
+        {% if roomDetails.air_conditioner == True %}
             <button class="pure-button">{% trans "Air conditioner" %}</button>
         {% else %}
             <button class="pure-button pure-button-disabled">Air Conditioner</button>
         {% endif %}
 
+        <button class="pure-button">{% trans "Bed" %}: {{ roomDetails.get_bed_display }}</button>
+
         <br><br>
     </div>
 
+    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomReview' room.id %}'">{% trans "Room reviews" %}</button>
 
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% if room.belong_to.owner.user == user %}
+        <button class="pure-button" onclick="location.href='{% url 'editRoomProperties' room.id %}'">{% trans "Update properties" %}</button>
+    {% endif %}
 
-    <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomReview' room.id %}'">Room reviews</button>
-
+    {% if room.temporal_owner == user %}
+           <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  room.id %}'">{% trans "Make payment" %}</button>
+    {% endif %}
 
 {% endblock %}
 

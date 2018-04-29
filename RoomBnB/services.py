@@ -1,10 +1,12 @@
-from RoomBnB.models import Flat
+from RoomBnB.models import Flat, UserProperties
 from RoomBnB.models import FlatProperties
 from RoomBnB.models import Profile
 from RoomBnB.models import Room
 from RoomBnB.models import RoomProperties
 from RoomBnB.models import RentRequest
+from RoomBnB.models import Review, UserReview, FlatReview, RoomReview, Contract, Payment
 from django.shortcuts import render, redirect
+from django.db.models import Q
 
 
 def create_flat(form_title, form_address, form_description, form_picture, user):
@@ -15,8 +17,80 @@ def create_flat(form_title, form_address, form_description, form_picture, user):
               description=form_description,
               picture=form_picture,
               owner=profile)
+    f1.save()
+
+    return f1
+
+
+def create_profile(user, form_avatar):
+
+    f1 = Profile(user=user, avatar=form_avatar)
     return f1.save()
 
+
+def create_contract(form_text, form_data_signed, landlord, tenant, room_id):
+    room = Room.objects.get(id=room_id)
+
+    c1= Contract(text=form_text,
+                 date_signed=form_data_signed,
+                 landlord=landlord,
+                 tenant=tenant,
+                 room=room)
+    return c1.save()
+
+def create_payment(form_amount, form_date, contract_id):
+    contract = Contract.objects.get(id=contract_id)
+
+    p1 = Payment(amount=form_amount,
+                 date=form_date,
+                 contract=contract)
+    return p1.save()
+
+
+def create_room(form_description, form_price, form_picture, user1, flat1):
+
+    f1 = Room(description=form_description,
+              price=form_price,
+              picture=form_picture,
+              temporal_owner=user1,
+              belong_to=flat1)
+    return f1.save()
+
+<<<<<<< HEAD
+=======
+
+def create_userreview(form_title, form_description, form_date, form_rating, user1):
+
+    r1 = UserReview(title=form_title, description=form_description, date=form_date, rating=form_rating, user=user1)
+    return r1.save()
+
+
+def create_flatreview(form_title, form_description, form_date, form_rating, flat1):
+
+    r1 = FlatReview(title=form_title, description=form_description, date=form_date, rating=form_rating, flat=flat1)
+    return r1.save()
+
+
+def create_roomreview(form_title, form_description, form_date, form_rating, room1):
+
+    r1 = RoomReview(title=form_title, description=form_description,
+                    date=form_date, rating=form_rating, room=room1)
+    return r1.save()
+
+
+def delete_flat(flat_id):
+    flat = Flat.objects.get(id=flat_id)
+    return flat.delete()
+
+
+def get_user_details(profile):
+    try:
+        return UserProperties.objects.get(profile=profile)
+    except UserProperties.DoesNotExist:
+        return UserProperties(profile=profile).save()
+
+
+>>>>>>> 37749b94401f617c7959fc9b3c7037f0eeb44636
 def get_flat_details(flat):
     try:
         return FlatProperties.objects.get(flat=flat)
@@ -43,3 +117,37 @@ def create_rent_request(user, room_id):
         return redirect('/requests/list')
     else:
         return redirect('/requests/list')
+
+
+def get_flats_filtered(keyword, elevator, washdisher, balcony, window, air_conditioner):
+    res = []
+
+    query = Q(title__icontains=keyword)
+    query.add(Q(description__icontains=keyword), Q.OR)
+    query.add(Q(address__icontains=keyword), Q.OR)
+
+    query2 = Q()
+    if elevator == 'True':
+        query2.add(Q(elevator=elevator), Q.AND)
+    if washdisher == 'True':
+        query2.add(Q(washdisher=washdisher), Q.AND)
+
+    query3 = Q()
+    if balcony == 'True':
+        query3.add(Q(balcony=balcony), Q.AND)
+    if window == 'True':
+        query3.add(Q(window=window), Q.AND)
+    if air_conditioner == 'True':
+        query3.add(Q(air_conditioner=air_conditioner), Q.AND)
+
+    flatList = Flat.objects.filter(query)
+    flatPList = FlatProperties.objects.filter(query2)
+    roomPList = RoomProperties.objects.filter(query3)
+
+    for flat in flatList:
+        for flatP in flatPList:
+            for roomP in roomPList:
+                if flat == flatP.flat and flat == roomP.room.belong_to and flat not in res:
+                    res.append(flat)
+
+    return res

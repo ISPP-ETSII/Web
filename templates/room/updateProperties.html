@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Edit room properties" %}{% endblock %}
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+
+        <form class="pure-form pure-form-stacked" action="{% url 'editRoomProperties' room_id %}" method="post">
+            <fieldset>
+                <legend>{% trans "Edit room properties" %}</legend>
+                {% csrf_token %}
+
+                {{ form.room.as_hidden }}
+                {{ form.as_p }}
+
+                <br>
+                <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+            </fieldset>
+        </form>
+
+     {% else %}
+
+        <h2>{% trans "You are not logged in." %}</h2>
+
+    {% endif %}
+
+{% endblock %}
