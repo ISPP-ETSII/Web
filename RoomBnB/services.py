@@ -17,7 +17,6 @@ def create_flat(form_title, form_address, form_description, form_picture, user):
               owner=profile)
     return f1.save()
 
-
 def get_flat_details(flat):
     try:
         return FlatProperties.objects.get(flat=flat)

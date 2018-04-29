@@ -5,6 +5,7 @@ from RoomBnB.services import create_flat
 from django.core.management import call_command
 
 
+
 class Test(TestCase):
     def setUp(self):
         #call_command('loaddata', 'deploy/populate.json')
@@ -28,3 +29,6 @@ class Test(TestCase):
         self.assertEqual(flat_saved.address, address)
         self.assertEqual(flat_saved.description, description)
         self.assertEqual(flat_saved.owner, profile)
+
+
+
