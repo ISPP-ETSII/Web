@@ -449,11 +449,17 @@ def signContract(request, room_id):
 
 @login_required
 def paymentList(request):
-    contracts=Contract(landlord=request.user)
+    contracts=Contract.objects.all().filter(tenant=request.user)
+    paymentList = Payment.objects.all()
+    list=[]
+    for n in contracts:
+        for pay in paymentList:
+            if pay.contract==n:
+                list.append(pay)
 
-    paymentList = Payment.objects.all().filter(contract=contracts)
 
-    context = {'paymentList': paymentList}
+
+    context = {'paymentList': list}
 
     return render(request, 'payment/list.html', context)
 
