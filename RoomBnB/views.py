@@ -1,4 +1,6 @@
 import os
+from datetime import timezone
+
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseRedirect
@@ -451,13 +453,26 @@ def signContract(request, room_id):
 def paymentList(request):
     contracts=Contract.objects.all().filter(tenant=request.user)
     paymentList = Payment.objects.all()
+    date=timezone.now().month
     list=[]
-    for n in contracts:
-        for pay in paymentList:
-            if pay.contract == n:
-                list.append(pay)
+    pendientes=[]
+    rooms_id=[]
+    rooms=[]
 
-    return render(request, 'payment/list.html', {'paymentList': list})
+    for n in contracts:
+        if len(paymentList)!=0:
+            for pay in paymentList:
+                if pay.contract == n:
+                    list.append(pay)
+                else:
+                    pendientes.append(n)
+                    rooms_id.append(n.room_id)
+        else:
+            pendientes.append(n)
+            rooms_id.append(n.room_id)
+
+
+    return render(request, 'payment/list.html', {'paymentList': list,'rooms':rooms,'rooms':rooms_id, 'pendientes':pendientes ,'date':date})
 
 
 def retur(request):
