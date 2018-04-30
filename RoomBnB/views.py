@@ -454,14 +454,10 @@ def paymentList(request):
     list=[]
     for n in contracts:
         for pay in paymentList:
-            if pay.contract==n:
+            if pay.contract == n:
                 list.append(pay)
 
-
-
-    context = {'paymentList': list}
-
-    return render(request, 'payment/list.html', context)
+    return render(request, 'payment/list.html', {'paymentList': list})
 
 
 def retur(request):

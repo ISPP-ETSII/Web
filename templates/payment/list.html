@@ -7,8 +7,6 @@
 
     {% if user.is_authenticated %}
 
-        {{ paymentList }}
-
         {% if paymentList %}
 
             <section class="listings">
@@ -16,23 +14,21 @@
                 <div class="wrapper">
 
                     <ul class="properties_list">
-                        <table style="width:100%">
+                        <table class="pure-table">
 
                             <tr>
                                 <th>Amount</th>
                                 <th>Date</th>
                             </tr>
-                        {% for payment in paymentList %}
 
+                            {% for payment in paymentList %}
 
-                          <tr>
-                            <td>{{ payment.amount }}</td>
-                            <td>{{ payment.date }}</td>
+                                <tr>
+                                    <td>{{ payment.amount }}</td>
+                                    <td>{{ payment.date }}</td>
+                                </tr>
 
-                          </tr>
-
-
-                        {% endfor %}
+                            {% endfor %}
                         </table>
                     </ul>
                 </div>
