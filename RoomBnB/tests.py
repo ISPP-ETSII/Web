@@ -7,7 +7,6 @@ from RoomBnB.models import Profile, Flat
 from RoomBnB.services import create_flat
 
 
-
 class Test(TestCase):
     def setUp(self):
         #call_command('loaddata', 'deploy/populate.json')
@@ -45,8 +44,6 @@ class Test(TestCase):
         self.assertEqual(flat_saved.owner, profile)
 
 
-<<<<<<< HEAD
-=======
     def testFilteredHouse(self):
         user = User.objects.get(username='user1')
 
@@ -432,5 +429,4 @@ class Test(TestCase):
 
         self.assertEqual(exception, True)
 
->>>>>>> 37749b94401f617c7959fc9b3c7037f0eeb44636
 

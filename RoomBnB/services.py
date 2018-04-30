@@ -56,8 +56,6 @@ def create_room(form_description, form_price, form_picture, user1, flat1):
               belong_to=flat1)
     return f1.save()
 
-<<<<<<< HEAD
-=======
 
 def create_userreview(form_title, form_description, form_date, form_rating, user1):
 
@@ -90,7 +88,6 @@ def get_user_details(profile):
         return UserProperties(profile=profile).save()
 
 
->>>>>>> 37749b94401f617c7959fc9b3c7037f0eeb44636
 def get_flat_details(flat):
     try:
         return FlatProperties.objects.get(flat=flat)
