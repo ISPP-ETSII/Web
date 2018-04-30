@@ -22,6 +22,17 @@
 				<a href="#" class="hamburger"></a>
 				<nav>
                      <ul>
+                         <li><form action="{% url 'set_language' %}" method="post">
+                             {% csrf_token %}
+                             {% get_current_language as LANGUAGE_CODE %}
+                             {% if LANGUAGE_CODE == 'en' %}
+                                 <input type="hidden" name="language" value="es">
+                                 <input type="submit" value="{% trans "Spanish" %}">
+                             {% else %}
+                                <input type="hidden" name="language" value="en">
+                                <input type="submit" value="{% trans "English" %}">
+                             {% endif %}
+                         </form></li>
                          <li><a href="/{{ LANGUAGE_CODE }}">{% trans "Home" %}</a></li>
                          <li><a href="/{{ LANGUAGE_CODE }}/flats">{% trans "Flats" %}</a></li>
                          {% if user.is_authenticated %}
@@ -36,20 +47,6 @@
                         <a href="/{{ LANGUAGE_CODE }}/login" class="login_btn">{% trans "Log in" %}</a>
                         <a href="/{{ LANGUAGE_CODE }}/signup" class="login_btn">{% trans "Sign up" %}</a>
                     {% endif %}
-
-                    <form style="margin-top: 30px" action="{% url 'set_language' %}" method="post">
-                        {% csrf_token %}
-                        <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select name="language" onchange="this.form.submit()">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                    {{ language.name_local }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </form>
 				</nav>
 			</div>
 		</header><!--  end header section  -->
