@@ -44,6 +44,7 @@
                                 <h1>
                                     <a href="{% url 'roomDetail' room.id %}">{{ room.description }}</a>
                                 </h1>
+
                                 {% if room.temporal_owner %}
                                     <button class="pure-button" onclick="location.href='{% url 'userReview' flat.id room.temporal_owner_id%}'">{% trans "Tenant's opinions" %}</button>
                                 {% else %}
@@ -61,7 +62,7 @@
 
     {% if roomNotAvailableList %}
 
-        <h2>{% trans "Rented rooms" %}</h2>
+        <h2>{% trans "Your roommates" %}</h2>
 
         <section class="listings">
             <div class="wrapper">
@@ -70,12 +71,12 @@
                     {% for room in roomNotAvailableList %}
                          <li>
                             <a href="{% url 'roomDetail' room.id %}">
-                                <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
+                                <img src="https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png" alt="" title=""/>
                             </a>
-                             <span class="price">{{ room.price }} €</span>
+
                              <div class="property_details">
                                 <h1>
-                                    <a href="{% url 'roomDetail' room.id %}">{{ room.description }}</a>
+                                    <a href="{% url 'roomDetail' room.id %}">{{ room.temporal_owner.first_name }}</a>
                                 </h1>
                                 {% if room.temporal_owner %}
                                     <button class="pure-button" onclick="location.href='{% url 'userReview' flat.id room.temporal_owner_id%}'">{% trans "Tenant's opinions" %}</button>
