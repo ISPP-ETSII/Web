@@ -342,8 +342,16 @@ def roomReview(request, room_id):
 def flatReview(request, flat_id):
     flat = Flat.objects.get(id=flat_id)
     rooms = Room.objects.filter(belong_to=flat)
+    user = request.user
+
+    show_review_button = False
+    for room in rooms:
+        if user == room.temporal_owner:
+            show_review_button = True
+            break
+
     review = FlatReview.objects.filter(flat=flat)
-    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms': rooms})
+    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms': rooms, 'showReviewButton': show_review_button})
 
 
 def userReview(request, flat_id, user_id):
@@ -351,7 +359,14 @@ def userReview(request, flat_id, user_id):
     flat = Flat.objects.get(id=flat_id)
     rooms = Room.objects.filter(belong_to=flat)
     review = UserReview.objects.filter(user=user)
-    return render(request, 'user/review.html', {'userRev': review, 'flat': flat, 'userToReview': user, 'rooms': rooms})
+
+    show_review_button = False
+    for room in rooms:
+        if user == room.temporal_owner or user == flat.owner.user:
+            show_review_button = True
+            break
+
+    return render(request, 'user/review.html', {'userRev': review, 'flat': flat, 'userToReview': user, 'rooms': rooms, 'showReviewButton': show_review_button})
 
 
 @login_required
