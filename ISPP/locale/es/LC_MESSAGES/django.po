@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 11:18+0000\n"
+"POT-Creation-Date: 2018-05-01 12:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ISPP/settings.py:140
+#: ISPP/settings.py:140 templates/base.html:33 templates/base_home.html:33
 msgid "English"
 msgstr "Inglés"
 
-#: ISPP/settings.py:141
+#: ISPP/settings.py:141 templates/base.html:30 templates/base_home.html:30
 msgid "Spanish"
 msgstr "Español"
 
@@ -166,43 +166,47 @@ msgstr "Ninguna"
 msgid "Bed"
 msgstr "Cama"
 
-#: templates/base.html:25 templates/base_home.html:25
+#: templates/base.html:36 templates/base_home.html:36
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:26 templates/base_home.html:26
+#: templates/base.html:37 templates/base_home.html:37
 #: templates/flat/list.html:4
 msgid "Flats"
 msgstr "Pisos"
 
-#: templates/base.html:28 templates/base_home.html:28
+#: templates/base.html:39 templates/base_home.html:39
 #: templates/request/list.html:4
 msgid "Requests"
 msgstr "Solicitudes"
 
-#: templates/base.html:29 templates/base_home.html:29
+#: templates/base.html:40 templates/base_home.html:40
 #: templates/payment/list.html:4
 msgid "Payments"
 msgstr "Pagos"
 
-#: templates/base.html:33 templates/base_home.html:33
+#: templates/base.html:44 templates/base_home.html:44
 #: templates/profile/detail.html:4
 msgid "Profile"
 msgstr "Perfil"
 
-#: templates/base.html:34 templates/base_home.html:34
+#: templates/base.html:45 templates/base_home.html:45
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: templates/base.html:36 templates/base_home.html:36
+#: templates/base.html:47 templates/base_home.html:47
 #: templates/registration/login.html:4 templates/registration/login.html:10
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-#: templates/base.html:37 templates/base_home.html:37
-#: templates/registration/signup.html:5 templates/registration/signup.html:9
+#: templates/base.html:48 templates/base_home.html:48
+#: templates/registration/signup.html:5 templates/registration/signup.html:11
 msgid "Sign up"
 msgstr "Registrarse"
+
+#: templates/base.html:199 templates/base_home.html:197 templates/tyc.html:4
+msgid "Terms and conditions"
+msgstr "Términos y condiciones"
 
 #: templates/contract/create.html:4
 msgid "Sign a contract"
@@ -287,8 +291,8 @@ msgstr "No hay pisos disponibles."
 msgid "Date"
 msgstr "Fecha"
 
-#: templates/flat/review.html:32 templates/room/review.html:31
-#: templates/user/review.html:32
+#: templates/flat/review.html:31 templates/room/review.html:31
+#: templates/user/review.html:31
 msgid "Write a review"
 msgstr "Escribir una opinión"
 
@@ -346,6 +350,10 @@ msgstr "Editar perfil"
 #: templates/profile/update.html:4 templates/profile/update.html:10
 msgid "Edit profile properties"
 msgstr "Editar propiedades de perfil"
+
+#: templates/registration/signup.html:10
+msgid "By registering I accept the terms and conditions of RentInPeace"
+msgstr "Al registrarme acepto los términos y condiciones de RentInPeace"
 
 #: templates/request/list.html:8
 msgid "Requests pending to answer"
