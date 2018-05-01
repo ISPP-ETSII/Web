@@ -59,7 +59,7 @@
 
             <td><b>{% trans "User" %}</b></td>
 
-            <td><a href="{% url 'showUserProperties' userProperties.profile.user.id %}">{{ userProperties.profile.user.username }}</a></td>
+            <td><button class="pure-button pure-button-primary" onclick="location.href='{% url 'showUserProperties' userProperties.profile.user.id %}'">{{ userProperties.profile.user.username }}</button></td>
 
             <td><b>{% trans "Smoker" %}</b></td>
 
