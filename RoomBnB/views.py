@@ -324,13 +324,16 @@ def base(request):
 
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
+    user = room.temporal_owner
+    profile = Profile.objects.get(user=user)
+    profileProperties = get_user_details(profile)
     room_details = get_room_details(room)
     rentRequest = RentRequest.objects.all()
     flat = Flat.objects.get(id=room.belong_to.id)
     rooms = Room.objects.filter(belong_to=flat)
 
     return render(request, 'room/detail.html',
-                  {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details})
+                  {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details, 'userProperties': profileProperties, 'profile':profile})
 
 
 def roomReview(request, room_id):
