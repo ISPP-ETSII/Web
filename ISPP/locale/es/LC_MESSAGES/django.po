@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 12:28+0000\n"
+"POT-Creation-Date: 2018-05-01 22:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,7 +45,7 @@ msgstr "Dirección"
 msgid "Description"
 msgstr "Descripción"
 
-#: RoomBnB/forms.py:17
+#: RoomBnB/forms.py:17 templates/room/detail.html:95
 msgid "Image"
 msgstr "Imagen"
 
@@ -82,17 +82,18 @@ msgstr "Ascensor"
 msgid "Dishwasher"
 msgstr "Lavavajillas"
 
-#: RoomBnB/forms.py:93 RoomBnB/models.py:70 templates/room/detail.html:26
-#: templates/room/detail.html:28
+#: RoomBnB/forms.py:93 RoomBnB/models.py:70 templates/room/detail.html:18
+#: templates/room/detail.html:20
 msgid "Balcony"
 msgstr "Balcón"
 
-#: RoomBnB/forms.py:94 RoomBnB/models.py:71 templates/room/detail.html:32
-#: templates/room/detail.html:34
+#: RoomBnB/forms.py:94 RoomBnB/models.py:71 templates/room/detail.html:24
+#: templates/room/detail.html:26
 msgid "Window"
 msgstr "Ventana"
 
-#: RoomBnB/forms.py:95 RoomBnB/models.py:72 templates/room/detail.html:38
+#: RoomBnB/forms.py:95 RoomBnB/models.py:72 templates/room/detail.html:30
+#: templates/room/detail.html:32
 msgid "Air conditioner"
 msgstr "Aire acondicionado"
 
@@ -121,28 +122,32 @@ msgid "Architecture"
 msgstr "Arquitectura"
 
 #: RoomBnB/models.py:31 templates/profile/detail.html:14
-#: templates/profile/detail.html:16
+#: templates/profile/detail.html:16 templates/room/detail.html:64
 msgid "Smoker"
 msgstr "Fumador"
 
 #: RoomBnB/models.py:32 templates/profile/detail.html:20
-#: templates/profile/detail.html:22
+#: templates/profile/detail.html:22 templates/room/detail.html:82
 msgid "Pets"
 msgstr "Mascotas"
 
 #: RoomBnB/models.py:33 templates/profile/detail.html:25
+#: templates/room/detail.html:99
 msgid "Sporty"
 msgstr "Deportista"
 
 #: RoomBnB/models.py:34 templates/profile/detail.html:26
+#: templates/room/detail.html:110
 msgid "Gamer"
 msgstr "Friki"
 
 #: RoomBnB/models.py:35 templates/profile/detail.html:27
+#: templates/room/detail.html:121
 msgid "Sociable"
 msgstr "Sociable"
 
 #: RoomBnB/models.py:36 templates/profile/detail.html:28
+#: templates/room/detail.html:132
 msgid "Degree"
 msgstr "Universidad"
 
@@ -162,7 +167,7 @@ msgstr "Sofá"
 msgid "None"
 msgstr "Ninguna"
 
-#: RoomBnB/models.py:73 templates/room/detail.html:43
+#: RoomBnB/models.py:73 templates/room/detail.html:35
 msgid "Bed"
 msgstr "Cama"
 
@@ -237,7 +242,7 @@ msgid "Flat details"
 msgstr "Detalles del piso"
 
 #: templates/flat/detail.html:11 templates/profile/detail.html:10
-#: templates/room/detail.html:22
+#: templates/room/detail.html:14 templates/room/detail.html:54
 msgid "Details"
 msgstr "Detalles"
 
@@ -270,7 +275,7 @@ msgstr "Opiniones del piso"
 msgid "Owner reviews"
 msgstr "Opiniones del propietario"
 
-#: templates/flat/detail.html:105 templates/room/detail.html:51
+#: templates/flat/detail.html:105 templates/room/detail.html:147
 msgid "Update properties"
 msgstr "Actualizar propiedades"
 
@@ -396,15 +401,27 @@ msgstr "No hay contratos pendientes."
 msgid "Create a room"
 msgstr "Crear una habitación"
 
-#: templates/room/detail.html:16
-msgid "Show profile"
-msgstr "Mostrar perfil"
+#: templates/room/detail.html:46
+msgid "Tenant"
+msgstr "Inquilino"
 
-#: templates/room/detail.html:48 templates/room/review.html:4
+#: templates/room/detail.html:52
+msgid "Personal information"
+msgstr "Información personal"
+
+#: templates/room/detail.html:60
+msgid "User"
+msgstr "Usuario"
+
+#: templates/room/detail.html:78
+msgid "Name"
+msgstr "Nombre"
+
+#: templates/room/detail.html:144 templates/room/review.html:4
 msgid "Room reviews"
 msgstr "Opiniones de la habitación"
 
-#: templates/room/detail.html:55
+#: templates/room/detail.html:151
 msgid "Make payment"
 msgstr "Realizar pago"
 
@@ -425,17 +442,3 @@ msgstr "Mostrar opiniones del usuario"
 msgid "Write an user review"
 msgstr "Escribir una opinión de usuario"
 
-#~ msgid "Invalid"
-#~ msgstr "Inválido"
-
-#~ msgid "No rooms are available."
-#~ msgstr "No hay habitaciones disponibles."
-
-#~ msgid "Creation date"
-#~ msgstr "Crear un piso"
-
-#~ msgid "Accepted"
-#~ msgstr "Aceptado"
-
-#~ msgid "Amount"
-#~ msgstr "Cantidad"

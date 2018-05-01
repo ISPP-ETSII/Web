@@ -5,17 +5,9 @@
 
 {% block content %}
 
-    {{ room.pictures }}
+    <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
 
     <h1>{{ room.description }}</h1>
-
-    <h2>{{ room.temporal_owner.user }}</h2>
-
-    {% if room.temporal_owner %}
-
-        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'showUserProperties' room.temporal_owner.id %}'">{% trans "Show profile" %}</button>
-
-    {% endif %}
 
     <h2>{{ room.price }} €</h2>
 
@@ -37,13 +29,117 @@
         {% if roomDetails.air_conditioner == True %}
             <button class="pure-button">{% trans "Air conditioner" %}</button>
         {% else %}
-            <button class="pure-button pure-button-disabled">Air Conditioner</button>
+            <button class="pure-button pure-button-disabled">{% trans "Air conditioner" %}</button>
         {% endif %}
 
         <button class="pure-button">{% trans "Bed" %}: {{ roomDetails.get_bed_display }}</button>
 
         <br><br>
     </div>
+
+    {% if room.temporal_owner %}
+
+        <table class="pure-table">
+
+        <tr style="background: rgba(178, 255, 255, 1.0); border: 1px solid rgba(200, 100, 0, 0.3);">
+
+            <th colspan="5">{% trans "Tenant" %}</th>
+
+        </tr>
+
+        <tr>
+
+            <th colspan="2">{% trans "Personal information" %}</th>
+
+            <th colspan="2">{% trans "Details" %}</th>
+
+        </tr>
+
+        <tr style="background: rgba(178, 255, 255, 1.0); border: 1px solid rgba(200, 100, 0, 0.3);">
+
+            <td><b>{% trans "User" %}</b></td>
+
+            <td><a href="/{{ LANGUAGE_CODE }}/profile/{{ userProperties.profile.user.id }}">{{ userProperties.profile.user.username }}</a></td>
+
+            <td><b>{% trans "Smoker" %}</b></td>
+
+            <td align="center">
+                {% if userProperties.smoker == True %}
+                    &#10004;
+                {% else %}
+                    &#10005;
+                {% endif %}
+            </td>
+
+        </tr>
+
+        <tr>
+
+            <td><b>{% trans "Name" %}</b></td>
+
+            <td>{{ userProperties.profile.user.first_name }}</td>
+
+            <td><b>{% trans "Pets" %}</b></td>
+
+            <td align="center">
+                {% if userProperties.pets == True %}
+                    &#10004;
+                {% else %}
+                    &#10005;
+                {% endif %}
+            </td>
+
+        </tr>
+        <tr style="background: 	rgba(178, 255, 255, 1.0); border: 1px solid rgba(200, 100, 0, 0.3);">
+
+            <td><b>{% trans "Image" %}</b></td>
+
+            <td><img src="{{ profile.avatar.url }}" width="50" height="50" style="border-radius: 50%;"></td>
+
+            <td><b>{% trans "Sporty" %}</b></td>
+
+            <td align="center">
+               {{ userProperties.sporty }}
+            </td>
+
+        </tr>
+        <tr>
+
+            <td colspan="2"></td>
+
+            <td><b>{% trans "Gamer" %}</b></td>
+
+            <td align="center">
+               {{ userProperties.gamer }}
+            </td>
+
+        </tr>
+        <tr style="background: 	rgba(178, 255, 255, 1.0); border: 1px solid rgba(200, 100, 0, 0.3);">
+
+            <td colspan="2"></td>
+
+            <td><b>{% trans "Sociable" %}</b></td>
+
+            <td align="center">
+                {{ userProperties.sociable }}
+            </td>
+
+        </tr>
+        <tr>
+
+            <td colspan="2"></td>
+
+            <td><b>{% trans "Degree" %}</b></td>
+
+            <td align="center">
+               {{ userProperties.get_degree_display }}
+            </td>
+
+        </tr>
+
+        </table>
+    {% endif %}
+    <br><br>
 
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomReview' room.id %}'">{% trans "Room reviews" %}</button>
 
