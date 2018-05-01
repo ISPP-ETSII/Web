@@ -29,7 +29,7 @@
         {% if roomDetails.air_conditioner == True %}
             <button class="pure-button">{% trans "Air conditioner" %}</button>
         {% else %}
-            <button class="pure-button pure-button-disabled">Air Conditioner</button>
+            <button class="pure-button pure-button-disabled">{% trans "Air conditioner" %}</button>
         {% endif %}
 
         <button class="pure-button">{% trans "Bed" %}: {{ roomDetails.get_bed_display }}</button>
@@ -43,25 +43,25 @@
 
         <tr style="background: rgba(178, 255, 255, 1.0); border: 1px solid rgba(200, 100, 0, 0.3);">
 
-            <th colspan="5">Tenant</th>
+            <th colspan="5">{% trans "Tenant" %}</th>
 
         </tr>
 
         <tr>
 
-            <th colspan="2">Personal information</th>
+            <th colspan="2">{% trans "Personal information" %}</th>
 
-            <th colspan="2">Details</th>
+            <th colspan="2">{% trans "Details" %}</th>
 
         </tr>
 
         <tr style="background: rgba(178, 255, 255, 1.0); border: 1px solid rgba(200, 100, 0, 0.3);">
 
-            <td><b>Name</b></td>
+            <td><b>{% trans "User" %}</b></td>
 
-            <td>{{ userProperties.profile.user.first_name }}</td>
+            <td><a href="/{{ LANGUAGE_CODE }}/profile/{{ userProperties.profile.user.id }}">{{ userProperties.profile.user.username }}</a></td>
 
-            <td><b>Smoker?</b></td>
+            <td><b>{% trans "Smoker" %}</b></td>
 
             <td align="center">
                 {% if userProperties.smoker == True %}
@@ -75,11 +75,11 @@
 
         <tr>
 
-            <td><b>Email</b></td>
+            <td><b>{% trans "Name" %}</b></td>
 
-            <td>{{ userProperties.profile.user.email }}</td>
+            <td>{{ userProperties.profile.user.first_name }}</td>
 
-            <td><b>Pets?</b></td>
+            <td><b>{% trans "Pets" %}</b></td>
 
             <td align="center">
                 {% if userProperties.pets == True %}
@@ -92,11 +92,11 @@
         </tr>
         <tr style="background: 	rgba(178, 255, 255, 1.0); border: 1px solid rgba(200, 100, 0, 0.3);">
 
-            <td><b>Avatar</b></td>
+            <td><b>{% trans "Picture" %}</b></td>
 
-            <td>{{ profile.avatar }}</td>
+            <td><img src="{{ profile.avatar.url }}" width="50" height="50" style="border-radius: 50%;"></td>
 
-            <td><b>Sporty?</b></td>
+            <td><b>{% trans "Sporty" %}</b></td>
 
             <td align="center">
                {{ userProperties.sporty }}
@@ -107,7 +107,7 @@
 
             <td colspan="2"></td>
 
-            <td><b>Gamer?</b></td>
+            <td><b>{% trans "Gamer" %}</b></td>
 
             <td align="center">
                {{ userProperties.gamer }}
@@ -118,7 +118,7 @@
 
             <td colspan="2"></td>
 
-            <td><b>Sociable?</b></td>
+            <td><b>{% trans "Sociable" %}</b></td>
 
             <td align="center">
                 {{ userProperties.sociable }}
@@ -129,7 +129,7 @@
 
             <td colspan="2"></td>
 
-            <td><b>Degree?</b></td>
+            <td><b>{% trans "Degree" %}</b></td>
 
             <td align="center">
                {{ userProperties.get_degree_display }}
