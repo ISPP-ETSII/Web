@@ -33,6 +33,7 @@ urlpatterns += i18n_patterns(
     path('', views.base, name='base'),
     path('login/', auth_views.login, name='login'),
     path('signup/', views.signup, name='signup'),
+    path('tyc/', views.terms_and_conditions, name='tyc'),
     path('flats', views.list, name='flatList'),
     path('flats/', views.list, name='flatList'),
     path('flats/create',views.flatCreate, name='flatCreate'),

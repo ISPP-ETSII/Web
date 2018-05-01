@@ -322,6 +322,10 @@ def base(request):
     return render(request, 'index.html', {'form': form})
 
 
+def terms_and_conditions(request):
+    return render(request, 'tyc.html')
+
+
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
     room_details = get_room_details(room)
