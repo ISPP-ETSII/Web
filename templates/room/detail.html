@@ -59,7 +59,7 @@
 
             <td><b>{% trans "User" %}</b></td>
 
-            <td><a href="/{{ LANGUAGE_CODE }}/profile/{{ userProperties.profile.user.id }}">{{ userProperties.profile.user.username }}</a></td>
+            <td><a href="{% url 'showUserProperties' userProperties.profile.user.id %}">{{ userProperties.profile.user.username }}</a></td>
 
             <td><b>{% trans "Smoker" %}</b></td>
 
