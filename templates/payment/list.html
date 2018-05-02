@@ -10,11 +10,7 @@
         {% if paymentList %}
             {% for l in paymentList %}
                     {%  if l.date.month ==  date  %}
-                    <section class="listings">
-
-                        <div class="wrapper">
-
-                            <ul class="properties_list">
+                    
                                 <table class="pure-table">
 
                                     <tr>
@@ -28,9 +24,8 @@
 
 
                                 </table>
-                            </ul>
-                        </div>
-                    </section>
+
+
 
                     {%  endif %}
             {% endfor %}
@@ -42,16 +37,20 @@
         <h2>{% trans "Pending payment" %}</h2>
 
         {% if paymentList or pendientes %}
+
+
+            <table class="pure-table">
+                <tr><td>
             {% for r in rooms_id %}
-                Contrato de la habitación: {{ r }} <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment' r   %}'">{% trans "Make payment" %}</button><br>
+                Contrato de la habitación: {{ r }}</td><td> <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment' r   %}'">{% trans "Make payment" %}</button><br>
             {% endfor %}
+            </td></tr>
+            </table><br>
             {% for l in paymentList %}
                     {%  if l.date.month !=  date  %}
-                        <section class="listings">
 
-                        <div class="wrapper">
 
-                            <ul class="properties_list">
+
                                 <table class="pure-table">
 
                                     <tr>
@@ -65,9 +64,8 @@
                                         <td><button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  l.contract.room.id %}'">{% trans "Make payment" %}</button></td>
                                     </tr>
                                 </table>
-                            </ul>
-                        </div>
-                    </section>
+
+
                     {%  endif %}
             {% endfor %}
         {% else %}
