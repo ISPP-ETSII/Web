@@ -138,8 +138,6 @@ def detail(request, flat_id):
     direcc=''.join(di) # me junta los caracteres por palabras
 
     mapkey= os.environ.get('MAPKEY')
-    print(mapkey)
-    print(direcc)
 
     return render(request, 'flat/detail.html', {'mapkey':mapkey,'direccion':direcc ,'flat': flat, 'flatDetails': flat_details, 'roomAvailableList':availableRooms, 'roomNotAvailableList': notAvailableRooms})
 
@@ -176,7 +174,6 @@ def editFlatProperties(request,flat_id):
         # create a form instance and populate it with data from the request:
         form = FlatPropertiesForm(request.POST)
         # check whether it's valid:
-        print("prueba3")
         if form.is_valid():
 
             flat = Flat.objects.get(id=flat_id)
@@ -410,7 +407,7 @@ def writeReviewUser(request, user_id, flat_id):
             return HttpResponseRedirect('/userReview/' + str(flat_id) + '/' + str(user_id))
     else:
         form = ReviewForm()
-    print(form.errors)
+
     return render(request, 'user/writeReview.html', {'form': form, 'flatid': flat_id, 'userid': user_id})
 
 
@@ -426,7 +423,7 @@ def writeReviewRoom(request, room_id):
             return HttpResponseRedirect('/roomReview/' + str(room_id))
     else:
         form = ReviewForm()
-    print(form.errors)
+
     return render(request, 'room/writeReview.html', {'form': form, 'roomid': room_id})
 
 
@@ -442,7 +439,7 @@ def writeReviewFlat(request, flat_id):
             return HttpResponseRedirect('/flatReview/' + str(flat_id))
     else:
         form = ReviewForm()
-    print(form.errors)
+
     return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
 
 
@@ -502,7 +499,6 @@ def retur(request):
 @csrf_exempt
 def paypal_response(request, room_id):
     if request.POST.get('payment_status') == 'Completed':
-        print('Entra pago')
         amount = request.POST.get('mc_gross')
         room = Room.objects.get(id=room_id)
         contract = Contract.objects.filter(room=room)[0]
