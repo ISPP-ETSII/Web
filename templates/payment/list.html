@@ -42,14 +42,12 @@
             <table class="pure-table">
                 <tr><td>
             {% for r in rooms_id %}
-                Contrato de la habitación: {{ r }}</td><td> <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment' r   %}'">{% trans "Make payment" %}</button><br>
+                {% trans "Contract of the room" %}: {{ r }}</td><td> <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment' r   %}'">{% trans "Make payment" %}</button><br>
             {% endfor %}
             </td></tr>
             </table><br>
             {% for l in paymentList %}
                     {%  if l.date.month !=  date  %}
-
-
 
                                 <table class="pure-table">
 

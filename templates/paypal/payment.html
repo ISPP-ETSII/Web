@@ -1,11 +1,12 @@
 {% extends 'room/detail.html' %}
+{% load i18n %}
 {% block content %}
 
-<section id="banner">
-    <div class="inner">
-        <h1>Pay using PayPal</h1>
-        <div class="p-3 bg"></div>{{ form.render }}</div>
-    </div>
-</section>
+    <section id="banner">
+        <div class="inner">
+            <h1>{% trans "Pay using PayPal" %}</h1>
+            <div class="p-3 bg"></div>{{ form.render }}</div>
+        </div>
+    </section>
 
-    {% endblock %} {% load i18n %}
+{% endblock %}
