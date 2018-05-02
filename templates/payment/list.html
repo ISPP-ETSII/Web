@@ -42,9 +42,8 @@
         <h2>{% trans "Pending payment" %}</h2>
 
         {% if paymentList or pendientes %}
-            {% for r in rooms %}
-
-                Contrato de la habitación: {{ r }} <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  r %}'">{% trans "Make payment" %}</button><br>
+            {% for r in rooms_id %}
+                Contrato de la habitación: {{ r }} <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment' r   %}'">{% trans "Make payment" %}</button><br>
             {% endfor %}
             {% for l in paymentList %}
                     {%  if l.date.month !=  date  %}
@@ -62,8 +61,8 @@
                                     </tr>
                                     <tr>
                                         <td>{{ l.amount }}</td>
-                                        <td> </td>
-                                        <td><button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  l.contract.room.room_id %}'">{% trans "Make payment" %}</button></td>
+                                        <td>{{ l.date }} </td>
+                                        <td><button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  l.contract.room.id %}'">{% trans "Make payment" %}</button></td>
                                     </tr>
                                 </table>
                             </ul>

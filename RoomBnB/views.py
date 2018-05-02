@@ -457,7 +457,7 @@ def paymentList(request):
     list=[]
     pendientes=[]
     rooms_id=[]
-    rooms=[]
+
 
     for n in contracts:
         if len(paymentList)!=0:
@@ -466,13 +466,13 @@ def paymentList(request):
                     list.append(pay)
                 else:
                     pendientes.append(n)
-                    rooms_id.append(n.room_id)
+                    rooms_id.append(n.room.id)
         else:
             pendientes.append(n)
-            rooms_id.append(n.room_id)
+            rooms_id.append(n.room.id)
 
 
-    return render(request, 'payment/list.html', {'paymentList': list,'rooms':rooms,'rooms':rooms_id, 'pendientes':pendientes ,'date':date})
+    return render(request, 'payment/list.html', {'paymentList': list,'rooms_id': rooms_id, 'pendientes': pendientes ,'date': date})
 
 
 def retur(request):
