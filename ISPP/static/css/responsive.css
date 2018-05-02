@@ -592,7 +592,7 @@ header nav .login_btn:hover{
 
 /*  footer  */
 footer{
-    padding-top: 100px;
+    padding-top: 20px;
     background: #95badf;
 }
 
@@ -693,6 +693,12 @@ footer ul li.about > ul > li a.instagram{
     width: 17px;
     height: 18px;
     background-position: -60px 0px;
+}
+footer ul li.about > ul > li a.email{
+    display: block;
+    width: 17px;
+    height: 18px;
+    background-position: -78px 0px;
 }
 
 footer .copyrights{

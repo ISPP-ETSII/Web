@@ -343,17 +343,23 @@ def base(request):
     return render(request, 'index.html', {'form': form})
 
 
+def terms_and_conditions(request):
+    return render(request, 'tyc.html')
+
+
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
+    user = room.temporal_owner
+    profile = Profile.objects.get(user=user)
+    profileProperties = get_user_details(profile)
     room_details = get_room_details(room)
-    user = request.user
     rentRequest = RentRequest.objects.all()
     flat = Flat.objects.get(id=room.belong_to.id)
     rooms = Room.objects.filter(belong_to=flat)
 
 
     return render(request, 'room/detail.html',
-                  {'room': room, 'rooms': rooms, 'user': user, 'rentRequest': rentRequest, 'roomDetails': room_details})
+                  {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details, 'userProperties': profileProperties, 'profile':profile})
 
 
 def roomReview(request, room_id):
@@ -365,8 +371,16 @@ def roomReview(request, room_id):
 def flatReview(request, flat_id):
     flat = Flat.objects.get(id=flat_id)
     rooms = Room.objects.filter(belong_to=flat)
+    user = request.user
+
+    show_review_button = False
+    for room in rooms:
+        if user == room.temporal_owner:
+            show_review_button = True
+            break
+
     review = FlatReview.objects.filter(flat=flat)
-    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms': rooms})
+    return render(request, 'flat/review.html', {'flatRev': review, 'flat': flat, 'rooms': rooms, 'showReviewButton': show_review_button})
 
 
 def userReview(request, flat_id, user_id):
@@ -374,7 +388,14 @@ def userReview(request, flat_id, user_id):
     flat = Flat.objects.get(id=flat_id)
     rooms = Room.objects.filter(belong_to=flat)
     review = UserReview.objects.filter(user=user)
-    return render(request, 'user/review.html', {'userRev': review, 'flat': flat, 'rooms': rooms})
+
+    show_review_button = False
+    for room in rooms:
+        if user == room.temporal_owner or user == flat.owner.user:
+            show_review_button = True
+            break
+
+    return render(request, 'user/review.html', {'userRev': review, 'flat': flat, 'userToReview': user, 'rooms': rooms, 'showReviewButton': show_review_button})
 
 
 @login_required

@@ -16,46 +16,44 @@
 </head>
 <body>
 
-	<section class="hero">
+	<section class="hero" style="height: 500px">
 		<header>
 			<div class="wrapper">
 				<a href="#" class="hamburger"></a>
+                <img src="/static/img/logo.png" style="width: 150px; float: left;"/>
 				<nav>
                      <ul>
-                         <li><a href="/{{ LANGUAGE_CODE }}">{% trans "Home" %}</a></li>
-                         <li><a href="/{{ LANGUAGE_CODE }}/flats">{% trans "Flats" %}</a></li>
+                         <li><form action="{% url 'set_language' %}" method="post">
+                             {% csrf_token %}
+                             {% get_current_language as LANGUAGE_CODE %}
+                             {% if LANGUAGE_CODE == 'en' %}
+                                 <input type="hidden" name="language" value="es">
+                                 <input type="submit" value="{% trans "Spanish" %}">
+                             {% else %}
+                                <input type="hidden" name="language" value="en">
+                                <input type="submit" value="{% trans "English" %}">
+                             {% endif %}
+                         </form></li>
+                         <li><a href="{% url 'base' %}">{% trans "Home" %}</a></li>
+                         <li><a href="{% url 'flatList' %}">{% trans "Flats" %}</a></li>
                          {% if user.is_authenticated %}
-                             <li><a href="/{{ LANGUAGE_CODE }}/requests/list">{% trans "Requests" %}</a></li>
-                             <li><a href="/{{ LANGUAGE_CODE }}/payments">{% trans "Payments" %}</a></li>
+                             <li><a href="{% url 'requestsList' %}">{% trans "Requests" %}</a></li>
+                             <li><a href="{% url 'paymentList' %}">{% trans "Payments" %}</a></li>
                          {% endif %}
                       </ul>
                     {% if user.is_authenticated %}
-                        <a href="/{{ LANGUAGE_CODE }}/profile/{{ user.id }}" class="login_btn">{% trans "Profile" %}</a>
+                        <a href="{% url 'showUserProperties' user.id %}" class="login_btn">{% trans "Profile" %}</a>
                         <a href="/logout" class="login_btn">{% trans "Log out" %}</a>
                     {% else %}
-                        <a href="/{{ LANGUAGE_CODE }}/login" class="login_btn">{% trans "Log in" %}</a>
-                        <a href="/{{ LANGUAGE_CODE }}/signup" class="login_btn">{% trans "Sign up" %}</a>
+                        <a href="{% url 'login' %}" class="login_btn">{% trans "Log in" %}</a>
+                        <a href="{% url 'signup' %}" class="login_btn">{% trans "Sign up" %}</a>
                     {% endif %}
-
-                    <form style="margin-top: 30px" action="{% url 'set_language' %}" method="post">
-                        {% csrf_token %}
-                        <input name="next" type="hidden" value="{{ redirect_to }}">
-                        <select name="language" onchange="this.form.submit()">
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            {% for language in languages %}
-                                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
-                                    {{ language.name_local }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </form>
 				</nav>
 			</div>
 		</header><!--  end header section  -->
 
 			<section class="caption">
-				<h2 class="caption">RentInPeace</h2>
+				<h2 class="caption" style="font-size: 150px; padding-top: 20px">RentInPeace</h2>
 				<h3 class="properties">FIND ROOMS TO DIE FOR</h3>
 			</section>
 	</section><!--  end hero section  -->
@@ -183,20 +181,21 @@
 	</section>	--><!--  end listing section  -->
 
 	<footer>
-		<div class="wrapper footer">
+		<div class="wrapper footer" style="height: 20px">
 			<ul>
 				<li class="about">
 					<p></p>
 					<ul>
 						<li><a href="https://twitter.com/rentinpeace" class="twitter" target="_blank"></a></li>
                         <li><a href="https://instagram.com/_rentinpeace_" class="instagram" target="_blank"></a></li>
+                        <li><a href="mailto:roombnbispp@gmail.com" class="email"></a></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
 
 		<div class="copyrights wrapper">
-			Copyright © 2018 <a href="/" target="_blank" class="ph_link" title="">RentInPeace</a>. All Rights Reserved.
+			Copyright © 2018 <a href="/" target="_blank" class="ph_link" title="">RentInPeace</a>. All Rights Reserved. <a href="/{{ LANGUAGE_CODE }}/tyc">{% trans "Terms and conditions" %}</a>.
 		</div>
 	</footer><!--  end footer  -->
 
