@@ -2,6 +2,7 @@ from RoomBnB.models import *
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
 User.objects.all().delete()
 User(username="damserfer", first_name="Damian", last_name="Serrano Fernandez", last_login=timezone.now(), password="damserfer123",email="damian@gmail.com").save()
 User(username="frasanvel1", first_name="Javier", last_name="Santos Velazquez", last_login=timezone.now(), password="frasanvel1123",email="frasanvel1@gmail.com").save()
@@ -34,14 +35,14 @@ UserProperties(profile_id=8,smoker=True,pets=True ,sporty=3,gamer=3,sociable=1, 
 
 
 Flat.objects.all().delete()
-Flat(title="Piso en Bami", address="Calle castillo de constantina nº3 sevilla", description="Piso amplio y luminoso", picture="",owner=1).save()
-Flat(title="Piso en la raza", address="Calle claudio boutelou", description="Piso amplio y luminoso", picture="",owner=2).save()
-Flat(title="Piso en las 3000", address="Calle utopia las 3000", description="Piso muy barato y blindado", picture="",owner=3).save()
-Flat(title="Piso los remedios", address="Calle virgen de lujan 4", description="Habitaciones grandes con balcones", picture="",owner=4).save()
-Flat(title="Piso en Triana", address="Calle manuel arellano n 1 sevilla", description="Piso acogedor y moderno", picture="",owner=5).save()
-Flat(title="Piso en Viapol", address="Calle Santo Rey 5", description="Cerca de la universidad", picture="",owner=6).save()
-Flat(title="Piso en Torneo", address="Calle torneo", description="Cerca de la estacion plaza de armas", picture="",owner=7).save()
-Flat(title="Piso en la cartuja", address="Calle Albert Einstein 4", description="Cerca de la universidad tecnica", picture="",owner=8).save()
+Flat(title="Piso en Bami", address="Calle castillo de constantina nº3 sevilla", description="Piso amplio y luminoso", picture="/ISPP/static/fotos/piso1.jpg",owner_id=1).save()
+Flat(title="Piso en la raza", address="Calle claudio boutelou", description="Piso amplio y luminoso", picture="/ISPP/static/fotos/piso2.jpg",owner_id=2).save()
+Flat(title="Piso en las 3000", address="Calle utopia las 3000", description="Piso muy barato y blindado", picture="/ISPP/static/fotos/piso3.jpg",owner_id=3).save()
+Flat(title="Piso los remedios", address="Calle virgen de lujan 4", description="Habitaciones grandes con balcones", picture="/ISPP/static/fotos/piso4.jpg",owner_id=4).save()
+Flat(title="Piso en Triana", address="Calle manuel arellano n 1 sevilla", description="Piso acogedor y moderno", picture="/ISPP/static/fotos/piso5.jpg",owner_id=5).save()
+Flat(title="Piso en Viapol", address="Calle Santo Rey 5", description="Cerca de la universidad", picture="/ISPP/static/fotos/piso6.jpg",owner_id=6).save()
+Flat(title="Piso en Torneo", address="Calle torneo", description="Cerca de la estacion plaza de armas", picture="/ISPP/static/fotos/piso7.jpg",owner_id=7).save()
+Flat(title="Piso en la cartuja", address="Calle Albert Einstein 4", description="Cerca de la universidad tecnica", picture="/ISPP/static/fotos/piso8.jpg",owner_id=8).save()
 
 
 FlatProperties.objects.all().delete()
@@ -56,55 +57,55 @@ FlatProperties(flat_id=8, elevator=True).save()
 
 
 Room.objects.all().delete()
-Room(description="Habitacion amueblada con escritorio", price=280, picture="",temporal_owner=5,belong_to_id=1).save()
-Room(description="Habitacion con dos escritorios", price=280, picture="",temporal_owner=6,belong_to_id=1).save()
+Room(description="Habitacion amueblada con escritorio", price=280, picture="/ISPP/static/fotos/habitacion2.jpg",temporal_owner_id=5,belong_to_id=1).save()
+Room(description="Habitacion con dos escritorios", price=280, picture="/ISPP/static/fotos/habitacion1.jpg",temporal_owner_id=6,belong_to_id=1).save()
 
-Room(description="Habitacion amplia", price=300, picture="",temporal_owner=7,belong_to_id=2).save()
-Room(description="Habitacion con  armario", price=300, picture="",temporal_owner=8,belong_to_id=2).save()
+Room(description="Habitacion amplia", price=300, picture="/ISPP/static/fotos/habitacion4.jpg",temporal_owner_id=7,belong_to_id=2).save()
+Room(description="Habitacion con  armario", price=300, picture="/ISPP/static/fotos/habitacion6.jpg",temporal_owner_id=8,belong_to_id=2).save()
 
-Room(description="Habitacion con television", price=290, picture="",belong_to_id=3).save()
-Room(description="Habitacion bien amueblada", price=290, picture="",belong_to_id=3).save()
+Room(description="Habitacion con television", price=290, picture="/ISPP/static/fotos/habitacion11.jpg",belong_to_id=3).save()
+Room(description="Habitacion bien amueblada", price=290, picture="/ISPP/static/fotos/habitacion5.jpg",belong_to_id=3).save()
 
-Room(description="Habitacion pequeña simple", price=250, picture="",belong_to_id=4).save()
-Room(description="Habitacion rural", price=250, picture="",belong_to_id=4).save()
+Room(description="Habitacion pequeña simple", price=250, picture="/ISPP/static/fotos/habitacion3.jpg",belong_to_id=4).save()
+Room(description="Habitacion rural", price=250, picture="/ISPP/static/fotos/habitacion8.jpg",belong_to_id=4).save()
 
-Room(description="Habitacion tematica ", price=270, picture="",belong_to_id=5).save()
-Room(description="Habitacion con cama de matrimonio", price=275, picture="",belong_to_id=5).save()
+Room(description="Habitacion tematica ", price=270, picture="/ISPP/static/fotos/habitacion9.jpg",belong_to_id=5).save()
+Room(description="Habitacion con cama de matrimonio", price=275, picture="/ISPP/static/fotos/habitacion16.jpg",belong_to_id=5).save()
 
-Room(description="Habitacion con balcon", price=280, picture="",temporal_owner=6,belong_to_id=6).save()
-Room(description="Habitacion con baño propio", price=300, picture="",belong_to_id=6).save()
+Room(description="Habitacion con balcon", price=280, picture="/ISPP/static/fotos/habitacion10.jpg",belong_to_id=6).save()
+Room(description="Habitacion con baño propio", price=300, picture="/ISPP/static/fotos/habitacion7.jpg",belong_to_id=6).save()
 
-Room(description="Habitacion simple", price=245, picture="",belong_to_id=7).save()
-Room(description="Habitacion hogareña", price=245, picture="",belong_to_id=7).save()
+Room(description="Habitacion simple", price=245, picture="/ISPP/static/fotos/habitacion12.jpg",belong_to_id=7).save()
+Room(description="Habitacion hogareña", price=245, picture="/ISPP/static/fotos/habitacion13.jpg",belong_to_id=7).save()
 
-Room(description="Habitacion con buenas vistas", price=300, picture="",belong_to_id=8).save()
-Room(description="Habitacion junto a la cocina", price=300, picture="",belong_to_id=8).save()
+Room(description="Habitacion con buenas vistas", price=300, picture="/ISPP/static/fotos/habitacion14.jpg",belong_to_id=8).save()
+Room(description="Habitacion junto a la cocina", price=300, picture="/ISPP/static/fotos/habitacion15.jpg",belong_to_id=8).save()
 
 
 
 RoomProperties.objects.all().delete()
-RoomProperties(room_id=1, balcony=True, window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=2, balcony=True, window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=3,  window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=4, window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=5,  air_conditioner=True, bed=True).save()
-RoomProperties(room_id=6, balcony=True, window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=7, balcony=True, window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=8, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=9, balcony=True, window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=10, balcony=True, window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=11, balcony=True,  air_conditioner=True, bed=True).save()
-RoomProperties(room_id=12,  window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=13, balcony=True,  air_conditioner=True, bed=True).save()
-RoomProperties(room_id=14, balcony=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=15, balcony=True, window=True, air_conditioner=True, bed=True).save()
-RoomProperties(room_id=16,  window=True, air_conditioner=True, bed=True).save()
+RoomProperties(room_id=1, balcony=True, window=True, air_conditioner=True).save()
+RoomProperties(room_id=2, balcony=True, window=True, air_conditioner=True).save()
+RoomProperties(room_id=3,  window=True, air_conditioner=True ).save()
+RoomProperties(room_id=4, window=True, air_conditioner=True).save()
+RoomProperties(room_id=5,  air_conditioner=True).save()
+RoomProperties(room_id=6, balcony=True, window=True, air_conditioner=True).save()
+RoomProperties(room_id=7, balcony=True, window=True, air_conditioner=True).save()
+RoomProperties(room_id=8, air_conditioner=True, bed=2).save()
+RoomProperties(room_id=9, balcony=True, window=True, air_conditioner=True, bed=2).save()
+RoomProperties(room_id=10, balcony=True, window=True, air_conditioner=True, bed=1).save()
+RoomProperties(room_id=11, balcony=True,  air_conditioner=True).save()
+RoomProperties(room_id=12,  window=True, air_conditioner=True).save()
+RoomProperties(room_id=13, balcony=True,  air_conditioner=True).save()
+RoomProperties(room_id=14, balcony=True, air_conditioner=True).save()
+RoomProperties(room_id=15, balcony=True, window=True, air_conditioner=True).save()
+RoomProperties(room_id=16,  window=True, air_conditioner=True).save()
 
 Contract.objects.all().delete()
-Contract(text="Contrato de temporada", date_signed="10/02/2017", landlord_id=1, tenant=5, room_id=1).save()
-Contract(text="Contrato de temporada", date_signed="10/02/2017", landlord_id=1, tenant=6, room_id=2).save()
-Contract(text="Contrato de temporada", date_signed="10/02/2017", landlord_id=2, tenant=7, room_id=3).save()
-Contract(text="Contrato de temporada", date_signed="10/02/2017", landlord_id=2, tenant=8, room_id=4).save()
+Contract(text="Contrato de temporada", date_signed="10/02/2017", landlord_id=1, tenant_id=5, room_id=1).save()
+Contract(text="Contrato de temporada", date_signed="10/02/2017", landlord_id=1, tenant_id=6, room_id=2).save()
+Contract(text="Contrato de temporada", date_signed="10/02/2017", landlord_id=2, tenant_id=7, room_id=3).save()
+Contract(text="Contrato de temporada", date_signed="10/02/2017", landlord_id=2, tenant_id=8, room_id=4).save()
 
 UserReview.objects.all().delete()
 UserReview(user_id=1, title="Buen Casero", description="Casero amable, siempre pendiente de todos los problemas posibles", date="08/08/2017", rating=5).save()

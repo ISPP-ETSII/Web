@@ -533,3 +533,4 @@ def view_that_asks_for_money(request, room_id):
 
 
 
+
