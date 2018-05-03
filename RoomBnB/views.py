@@ -346,17 +346,22 @@ def terms_and_conditions(request):
 
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
-    user = room.temporal_owner
-    profile = Profile.objects.get(user=user)
-    profileProperties = get_user_details(profile)
     room_details = get_room_details(room)
     rentRequest = RentRequest.objects.all()
     flat = Flat.objects.get(id=room.belong_to.id)
     rooms = Room.objects.filter(belong_to=flat)
 
+    if room.temporal_owner is None:
+        return render(request, 'room/detail.html',
+                      {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details})
+    else:
+        user = room.temporal_owner
+        profile = Profile.objects.get(user=user)
+        profileProperties = get_user_details(profile)
 
-    return render(request, 'room/detail.html',
-                  {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details, 'userProperties': profileProperties, 'profile':profile})
+        return render(request, 'room/detail.html',
+                      {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details,
+                       'userProperties': profileProperties, 'profile': profile})
 
 
 def roomReview(request, room_id):
