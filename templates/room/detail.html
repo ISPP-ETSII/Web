@@ -5,13 +5,19 @@
 
 {% block content %}
 
-    <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
-
     <h1>{{ room.description }}</h1>
 
-    <h2>{{ room.price }} €</h2>
+    <section class="listings">
+        <div class="wrapper">
+             <ul class="properties_list">
+                 <li>
+                     <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
+                     <span class="price">{{ room.price }} €</span>
+                 </li>
+             </ul>
+        </div>
+    </section>
 
-    <br>
     <h2>{% trans "Details" %}</h2>
 
     <div class="pure-button-group" role="group">

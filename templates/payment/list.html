@@ -38,13 +38,19 @@
 
         {% if paymentList or pendientes %}
 
-            <ul>
-            {% for room in rooms %}
-                <li>{% trans "Contract of the room" %}: <a style="color: #1a1a1a" href="{% url 'roomDetail' room.id %}">{{ room.description }}</a><br><br><button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment' room.id %}'">{% trans "Make payment" %}</button></li>
-                <br>
-            {% endfor %}
+            <table class="pure-table">
 
-            </ul>
+                {% for room in rooms %}
+
+                    <tr>
+                        <td>{% trans "Contract of the room" %}: <a style="color: #1a1a1a" href="{% url 'roomDetail' room.id %}">{{ room.description }}</a></td>
+                        <td><button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment' room.id %}'">{% trans "Make payment" %}</button></td>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
             <br>
             {% for l in paymentList %}
                     {%  if l.date.month !=  date  %}
