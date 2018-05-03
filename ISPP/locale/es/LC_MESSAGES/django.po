@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-03 14:21+0000\n"
+"POT-Creation-Date: 2018-05-03 19:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -221,7 +221,7 @@ msgstr "Firmar un contrato"
 msgid "Are you sure you want to sign the contract?"
 msgstr "¿Estás seguro de que quieres firmar el contrato?"
 
-#: templates/contract/create.html:62 templates/request/list.html:50
+#: templates/contract/create.html:62 templates/request/list.html:52
 msgid "Sign"
 msgstr "Firmar"
 
@@ -360,11 +360,11 @@ msgstr "No se han realizado pagos."
 msgid "Pending payment"
 msgstr "Pagos pendientes"
 
-#: templates/payment/list.html:45
+#: templates/payment/list.html:43
 msgid "Contract of the room"
 msgstr "Contrato de la habitación"
 
-#: templates/payment/list.html:45 templates/payment/list.html:62
+#: templates/payment/list.html:43 templates/payment/list.html:62
 #: templates/room/detail.html:152
 msgid "Make payment"
 msgstr "Realizar pago"
@@ -397,12 +397,16 @@ msgstr "Al registrarme acepto los términos y condiciones de RentInPeace"
 msgid "Requests pending to answer"
 msgstr "Solicitudes pendientes de responder"
 
-#: templates/request/list.html:15 templates/request/list.html:35
+#: templates/request/list.html:13
+msgid "Request received on"
+msgstr "Solicitud recibida el"
+
+#: templates/request/list.html:15 templates/request/list.html:36
 msgid "View user reviews"
 msgstr "Ver opiniones del usuario"
 
-#: templates/request/list.html:16 templates/request/list.html:36
-#: templates/request/list.html:51
+#: templates/request/list.html:16 templates/request/list.html:37
+#: templates/request/list.html:53
 msgid "View room"
 msgstr "Ver habitación"
 
@@ -414,19 +418,23 @@ msgstr "Aceptar"
 msgid "Deny"
 msgstr "Rechazar"
 
-#: templates/request/list.html:25 templates/request/list.html:41
+#: templates/request/list.html:26 templates/request/list.html:43
 msgid "No requests are available."
 msgstr "No hay solicitudes disponibles."
 
-#: templates/request/list.html:28
+#: templates/request/list.html:29
 msgid "Requests made by me"
 msgstr "Solicitudes realizadas por mi"
 
-#: templates/request/list.html:44
+#: templates/request/list.html:34
+msgid "Request made on"
+msgstr "Solicitud realizada el"
+
+#: templates/request/list.html:46
 msgid "Contracts pending to be signed"
 msgstr "Contratos pendientes de firmar"
 
-#: templates/request/list.html:56
+#: templates/request/list.html:58
 msgid "No pending contracts."
 msgstr "No hay contratos pendientes."
 

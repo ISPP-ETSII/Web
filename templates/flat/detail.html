@@ -71,7 +71,7 @@
                     {% for room in roomNotAvailableList %}
                          <li>
                             <a href="{% url 'roomDetail' room.id %}">
-                                <img src="/pics/profile/generic/default.png" alt="" title=""/>
+                                <img src="https://ui-avatars.com/api/?name={{ room.temporal_owner.username }}&size=256&background=fff3e0" class="property_img" alt="" title=""/>
                             </a>
 
                              <div class="property_details">
