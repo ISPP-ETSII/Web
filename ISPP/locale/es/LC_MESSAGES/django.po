@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 22:13+0000\n"
+"POT-Creation-Date: 2018-05-03 09:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ISPP/settings.py:140 templates/base.html:33 templates/base_home.html:33
+#: ISPP/settings.py:140 templates/base.html:34 templates/base_home.html:34
 msgid "English"
 msgstr "Inglés"
 
-#: ISPP/settings.py:141 templates/base.html:30 templates/base_home.html:30
+#: ISPP/settings.py:141 templates/base.html:31 templates/base_home.html:31
 msgid "Spanish"
 msgstr "Español"
 
@@ -171,51 +171,55 @@ msgstr "Ninguna"
 msgid "Bed"
 msgstr "Cama"
 
-#: templates/base.html:36 templates/base_home.html:36
+#: templates/base.html:37 templates/base_home.html:37
 msgid "Home"
 msgstr "Inicio"
 
-#: templates/base.html:37 templates/base_home.html:37
+#: templates/base.html:38 templates/base_home.html:38
 #: templates/flat/list.html:4
 msgid "Flats"
 msgstr "Pisos"
 
-#: templates/base.html:39 templates/base_home.html:39
+#: templates/base.html:40 templates/base_home.html:40
 #: templates/request/list.html:4
 msgid "Requests"
 msgstr "Solicitudes"
 
-#: templates/base.html:40 templates/base_home.html:40
+#: templates/base.html:41 templates/base_home.html:41
 #: templates/payment/list.html:4
 msgid "Payments"
 msgstr "Pagos"
 
-#: templates/base.html:44 templates/base_home.html:44
+#: templates/base.html:45 templates/base_home.html:45
 #: templates/profile/detail.html:4
 msgid "Profile"
 msgstr "Perfil"
 
-#: templates/base.html:45 templates/base_home.html:45
+#: templates/base.html:46 templates/base_home.html:46
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: templates/base.html:47 templates/base_home.html:47
+#: templates/base.html:48 templates/base_home.html:48
 #: templates/registration/login.html:4 templates/registration/login.html:10
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-#: templates/base.html:48 templates/base_home.html:48
+#: templates/base.html:49 templates/base_home.html:49
 #: templates/registration/signup.html:5 templates/registration/signup.html:11
 msgid "Sign up"
 msgstr "Registrarse"
 
-#: templates/base.html:199 templates/base_home.html:197 templates/tyc.html:4
+#: templates/base.html:200 templates/base_home.html:198 templates/tyc.html:4
 msgid "Terms and conditions"
 msgstr "Términos y condiciones"
 
 #: templates/contract/create.html:4
 msgid "Sign a contract"
 msgstr "Firmar un contrato"
+
+#: templates/contract/create.html:62
+msgid "Are you sure you want to sign the contract?"
+msgstr "¿Estás seguro de que quieres firmar el contrato?"
 
 #: templates/contract/create.html:62 templates/request/list.html:50
 msgid "Sign"
@@ -332,11 +336,7 @@ msgstr "Buscar un piso"
 msgid "Search by name, description or address"
 msgstr "Buscar por nombre, descripción o dirección"
 
-#: templates/index.html:26
-msgid "Properties"
-msgstr "Propiedades"
-
-#: templates/index.html:41
+#: templates/index.html:34
 msgid "Search"
 msgstr "Buscar"
 
@@ -442,3 +442,5 @@ msgstr "Mostrar opiniones del usuario"
 msgid "Write an user review"
 msgstr "Escribir una opinión de usuario"
 
+#~ msgid "Properties"
+#~ msgstr "Propiedades"
