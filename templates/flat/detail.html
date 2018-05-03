@@ -44,6 +44,7 @@
                                 <h1>
                                     <a href="{% url 'roomDetail' room.id %}">{{ room.description }}</a>
                                 </h1>
+
                                 {% if room.temporal_owner %}
                                     <button class="pure-button" onclick="location.href='{% url 'userReview' flat.id room.temporal_owner_id%}'">{% trans "Tenant's opinions" %}</button>
                                 {% else %}
@@ -61,7 +62,7 @@
 
     {% if roomNotAvailableList %}
 
-        <h2>{% trans "Rented rooms" %}</h2>
+        <h2>{% trans "Tenants" %}</h2>
 
         <section class="listings">
             <div class="wrapper">
@@ -70,12 +71,15 @@
                     {% for room in roomNotAvailableList %}
                          <li>
                             <a href="{% url 'roomDetail' room.id %}">
-                                <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
+                                <img src="/pics/profile/generic/default.png" alt="" title=""/>
                             </a>
-                             <span class="price">{{ room.price }} €</span>
+
                              <div class="property_details">
                                 <h1>
                                     <a href="{% url 'roomDetail' room.id %}">{{ room.description }}</a>
+                                </h1>
+                                <h1>
+                                    {% trans "Rented by:" %} <a href="{% url 'showUserProperties' room.temporal_owner.id %}">{{ room.temporal_owner.username }}</a>
                                 </h1>
                                 {% if room.temporal_owner %}
                                     <button class="pure-button" onclick="location.href='{% url 'userReview' flat.id room.temporal_owner_id%}'">{% trans "Tenant's opinions" %}</button>
@@ -96,6 +100,15 @@
         <button class="pure-button pure-button-primary" onclick="location.href='{% url 'roomCreate' flat.id %}'">{% trans "Create room" %}</button>
         <br><br>
     {% endif %}
+
+     <h2>{% trans "Localization" %}</h2>
+    <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key={{mapkey}}&q={{direccion}}">
+    </iframe>
+
 
     <br>
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatReview' flat.id %}'">{% trans "Flat reviews" %}</button>

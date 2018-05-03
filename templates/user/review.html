@@ -27,11 +27,10 @@
     </table>
     <br>
 
-    {% for room in rooms %}
-        {% if user == room.temporal_owner or user == flat.owner.user %}
-            <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' flat.id flat.owner.user.id %}'">{% trans "Write a review" %}</button>
-        {% endif %}
-    {% endfor %}
+    {% if showReviewButton %}
+        <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeUserReview' flat.id userToReview.id %}'">{% trans "Write a review" %}</button>
+    {% endif %}
+
 
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
