@@ -98,6 +98,15 @@
         <br><br>
     {% endif %}
 
+     <h2>{% trans "Localization" %}</h2>
+    <iframe
+        width="600"
+        height="450"
+        frameborder="0" style="border:0"
+        src="https://www.google.com/maps/embed/v1/place?key={{mapkey}}&q={{direccion}}">
+    </iframe>
+
+
     <br>
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'flatReview' flat.id %}'">{% trans "Flat reviews" %}</button>
     <button class="pure-button pure-button-primary" onclick="location.href='{% url 'userReview' flat.id flat.owner.user.id %}'">{% trans "Owner reviews" %}</button>
