@@ -6,39 +6,71 @@
 {% block content %}
 
     {% if user.is_authenticated %}
-
+        <h2>{% trans "Payment made" %}</h2>
         {% if paymentList %}
+            {% for l in paymentList %}
+                    {%  if l.date.month ==  date  %}
 
-            <section class="listings">
+                                <table class="pure-table">
 
-                <div class="wrapper">
-
-                    <ul class="properties_list">
-                        <table style="width:100%">
-
-                            <tr>
-                                <th>Amount</th>
-                                <th>Date</th>
-                            </tr>
-                        {% for payment in paymentList %}
-
-
-                          <tr>
-                            <td>{{ payment.amount }}</td>
-                            <td>{{ payment.date }}</td>
-
-                          </tr>
+                                    <tr>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ l.amount }}</td>
+                                        <td>{{ l.date }}</td>
+                                    </tr>
 
 
-                        {% endfor %}
-                        </table>
-                    </ul>
-                </div>
-            </section>
+                                </table>
 
+
+
+                    {%  endif %}
+            {% endfor %}
         {% else %}
-            <p>{% trans "No payments are available." %}</p>
+            <p>{% trans "No payments made are available." %}</p>
         {% endif %}
 
+
+        <h2>{% trans "Pending payment" %}</h2>
+
+        {% if paymentList or pendientes %}
+
+
+            <table class="pure-table">
+                <tr><td>
+            {% for r in rooms_id %}
+                {% trans "Contract of the room" %}: {{ r }}</td><td> <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment' r   %}'">{% trans "Make payment" %}</button><br>
+            {% endfor %}
+            </td></tr>
+            </table><br>
+            {% for l in paymentList %}
+                    {%  if l.date.month !=  date  %}
+
+                                <table class="pure-table">
+
+                                    <tr>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th colspan="2"></th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ l.amount }}</td>
+                                        <td>{{ l.date }} </td>
+                                        <td><button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment'  l.contract.room.id %}'">{% trans "Make payment" %}</button></td>
+                                    </tr>
+                                </table>
+
+
+                    {%  endif %}
+            {% endfor %}
+        {% else %}
+            <p>{% trans "No pending payments are available." %}</p>
+        {% endif %}
     {% endif %}
+
+
+
 {% endblock %}

@@ -1,3 +1,6 @@
+import os
+from datetime import timezone
+
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseRedirect
@@ -120,7 +123,23 @@ def detail(request, flat_id):
     flat_details = get_flat_details(flat)
     availableRooms = Room.objects.filter(belong_to=flat, temporal_owner=None)
     notAvailableRooms = set(Room.objects.filter(belong_to=flat)) - set(availableRooms)
-    return render(request, 'flat/detail.html', {'flat': flat, 'flatDetails': flat_details, 'roomAvailableList':availableRooms, 'roomNotAvailableList': notAvailableRooms})
+    direccion= flat.address.split() #Separo la cadena en palabras creando una lista
+    direc= '+'.join(direccion) #Uno la lista con +  porque asi lo tiene que recibir la url de google maps
+
+    #separo los numeros de las palabras para no mostrar la direccion exacta, solamente la calle
+    di=[]
+    nu=[]
+    for d in direc:
+        try:
+            nu.append(float(d))
+        except ValueError:
+            di.append(d)
+    #Este metodo me a separado cada palabra en un caracter
+    direcc=''.join(di) # me junta los caracteres por palabras
+
+    mapkey= os.environ.get('MAPKEY')
+
+    return render(request, 'flat/detail.html', {'mapkey':mapkey,'direccion':direcc ,'flat': flat, 'flatDetails': flat_details, 'roomAvailableList':availableRooms, 'roomNotAvailableList': notAvailableRooms})
 
 
 @login_required
@@ -155,7 +174,6 @@ def editFlatProperties(request,flat_id):
         # create a form instance and populate it with data from the request:
         form = FlatPropertiesForm(request.POST)
         # check whether it's valid:
-        print("prueba3")
         if form.is_valid():
 
             flat = Flat.objects.get(id=flat_id)
@@ -336,6 +354,7 @@ def detailRoom(request, room_id):
     flat = Flat.objects.get(id=room.belong_to.id)
     rooms = Room.objects.filter(belong_to=flat)
 
+
     return render(request, 'room/detail.html',
                   {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details, 'userProperties': profileProperties, 'profile':profile})
 
@@ -388,7 +407,7 @@ def writeReviewUser(request, user_id, flat_id):
             return HttpResponseRedirect('/userReview/' + str(flat_id) + '/' + str(user_id))
     else:
         form = ReviewForm()
-    print(form.errors)
+
     return render(request, 'user/writeReview.html', {'form': form, 'flatid': flat_id, 'userid': user_id})
 
 
@@ -404,7 +423,7 @@ def writeReviewRoom(request, room_id):
             return HttpResponseRedirect('/roomReview/' + str(room_id))
     else:
         form = ReviewForm()
-    print(form.errors)
+
     return render(request, 'room/writeReview.html', {'form': form, 'roomid': room_id})
 
 
@@ -420,7 +439,7 @@ def writeReviewFlat(request, flat_id):
             return HttpResponseRedirect('/flatReview/' + str(flat_id))
     else:
         form = ReviewForm()
-    print(form.errors)
+
     return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
 
 
@@ -450,13 +469,28 @@ def signContract(request, room_id):
 
 @login_required
 def paymentList(request):
-    contracts=Contract(landlord=request.user)
+    contracts=Contract.objects.all().filter(tenant=request.user)
+    paymentList = Payment.objects.all()
+    date=timezone.now().month
+    list=[]
+    pendientes=[]
+    rooms_id=[]
 
-    paymentList = Payment.objects.all().filter(contract=contracts)
 
-    context = {'paymentList': paymentList}
+    for n in contracts:
+        if len(paymentList)!=0:
+            for pay in paymentList:
+                if pay.contract == n:
+                    list.append(pay)
+                else:
+                    pendientes.append(n)
+                    rooms_id.append(n.room.id)
+        else:
+            pendientes.append(n)
+            rooms_id.append(n.room.id)
 
-    return render(request, 'payment/list.html', context)
+
+    return render(request, 'payment/list.html', {'paymentList': list,'rooms_id': rooms_id, 'pendientes': pendientes ,'date': date})
 
 
 def retur(request):
@@ -465,7 +499,6 @@ def retur(request):
 @csrf_exempt
 def paypal_response(request, room_id):
     if request.POST.get('payment_status') == 'Completed':
-        print('Entra pago')
         amount = request.POST.get('mc_gross')
         room = Room.objects.get(id=room_id)
         contract = Contract.objects.filter(room=room)[0]
@@ -494,7 +527,9 @@ def view_that_asks_for_money(request, room_id):
 
     # Create the instance.
     form = PayPalPaymentsForm(initial=paypal_dict)
-    # context = {"form": form}
+    context = {"form": form}
 
-    return render(request, "paypal/payment.html", {'form': form})
+    return render(request, "paypal/payment.html", context)
+
+
 
