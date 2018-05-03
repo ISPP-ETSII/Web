@@ -479,7 +479,7 @@ def paymentList(request):
     date=timezone.now().month
     list=[]
     pendientes=[]
-    rooms_id=[]
+    rooms=[]
 
 
     for n in contracts:
@@ -489,13 +489,13 @@ def paymentList(request):
                     list.append(pay)
                 else:
                     pendientes.append(n)
-                    rooms_id.append(n.room.id)
+                    rooms.append(n.room)
         else:
             pendientes.append(n)
-            rooms_id.append(n.room.id)
+            rooms.append(n.room)
 
 
-    return render(request, 'payment/list.html', {'paymentList': list,'rooms_id': rooms_id, 'pendientes': pendientes ,'date': date})
+    return render(request, 'payment/list.html', {'paymentList': list,'rooms': rooms, 'pendientes': pendientes ,'date': date})
 
 
 def retur(request):
