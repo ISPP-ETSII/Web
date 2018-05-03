@@ -59,7 +59,7 @@ _________________________________________
         {{ form.as_p }}
 
         <br><br>
-        <input class="pure-button pure-button-primary" type="submit" value="{% trans "Sign" %}" />
+        <input class="pure-button pure-button-primary" onclick="return confirm('{% trans "Are you sure you want to sign the contract?" %}')" type="submit" value="{% trans "Sign" %}" />
     </form>
 
 {% endblock %}
