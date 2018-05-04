@@ -40,11 +40,13 @@
 
 
             <table class="pure-table">
-                <tr><td>
+
             {% for r in rooms_id %}
+                <tr><td>
                 {% trans "Contract of the room" %}: {{ r }}</td><td> <button class="pure-button pure-button-primary" onclick="location.href='{% url 'payment' r   %}'">{% trans "Make payment" %}</button><br>
+                </td></tr>
             {% endfor %}
-            </td></tr>
+
             </table><br>
             {% for l in paymentList %}
                     {%  if l.date.month !=  date  %}
