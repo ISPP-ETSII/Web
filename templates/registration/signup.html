@@ -4,8 +4,10 @@
 {% block content %}
   <h2>{% trans "Sign up" %}</h2>
   <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">{% trans "Sign up" %}</button>
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <p><b><a style="color: #FFFFFF" href="/{{ LANGUAGE_CODE }}/tyc" target="_blank">{% trans "By registering I accept the terms and conditions of RentInPeace" %}</a></b></p>
+      <button type="submit">{% trans "Sign up" %}</button>
   </form>
 {% endblock %}

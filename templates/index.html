@@ -20,22 +20,15 @@
                             {% endif %}
                         {% endfor %}
 
-                        <table class="pure-table">
-                            <thead>
-                                <tr>
-                                    <th>{% trans "Properties" %}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                            <div>
                                 {% for field in form %}
                                     <tr>
                                         {% if field.name != 'keyword' %}
-                                            <th>{{ field }} {{ field.label }}</th>
+                                            <h2 style="font-size: 20px">{{ field }} {{ field.label }}</h2>
                                         {% endif %}
                                     </tr>
                                 {% endfor %}
-                            </tbody>
-                        </table>
+                            </div>
 
                         <br><br>
                         <p><input class="pure-button pure-button-primary" type="submit" value="{% trans "Search" %}" /></p>

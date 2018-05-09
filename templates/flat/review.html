@@ -27,7 +27,7 @@
     </table>
     <br>
 
-    {% if res == 1  %}
+    {% if showReviewButton %}
         <button class="pure-button pure-button-primary" onclick="location.href='{% url 'writeFlatReview' flat.id %}'">{% trans "Write a review" %}</button>
     {% endif %}
 
