@@ -535,6 +535,3 @@ def view_that_asks_for_money(request, room_id):
     context = {"form": form}
 
     return render(request, "paypal/payment.html", context)
-
-
-

@@ -1,916 +1,2035 @@
-[
-  {
-    "model": "RoomBnB.userproperties",
-    "pk": 1,
-    "fields": {
-      "profile": 1,
-      "smoker": true,
-      "pets": true,
-      "sporty": "1",
-      "gamer": "1",
-      "sociable": "1",
-      "degree": "1"
-    }
-  },
-  {
-    "model": "RoomBnB.userproperties",
-    "pk": 2,
-    "fields": {
-      "profile": 2,
-      "smoker": false,
-      "pets": true,
-      "sporty": "3",
-      "gamer": "1",
-      "sociable": "5",
-      "degree": "5"
-    }
-  },
-  {
-    "model": "RoomBnB.userproperties",
-    "pk": 3,
-    "fields": {
-      "profile": 3,
-      "smoker": true,
-      "pets": true,
-      "sporty": "5",
-      "gamer": "5",
-      "sociable": "1",
-      "degree": "5"
-    }
-  },
-  {
-    "model": "RoomBnB.userproperties",
-    "pk": 4,
-    "fields": {
-      "profile": 4,
-      "smoker": false,
-      "pets": false,
-      "sporty": "5",
-      "gamer": "1",
-      "sociable": "5",
-      "degree": "3"
-    }
-  },
-  {
-    "model": "RoomBnB.flat",
-    "pk": 1,
-    "fields": {
-      "title": "Piso1",
-      "address": "Bami",
-      "description": "Piso luminoso",
-      "picture": "flat\/generic\/default.jpg",
-      "owner": 1
-    }
-  },
-  {
-    "model": "RoomBnB.flat",
-    "pk": 2,
-    "fields": {
-      "title": "Piso2",
-      "address": "Palmera",
-      "description": "Piso con piscina",
-      "picture": "flat\/generic\/default.jpg",
-      "owner": 1
-    }
-  },
-  {
-    "model": "RoomBnB.flatproperties",
-    "pk": 1,
-    "fields": {
-      "flat": 1,
-      "elevator": false,
-      "washdisher": false
-    }
-  },
-  {
-    "model": "RoomBnB.flatproperties",
-    "pk": 2,
-    "fields": {
-      "flat": 2,
-      "elevator": true,
-      "washdisher": true
-    }
-  },
-  {
-    "model": "RoomBnB.roomproperties",
-    "pk": 1,
-    "fields": {
-      "room": 1,
-      "balcony": true,
-      "window": true,
-      "air_conditioner": true,
-      "bed": "1"
-    }
-  },
-  {
-    "model": "RoomBnB.roomproperties",
-    "pk": 2,
-    "fields": {
-      "room": 2,
-      "balcony": true,
-      "window": true,
-      "air_conditioner": true,
-      "bed": "2"
-    }
-  },
-  {
-    "model": "RoomBnB.roomproperties",
-    "pk": 3,
-    "fields": {
-      "room": 3,
-      "balcony": true,
-      "window": true,
-      "air_conditioner": false,
-      "bed": "2"
-    }
-  },
-  {
-    "model": "RoomBnB.roomproperties",
-    "pk": 4,
-    "fields": {
-      "room": 4,
-      "balcony": false,
-      "window": true,
-      "air_conditioner": true,
-      "bed": "1"
-    }
-  },
-  {
-    "model": "RoomBnB.payment",
-    "pk": 1,
-    "fields": {
-      "amount": 200,
-      "date": "2018-04-12",
-      "contract": 1
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 1,
-    "fields": {
-      "name": "Can add log entry",
-      "content_type": 1,
-      "codename": "add_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 2,
-    "fields": {
-      "name": "Can change log entry",
-      "content_type": 1,
-      "codename": "change_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 3,
-    "fields": {
-      "name": "Can delete log entry",
-      "content_type": 1,
-      "codename": "delete_logentry"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 4,
-    "fields": {
-      "name": "Can add permission",
-      "content_type": 2,
-      "codename": "add_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 5,
-    "fields": {
-      "name": "Can change permission",
-      "content_type": 2,
-      "codename": "change_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 6,
-    "fields": {
-      "name": "Can delete permission",
-      "content_type": 2,
-      "codename": "delete_permission"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 7,
-    "fields": {
-      "name": "Can add group",
-      "content_type": 3,
-      "codename": "add_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 8,
-    "fields": {
-      "name": "Can change group",
-      "content_type": 3,
-      "codename": "change_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 9,
-    "fields": {
-      "name": "Can delete group",
-      "content_type": 3,
-      "codename": "delete_group"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 10,
-    "fields": {
-      "name": "Can add user",
-      "content_type": 4,
-      "codename": "add_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 11,
-    "fields": {
-      "name": "Can change user",
-      "content_type": 4,
-      "codename": "change_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 12,
-    "fields": {
-      "name": "Can delete user",
-      "content_type": 4,
-      "codename": "delete_user"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 13,
-    "fields": {
-      "name": "Can add content type",
-      "content_type": 5,
-      "codename": "add_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 14,
-    "fields": {
-      "name": "Can change content type",
-      "content_type": 5,
-      "codename": "change_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 15,
-    "fields": {
-      "name": "Can delete content type",
-      "content_type": 5,
-      "codename": "delete_contenttype"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 16,
-    "fields": {
-      "name": "Can add session",
-      "content_type": 6,
-      "codename": "add_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 17,
-    "fields": {
-      "name": "Can change session",
-      "content_type": 6,
-      "codename": "change_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 18,
-    "fields": {
-      "name": "Can delete session",
-      "content_type": 6,
-      "codename": "delete_session"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 19,
-    "fields": {
-      "name": "Can add room",
-      "content_type": 7,
-      "codename": "add_room"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 20,
-    "fields": {
-      "name": "Can change room",
-      "content_type": 7,
-      "codename": "change_room"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 21,
-    "fields": {
-      "name": "Can delete room",
-      "content_type": 7,
-      "codename": "delete_room"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 22,
-    "fields": {
-      "name": "Can add flat",
-      "content_type": 8,
-      "codename": "add_flat"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 23,
-    "fields": {
-      "name": "Can change flat",
-      "content_type": 8,
-      "codename": "change_flat"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 24,
-    "fields": {
-      "name": "Can delete flat",
-      "content_type": 8,
-      "codename": "delete_flat"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 25,
-    "fields": {
-      "name": "Can add flat properties",
-      "content_type": 9,
-      "codename": "add_flatproperties"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 26,
-    "fields": {
-      "name": "Can change flat properties",
-      "content_type": 9,
-      "codename": "change_flatproperties"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 27,
-    "fields": {
-      "name": "Can delete flat properties",
-      "content_type": 9,
-      "codename": "delete_flatproperties"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 28,
-    "fields": {
-      "name": "Can add image",
-      "content_type": 10,
-      "codename": "add_image"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 29,
-    "fields": {
-      "name": "Can change image",
-      "content_type": 10,
-      "codename": "change_image"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 30,
-    "fields": {
-      "name": "Can delete image",
-      "content_type": 10,
-      "codename": "delete_image"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 31,
-    "fields": {
-      "name": "Can add user properties",
-      "content_type": 11,
-      "codename": "add_userproperties"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 32,
-    "fields": {
-      "name": "Can change user properties",
-      "content_type": 11,
-      "codename": "change_userproperties"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 33,
-    "fields": {
-      "name": "Can delete user properties",
-      "content_type": 11,
-      "codename": "delete_userproperties"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 34,
-    "fields": {
-      "name": "Can add room properties",
-      "content_type": 12,
-      "codename": "add_roomproperties"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 35,
-    "fields": {
-      "name": "Can change room properties",
-      "content_type": 12,
-      "codename": "change_roomproperties"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 36,
-    "fields": {
-      "name": "Can delete room properties",
-      "content_type": 12,
-      "codename": "delete_roomproperties"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 37,
-    "fields": {
-      "name": "Can add review",
-      "content_type": 13,
-      "codename": "add_review"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 38,
-    "fields": {
-      "name": "Can change review",
-      "content_type": 13,
-      "codename": "change_review"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 39,
-    "fields": {
-      "name": "Can delete review",
-      "content_type": 13,
-      "codename": "delete_review"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 40,
-    "fields": {
-      "name": "Can add payment",
-      "content_type": 14,
-      "codename": "add_payment"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 41,
-    "fields": {
-      "name": "Can change payment",
-      "content_type": 14,
-      "codename": "change_payment"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 42,
-    "fields": {
-      "name": "Can delete payment",
-      "content_type": 14,
-      "codename": "delete_payment"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 43,
-    "fields": {
-      "name": "Can add profile",
-      "content_type": 15,
-      "codename": "add_profile"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 44,
-    "fields": {
-      "name": "Can change profile",
-      "content_type": 15,
-      "codename": "change_profile"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 45,
-    "fields": {
-      "name": "Can delete profile",
-      "content_type": 15,
-      "codename": "delete_profile"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 46,
-    "fields": {
-      "name": "Can add contract",
-      "content_type": 16,
-      "codename": "add_contract"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 47,
-    "fields": {
-      "name": "Can change contract",
-      "content_type": 16,
-      "codename": "change_contract"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 48,
-    "fields": {
-      "name": "Can delete contract",
-      "content_type": 16,
-      "codename": "delete_contract"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 49,
-    "fields": {
-      "name": "Can add flat image",
-      "content_type": 17,
-      "codename": "add_flatimage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 50,
-    "fields": {
-      "name": "Can change flat image",
-      "content_type": 17,
-      "codename": "change_flatimage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 51,
-    "fields": {
-      "name": "Can delete flat image",
-      "content_type": 17,
-      "codename": "delete_flatimage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 52,
-    "fields": {
-      "name": "Can add rent request",
-      "content_type": 18,
-      "codename": "add_rentrequest"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 53,
-    "fields": {
-      "name": "Can change rent request",
-      "content_type": 18,
-      "codename": "change_rentrequest"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 54,
-    "fields": {
-      "name": "Can delete rent request",
-      "content_type": 18,
-      "codename": "delete_rentrequest"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 55,
-    "fields": {
-      "name": "Can add room image",
-      "content_type": 19,
-      "codename": "add_roomimage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 56,
-    "fields": {
-      "name": "Can change room image",
-      "content_type": 19,
-      "codename": "change_roomimage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 57,
-    "fields": {
-      "name": "Can delete room image",
-      "content_type": 19,
-      "codename": "delete_roomimage"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 58,
-    "fields": {
-      "name": "Can add user review",
-      "content_type": 20,
-      "codename": "add_userreview"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 59,
-    "fields": {
-      "name": "Can change user review",
-      "content_type": 20,
-      "codename": "change_userreview"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 60,
-    "fields": {
-      "name": "Can delete user review",
-      "content_type": 20,
-      "codename": "delete_userreview"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 61,
-    "fields": {
-      "name": "Can add flat review",
-      "content_type": 21,
-      "codename": "add_flatreview"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 62,
-    "fields": {
-      "name": "Can change flat review",
-      "content_type": 21,
-      "codename": "change_flatreview"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 63,
-    "fields": {
-      "name": "Can delete flat review",
-      "content_type": 21,
-      "codename": "delete_flatreview"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 64,
-    "fields": {
-      "name": "Can add room review",
-      "content_type": 22,
-      "codename": "add_roomreview"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 65,
-    "fields": {
-      "name": "Can change room review",
-      "content_type": 22,
-      "codename": "change_roomreview"
-    }
-  },
-  {
-    "model": "auth.permission",
-    "pk": 66,
-    "fields": {
-      "name": "Can delete room review",
-      "content_type": 22,
-      "codename": "delete_roomreview"
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 1,
-    "fields": {
-      "password": "pbkdf2_sha256$100000$vf6MApZl3Dbp$fG2H4QYEunT3guazQ0eq4cJ9AcQOXsgKXwJ3idTDHsA=",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "alepolhal",
-      "first_name": "",
-      "last_name": "",
-      "email": "alepolhal@alum.us.es",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2018-04-12T21:06:22.179Z",
-      "groups": [
+[{
+		"model": "auth.user",
+		"pk": 1,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$7A2Auxc1wT9A$zOrLubd7KlN6cfPH9nZ322S2n8AYHGawSJbYXvuxRJQ=",
+			"last_login": "2018-05-09T10:12:00.482Z",
+			"is_superuser": false,
+			"username": "damserfer",
+			"first_name": "Damian",
+			"last_name": "Serrano Fernandez",
+			"email": "damian@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.482Z",
+			"groups": [
 
-      ],
-      "user_permissions": [
+			],
+			"user_permissions": [
 
-      ]
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 2,
-    "fields": {
-      "password": "pbkdf2_sha256$100000$oLSoLerEYXiN$QISiNqKvs8b6kwRfY\/dc6CN\/ZjciF\/oNjJjSUlcsBwE=",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "frasanvel",
-      "first_name": "",
-      "last_name": "",
-      "email": "frasanvel@alum.us.es",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2018-04-12T21:06:22.266Z",
-      "groups": [
+			]
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 2,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$oEzewmmGTjyT$xhBw3UmmCBvugvI8Tc1Ax6iL+WA5AvZRFF\/oMx36BJI=",
+			"last_login": "2018-05-09T10:12:00.491Z",
+			"is_superuser": false,
+			"username": "frasanvel1",
+			"first_name": "Javier",
+			"last_name": "Santos Velazquez",
+			"email": "frasanvel1@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.491Z",
+			"groups": [
 
-      ],
-      "user_permissions": [
+			],
+			"user_permissions": [
 
-      ]
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 3,
-    "fields": {
-      "password": "pbkdf2_sha256$100000$hhbbfZLEnlTg$LjdXE0uxWJfNKqUMrjlUyoadHnfmeGZ7B9JOlnHUG0w=",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "ispp.1",
-      "first_name": "",
-      "last_name": "",
-      "email": "ispp.1@alum.us.es",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2018-04-12T21:06:22.339Z",
-      "groups": [
+			]
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 3,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$4UA2r8wfvzwt$IjMLHNx7Pfmx3d0YoYh4lmvC5eVbzg7Autt\/QuhPji0=",
+			"last_login": "2018-05-09T10:12:00.495Z",
+			"is_superuser": false,
+			"username": "alepolhal",
+			"first_name": "Alejandro",
+			"last_name": "Polvillo Hall",
+			"email": "alepolhall@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.495Z",
+			"groups": [
 
-      ],
-      "user_permissions": [
+			],
+			"user_permissions": [
 
-      ]
-    }
-  },
-  {
-    "model": "auth.user",
-    "pk": 4,
-    "fields": {
-      "password": "pbkdf2_sha256$100000$LxY3I8wbJNjF$8sIzJx5OGTOZUhUAHvifle8ver2fhEjxOESeAnaE9tE=",
-      "last_login": null,
-      "is_superuser": false,
-      "username": "ispp.2",
-      "first_name": "",
-      "last_name": "",
-      "email": "ispp.2@alum.us.es",
-      "is_staff": false,
-      "is_active": true,
-      "date_joined": "2018-04-12T21:06:22.415Z",
-      "groups": [
+			]
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 4,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$5RrgRCDef2YP$t6T2MjQPJVCrY5IvnGMnkSSIbasZNx8nnx59ao4aAB8=",
+			"last_login": "2018-05-09T10:12:00.498Z",
+			"is_superuser": false,
+			"username": "tansalalv",
+			"first_name": "Tania",
+			"last_name": "Salguero Alvarez",
+			"email": "tansalalv@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.498Z",
+			"groups": [
 
-      ],
-      "user_permissions": [
+			],
+			"user_permissions": [
 
-      ]
-    }
-  },
-  {
-    "model": "RoomBnB.profile",
-    "pk": 1,
-    "fields": {
-      "user": 1,
-      "avatar": "profile\/generic\/default.png"
-    }
-  },
-  {
-    "model": "RoomBnB.profile",
-    "pk": 2,
-    "fields": {
-      "user": 2,
-      "avatar": "profile\/generic\/default.png"
-    }
-  },
-  {
-    "model": "RoomBnB.profile",
-    "pk": 3,
-    "fields": {
-      "user": 3,
-      "avatar": "profile\/generic\/default.png"
-    }
-  },
-  {
-    "model": "RoomBnB.profile",
-    "pk": 4,
-    "fields": {
-      "user": 4,
-      "avatar": "profile\/generic\/default.png"
-    }
-  },
-  {
-    "model": "RoomBnB.room",
-    "pk": 1,
-    "fields": {
-      "description": "Habitacion amplia",
-      "price": 200,
-      "picture": "room\/generic\/default.jpg",
-      "temporal_owner": 3,
-      "belong_to": 1
-    }
-  },
-  {
-    "model": "RoomBnB.room",
-    "pk": 2,
-    "fields": {
-      "description": "Habitacion luminosa",
-      "price": 250,
-      "picture": "room\/generic\/default.jpg",
-      "temporal_owner": null,
-      "belong_to": 1
-    }
-  },
-  {
-    "model": "RoomBnB.room",
-    "pk": 3,
-    "fields": {
-      "description": "Habitacion grande",
-      "price": 300,
-      "picture": "room\/generic\/default.jpg",
-      "temporal_owner": null,
-      "belong_to": 2
-    }
-  },
-  {
-    "model": "RoomBnB.room",
-    "pk": 4,
-    "fields": {
-      "description": "Habitacion con armario",
-      "price": 700,
-      "picture": "room\/generic\/default.jpg",
-      "temporal_owner": null,
-      "belong_to": 2
-    }
-  },
-  {
-    "model": "RoomBnB.contract",
-    "pk": 1,
-    "fields": {
-      "text": "Contrato",
-      "date_signed": "2018-04-12",
-      "landlord": 1,
-      "tenant": 3,
-      "room": 1
-    }
-  }
+			]
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 5,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$mxAT3eCAVLU2$T3tez+MZzikI8uRwch05GoZib0ZD7BZsPOyzzqFW5sc=",
+			"last_login": "2018-05-09T10:12:00.501Z",
+			"is_superuser": false,
+			"username": "carloztor",
+			"first_name": "Carlos",
+			"last_name": "Lozano",
+			"email": "carloztor@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.501Z",
+			"groups": [
+
+			],
+			"user_permissions": [
+
+			]
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 6,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$WyBDBlRclzC8$ZpmNuo57IVFeiExf00pxzN7gsTeq8V072b0LG\/mZCo4=",
+			"last_login": "2018-05-09T10:12:00.503Z",
+			"is_superuser": false,
+			"username": "mansergue",
+			"first_name": "Manuel",
+			"last_name": "Serrano Guerrero",
+			"email": "mansergue@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.504Z",
+			"groups": [
+
+			],
+			"user_permissions": [
+
+			]
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 7,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$QWbvh5g6WQPJ$QW80LGiL3S6QSkw7HdbFfjLYQzY4aWH2E4oz2t8VpW4=",
+			"last_login": "2018-05-09T10:12:00.507Z",
+			"is_superuser": false,
+			"username": "gonlopher",
+			"first_name": "Gonzalo",
+			"last_name": "Lopez hernandez",
+			"email": "gonlopher@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.507Z",
+			"groups": [
+
+			],
+			"user_permissions": [
+
+			]
+		}
+	},
+	{
+		"model": "auth.user",
+		"pk": 8,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$u4UZ1CxnSg8G$SWe+g3gXgo9YnavdWRkVoRuJZ8cAqwdBQnDlaffGwhA=",
+			"last_login": "2018-05-09T10:12:00.510Z",
+			"is_superuser": false,
+			"username": "raurompal",
+			"first_name": "Raul",
+			"last_name": "Romero Palomo",
+			"email": "raurompal@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.510Z",
+			"groups": [
+
+			],
+			"user_permissions": [
+
+			]
+		}
+	},
+	{
+		"model": "RoomBnB.userproperties",
+		"pk": 1,
+		"fields": {
+			"profile": 1,
+			"smoker": false,
+			"pets": false,
+			"sporty": "2",
+			"gamer": "2",
+			"sociable": "5",
+			"degree": "2"
+		}
+	}, {
+		"model": "RoomBnB.userproperties",
+		"pk": 2,
+		"fields": {
+			"profile": 2,
+			"smoker": true,
+			"pets": true,
+			"sporty": "5",
+			"gamer": "5",
+			"sociable": "1",
+			"degree": "2"
+		}
+	}, {
+		"model": "RoomBnB.userproperties",
+		"pk": 3,
+		"fields": {
+			"profile": 3,
+			"smoker": false,
+			"pets": true,
+			"sporty": "1",
+			"gamer": "5",
+			"sociable": "3",
+			"degree": "2"
+		}
+	}, {
+		"model": "RoomBnB.userproperties",
+		"pk": 4,
+		"fields": {
+			"profile": 4,
+			"smoker": true,
+			"pets": false,
+			"sporty": "5",
+			"gamer": "5",
+			"sociable": "1",
+			"degree": "3"
+		}
+	}, {
+		"model": "RoomBnB.userproperties",
+		"pk": 5,
+		"fields": {
+			"profile": 5,
+			"smoker": true,
+			"pets": true,
+			"sporty": "5",
+			"gamer": "5",
+			"sociable": "4",
+			"degree": "4"
+		}
+	}, {
+		"model": "RoomBnB.userproperties",
+		"pk": 6,
+		"fields": {
+			"profile": 6,
+			"smoker": true,
+			"pets": true,
+			"sporty": "5",
+			"gamer": "5",
+			"sociable": "5",
+			"degree": "5"
+		}
+	}, {
+		"model": "RoomBnB.userproperties",
+		"pk": 7,
+		"fields": {
+			"profile": 7,
+			"smoker": false,
+			"pets": false,
+			"sporty": "5",
+			"gamer": "5",
+			"sociable": "2",
+			"degree": "2"
+		}
+	}, {
+		"model": "RoomBnB.userproperties",
+		"pk": 8,
+		"fields": {
+			"profile": 8,
+			"smoker": true,
+			"pets": true,
+			"sporty": "3",
+			"gamer": "3",
+			"sociable": "1",
+			"degree": "2"
+		}
+	}, {
+		"model": "RoomBnB.flat",
+		"pk": 1,
+		"fields": {
+			"title": "Piso en Bami",
+			"address": "Calle castillo de constantina n\u00ba3 sevilla",
+			"description": "Piso amplio y luminoso",
+			"picture": "flat/piso1.jpg",
+			"owner": 1
+		}
+	}, {
+		"model": "RoomBnB.flat",
+		"pk": 2,
+		"fields": {
+			"title": "Piso en la raza",
+			"address": "Calle claudio boutelou",
+			"description": "Piso amplio y luminoso",
+			"picture": "flat/piso2.jpg",
+			"owner": 2
+		}
+	}, {
+		"model": "RoomBnB.flat",
+		"pk": 3,
+		"fields": {
+			"title": "Piso en las 3000",
+			"address": "Calle utopia las 3000",
+			"description": "Piso muy barato y blindado",
+			"picture": "flat/piso3.jpg",
+			"owner": 3
+		}
+	}, {
+		"model": "RoomBnB.flat",
+		"pk": 4,
+		"fields": {
+			"title": "Piso los remedios",
+			"address": "Calle virgen de lujan 4",
+			"description": "Habitaciones grandes con balcones",
+			"picture": "flat/piso4.jpg",
+			"owner": 4
+		}
+	}, {
+		"model": "RoomBnB.flat",
+		"pk": 5,
+		"fields": {
+			"title": "Piso en Triana",
+			"address": "Calle manuel arellano n 1 sevilla",
+			"description": "Piso acogedor y moderno",
+			"picture": "flat/piso5.jpg",
+			"owner": 5
+		}
+	}, {
+		"model": "RoomBnB.flat",
+		"pk": 6,
+		"fields": {
+			"title": "Piso en Viapol",
+			"address": "Calle Santo Rey 5",
+			"description": "Cerca de la universidad",
+			"picture": "flat/piso6.jpg",
+			"owner": 6
+		}
+	}, {
+		"model": "RoomBnB.flat",
+		"pk": 7,
+		"fields": {
+			"title": "Piso en Torneo",
+			"address": "Calle torneo",
+			"description": "Cerca de la estacion plaza de armas",
+			"picture": "flat/piso7.jpg",
+			"owner": 7
+		}
+	}, {
+		"model": "RoomBnB.flat",
+		"pk": 8,
+		"fields": {
+			"title": "Piso en la cartuja",
+			"address": "Calle Albert Einstein 4",
+			"description": "Cerca de la universidad tecnica",
+			"picture": "flat/piso8.jpg",
+			"owner": 8
+		}
+	}, {
+		"model": "RoomBnB.flatproperties",
+		"pk": 1,
+		"fields": {
+			"flat": 1,
+			"elevator": true,
+			"washdisher": true
+		}
+	}, {
+		"model": "RoomBnB.flatproperties",
+		"pk": 2,
+		"fields": {
+			"flat": 2,
+			"elevator": false,
+			"washdisher": true
+		}
+	}, {
+		"model": "RoomBnB.flatproperties",
+		"pk": 3,
+		"fields": {
+			"flat": 3,
+			"elevator": true,
+			"washdisher": false
+		}
+	}, {
+		"model": "RoomBnB.flatproperties",
+		"pk": 4,
+		"fields": {
+			"flat": 4,
+			"elevator": false,
+			"washdisher": false
+		}
+	}, {
+		"model": "RoomBnB.flatproperties",
+		"pk": 5,
+		"fields": {
+			"flat": 5,
+			"elevator": true,
+			"washdisher": true
+		}
+	}, {
+		"model": "RoomBnB.flatproperties",
+		"pk": 6,
+		"fields": {
+			"flat": 6,
+			"elevator": true,
+			"washdisher": true
+		}
+	}, {
+		"model": "RoomBnB.flatproperties",
+		"pk": 7,
+		"fields": {
+			"flat": 7,
+			"elevator": false,
+			"washdisher": true
+		}
+	}, {
+		"model": "RoomBnB.flatproperties",
+		"pk": 8,
+		"fields": {
+			"flat": 8,
+			"elevator": true,
+			"washdisher": false
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 1,
+		"fields": {
+			"room": 1,
+			"balcony": true,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 2,
+		"fields": {
+			"room": 2,
+			"balcony": true,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 3,
+		"fields": {
+			"room": 3,
+			"balcony": false,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 4,
+		"fields": {
+			"room": 4,
+			"balcony": false,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 5,
+		"fields": {
+			"room": 5,
+			"balcony": false,
+			"window": false,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 6,
+		"fields": {
+			"room": 6,
+			"balcony": true,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 7,
+		"fields": {
+			"room": 7,
+			"balcony": true,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 8,
+		"fields": {
+			"room": 8,
+			"balcony": false,
+			"window": false,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 9,
+		"fields": {
+			"room": 9,
+			"balcony": true,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 10,
+		"fields": {
+			"room": 10,
+			"balcony": true,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "1"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 11,
+		"fields": {
+			"room": 11,
+			"balcony": true,
+			"window": false,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 12,
+		"fields": {
+			"room": 12,
+			"balcony": false,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 13,
+		"fields": {
+			"room": 13,
+			"balcony": true,
+			"window": false,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 14,
+		"fields": {
+			"room": 14,
+			"balcony": true,
+			"window": false,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 15,
+		"fields": {
+			"room": 15,
+			"balcony": true,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.roomproperties",
+		"pk": 16,
+		"fields": {
+			"room": 16,
+			"balcony": false,
+			"window": true,
+			"air_conditioner": true,
+			"bed": "2"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 1,
+		"fields": {
+			"title": "Buen Casero",
+			"description": "Casero amable, siempre pendiente de todos los problemas posibles",
+			"date": "2018-05-09",
+			"rating": "5"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 2,
+		"fields": {
+			"title": "Amable",
+			"description": "Permite que le paguemos cuando podamos",
+			"date": "2018-05-09",
+			"rating": "5"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 3,
+		"fields": {
+			"title": "Mal casero",
+			"description": "Siempre poniendo pegas",
+			"date": "2018-05-09",
+			"rating": "5"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 4,
+		"fields": {
+			"title": "Inquilino responsable",
+			"description": "Mantiene la habitacion limpia",
+			"date": "2018-05-09",
+			"rating": "5"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 5,
+		"fields": {
+			"title": "Inquilino loco",
+			"description": "No es limpio, ni respeta a los compa\u00f1eros",
+			"date": "2018-05-09",
+			"rating": "5"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 6,
+		"fields": {
+			"title": "Inquilino normal",
+			"description": "Responsable y buen compa\u00f1ero",
+			"date": "2018-05-09",
+			"rating": "5"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 7,
+		"fields": {
+			"title": "Persona responsable",
+			"description": "Responsable limpio y ordenado",
+			"date": "2018-05-09",
+			"rating": "5"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 8,
+		"fields": {
+			"title": "Buen piso",
+			"description": "Amueblado y con buenas vistas",
+			"date": "2018-05-09",
+			"rating": "4"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 9,
+		"fields": {
+			"title": "Piso con 3 habitaciones",
+			"description": "Muy limpio y ordenado",
+			"date": "2018-05-09",
+			"rating": "5"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 10,
+		"fields": {
+			"title": "Piso bonito",
+			"description": "Buena decoraci\u00f3n",
+			"date": "2018-05-09",
+			"rating": "2"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 11,
+		"fields": {
+			"title": "Piso con buenas vistas",
+			"description": "Muy bien iluminado",
+			"date": "2018-05-09",
+			"rating": "5"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 12,
+		"fields": {
+			"title": "Habitaci\u00f3n limpia",
+			"description": "Amueblado",
+			"date": "2018-05-09",
+			"rating": "4"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 13,
+		"fields": {
+			"title": "Habitacion amplia",
+			"description": "Muy bonita, cuadros espectacules",
+			"date": "2018-05-09",
+			"rating": "2"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 14,
+		"fields": {
+			"title": "Amplia y comoda",
+			"description": "Tan grande que no te agobias en ella",
+			"date": "2018-05-09",
+			"rating": "3"
+		}
+	}, {
+		"model": "RoomBnB.review",
+		"pk": 15,
+		"fields": {
+			"title": "Habitaci\u00f3n preciosa",
+			"description": "Muy c\u00f3moda",
+			"date": "2018-05-09",
+			"rating": "3"
+		}
+	}, {
+		"model": "RoomBnB.flatreview",
+		"pk": 8,
+		"fields": {
+			"flat": 1
+		}
+	}, {
+		"model": "RoomBnB.flatreview",
+		"pk": 9,
+		"fields": {
+			"flat": 1
+		}
+	}, {
+		"model": "RoomBnB.flatreview",
+		"pk": 10,
+		"fields": {
+			"flat": 2
+		}
+	}, {
+		"model": "RoomBnB.flatreview",
+		"pk": 11,
+		"fields": {
+			"flat": 2
+		}
+	}, {
+		"model": "RoomBnB.roomreview",
+		"pk": 12,
+		"fields": {
+			"room": 1
+		}
+	}, {
+		"model": "RoomBnB.roomreview",
+		"pk": 13,
+		"fields": {
+			"room": 1
+		}
+	}, {
+		"model": "RoomBnB.roomreview",
+		"pk": 14,
+		"fields": {
+			"room": 2
+		}
+	}, {
+		"model": "RoomBnB.roomreview",
+		"pk": 15,
+		"fields": {
+			"room": 2
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 1,
+		"fields": {
+			"image": "flat/piso1.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 2,
+		"fields": {
+			"image": "flat/piso2.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 3,
+		"fields": {
+			"image": "flat/piso3.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 4,
+		"fields": {
+			"image": "flat/piso4.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 5,
+		"fields": {
+			"image": "flat/piso5.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 6,
+		"fields": {
+			"image": "flat/piso6.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 7,
+		"fields": {
+			"image": "flat/piso7.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 8,
+		"fields": {
+			"image": "flat/piso8.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 9,
+		"fields": {
+			"image": "room/habitacion2.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 10,
+		"fields": {
+			"image": "room/habitacion1.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 11,
+		"fields": {
+			"image": "room/habitacion4.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 12,
+		"fields": {
+			"image": "room/habitacion6.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 13,
+		"fields": {
+			"image": "room/habitacion11.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 14,
+		"fields": {
+			"image": "room/habitacion5.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 15,
+		"fields": {
+			"image": "room/habitacion3.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 16,
+		"fields": {
+			"image": "room/habitacion8.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 17,
+		"fields": {
+			"image": "room/habitacion9.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 18,
+		"fields": {
+			"image": "room/habitacion16.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 19,
+		"fields": {
+			"image": "room/habitacion10.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 20,
+		"fields": {
+			"image": "room/habitacion7.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 21,
+		"fields": {
+			"image": "room/habitacion12.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 22,
+		"fields": {
+			"image": "room/habitacion13.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 23,
+		"fields": {
+			"image": "room/habitacion14.jpg"
+		}
+	}, {
+		"model": "RoomBnB.image",
+		"pk": 24,
+		"fields": {
+			"image": "room/habitacion15.jpg"
+		}
+	}, {
+		"model": "RoomBnB.flatimage",
+		"pk": 1,
+		"fields": {
+			"flat": 1
+		}
+	}, {
+		"model": "RoomBnB.flatimage",
+		"pk": 2,
+		"fields": {
+			"flat": 2
+		}
+	}, {
+		"model": "RoomBnB.flatimage",
+		"pk": 3,
+		"fields": {
+			"flat": 3
+		}
+	}, {
+		"model": "RoomBnB.flatimage",
+		"pk": 4,
+		"fields": {
+			"flat": 4
+		}
+	}, {
+		"model": "RoomBnB.flatimage",
+		"pk": 5,
+		"fields": {
+			"flat": 5
+		}
+	}, {
+		"model": "RoomBnB.flatimage",
+		"pk": 6,
+		"fields": {
+			"flat": 6
+		}
+	}, {
+		"model": "RoomBnB.flatimage",
+		"pk": 7,
+		"fields": {
+			"flat": 7
+		}
+	}, {
+		"model": "RoomBnB.flatimage",
+		"pk": 8,
+		"fields": {
+			"flat": 8
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 9,
+		"fields": {
+			"room": 1
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 10,
+		"fields": {
+			"room": 2
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 11,
+		"fields": {
+			"room": 3
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 12,
+		"fields": {
+			"room": 4
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 13,
+		"fields": {
+			"room": 5
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 14,
+		"fields": {
+			"room": 6
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 15,
+		"fields": {
+			"room": 7
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 16,
+		"fields": {
+			"room": 8
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 17,
+		"fields": {
+			"room": 9
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 18,
+		"fields": {
+			"room": 10
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 19,
+		"fields": {
+			"room": 11
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 20,
+		"fields": {
+			"room": 12
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 21,
+		"fields": {
+			"room": 13
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 22,
+		"fields": {
+			"room": 14
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 23,
+		"fields": {
+			"room": 15
+		}
+	}, {
+		"model": "RoomBnB.roomimage",
+		"pk": 24,
+		"fields": {
+			"room": 16
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 1,
+		"fields": {
+			"name": "Can add log entry",
+			"content_type": 1,
+			"codename": "add_logentry"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 2,
+		"fields": {
+			"name": "Can change log entry",
+			"content_type": 1,
+			"codename": "change_logentry"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 3,
+		"fields": {
+			"name": "Can delete log entry",
+			"content_type": 1,
+			"codename": "delete_logentry"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 4,
+		"fields": {
+			"name": "Can add group",
+			"content_type": 2,
+			"codename": "add_group"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 5,
+		"fields": {
+			"name": "Can change group",
+			"content_type": 2,
+			"codename": "change_group"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 6,
+		"fields": {
+			"name": "Can delete group",
+			"content_type": 2,
+			"codename": "delete_group"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 7,
+		"fields": {
+			"name": "Can add permission",
+			"content_type": 3,
+			"codename": "add_permission"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 8,
+		"fields": {
+			"name": "Can change permission",
+			"content_type": 3,
+			"codename": "change_permission"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 9,
+		"fields": {
+			"name": "Can delete permission",
+			"content_type": 3,
+			"codename": "delete_permission"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 10,
+		"fields": {
+			"name": "Can add user",
+			"content_type": 4,
+			"codename": "add_user"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 11,
+		"fields": {
+			"name": "Can change user",
+			"content_type": 4,
+			"codename": "change_user"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 12,
+		"fields": {
+			"name": "Can delete user",
+			"content_type": 4,
+			"codename": "delete_user"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 13,
+		"fields": {
+			"name": "Can add content type",
+			"content_type": 5,
+			"codename": "add_contenttype"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 14,
+		"fields": {
+			"name": "Can change content type",
+			"content_type": 5,
+			"codename": "change_contenttype"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 15,
+		"fields": {
+			"name": "Can delete content type",
+			"content_type": 5,
+			"codename": "delete_contenttype"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 16,
+		"fields": {
+			"name": "Can add session",
+			"content_type": 6,
+			"codename": "add_session"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 17,
+		"fields": {
+			"name": "Can change session",
+			"content_type": 6,
+			"codename": "change_session"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 18,
+		"fields": {
+			"name": "Can delete session",
+			"content_type": 6,
+			"codename": "delete_session"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 19,
+		"fields": {
+			"name": "Can add user properties",
+			"content_type": 7,
+			"codename": "add_userproperties"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 20,
+		"fields": {
+			"name": "Can change user properties",
+			"content_type": 7,
+			"codename": "change_userproperties"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 21,
+		"fields": {
+			"name": "Can delete user properties",
+			"content_type": 7,
+			"codename": "delete_userproperties"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 22,
+		"fields": {
+			"name": "Can add payment",
+			"content_type": 8,
+			"codename": "add_payment"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 23,
+		"fields": {
+			"name": "Can change payment",
+			"content_type": 8,
+			"codename": "change_payment"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 24,
+		"fields": {
+			"name": "Can delete payment",
+			"content_type": 8,
+			"codename": "delete_payment"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 25,
+		"fields": {
+			"name": "Can add flat properties",
+			"content_type": 9,
+			"codename": "add_flatproperties"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 26,
+		"fields": {
+			"name": "Can change flat properties",
+			"content_type": 9,
+			"codename": "change_flatproperties"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 27,
+		"fields": {
+			"name": "Can delete flat properties",
+			"content_type": 9,
+			"codename": "delete_flatproperties"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 28,
+		"fields": {
+			"name": "Can add contract",
+			"content_type": 10,
+			"codename": "add_contract"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 29,
+		"fields": {
+			"name": "Can change contract",
+			"content_type": 10,
+			"codename": "change_contract"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 30,
+		"fields": {
+			"name": "Can delete contract",
+			"content_type": 10,
+			"codename": "delete_contract"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 31,
+		"fields": {
+			"name": "Can add room properties",
+			"content_type": 11,
+			"codename": "add_roomproperties"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 32,
+		"fields": {
+			"name": "Can change room properties",
+			"content_type": 11,
+			"codename": "change_roomproperties"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 33,
+		"fields": {
+			"name": "Can delete room properties",
+			"content_type": 11,
+			"codename": "delete_roomproperties"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 34,
+		"fields": {
+			"name": "Can add rent request",
+			"content_type": 12,
+			"codename": "add_rentrequest"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 35,
+		"fields": {
+			"name": "Can change rent request",
+			"content_type": 12,
+			"codename": "change_rentrequest"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 36,
+		"fields": {
+			"name": "Can delete rent request",
+			"content_type": 12,
+			"codename": "delete_rentrequest"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 37,
+		"fields": {
+			"name": "Can add room",
+			"content_type": 13,
+			"codename": "add_room"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 38,
+		"fields": {
+			"name": "Can change room",
+			"content_type": 13,
+			"codename": "change_room"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 39,
+		"fields": {
+			"name": "Can delete room",
+			"content_type": 13,
+			"codename": "delete_room"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 40,
+		"fields": {
+			"name": "Can add image",
+			"content_type": 14,
+			"codename": "add_image"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 41,
+		"fields": {
+			"name": "Can change image",
+			"content_type": 14,
+			"codename": "change_image"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 42,
+		"fields": {
+			"name": "Can delete image",
+			"content_type": 14,
+			"codename": "delete_image"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 43,
+		"fields": {
+			"name": "Can add review",
+			"content_type": 15,
+			"codename": "add_review"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 44,
+		"fields": {
+			"name": "Can change review",
+			"content_type": 15,
+			"codename": "change_review"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 45,
+		"fields": {
+			"name": "Can delete review",
+			"content_type": 15,
+			"codename": "delete_review"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 46,
+		"fields": {
+			"name": "Can add profile",
+			"content_type": 16,
+			"codename": "add_profile"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 47,
+		"fields": {
+			"name": "Can change profile",
+			"content_type": 16,
+			"codename": "change_profile"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 48,
+		"fields": {
+			"name": "Can delete profile",
+			"content_type": 16,
+			"codename": "delete_profile"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 49,
+		"fields": {
+			"name": "Can add user review",
+			"content_type": 17,
+			"codename": "add_userreview"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 50,
+		"fields": {
+			"name": "Can change user review",
+			"content_type": 17,
+			"codename": "change_userreview"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 51,
+		"fields": {
+			"name": "Can delete user review",
+			"content_type": 17,
+			"codename": "delete_userreview"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 52,
+		"fields": {
+			"name": "Can add flat",
+			"content_type": 18,
+			"codename": "add_flat"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 53,
+		"fields": {
+			"name": "Can change flat",
+			"content_type": 18,
+			"codename": "change_flat"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 54,
+		"fields": {
+			"name": "Can delete flat",
+			"content_type": 18,
+			"codename": "delete_flat"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 55,
+		"fields": {
+			"name": "Can add room review",
+			"content_type": 19,
+			"codename": "add_roomreview"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 56,
+		"fields": {
+			"name": "Can change room review",
+			"content_type": 19,
+			"codename": "change_roomreview"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 57,
+		"fields": {
+			"name": "Can delete room review",
+			"content_type": 19,
+			"codename": "delete_roomreview"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 58,
+		"fields": {
+			"name": "Can add room image",
+			"content_type": 20,
+			"codename": "add_roomimage"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 59,
+		"fields": {
+			"name": "Can change room image",
+			"content_type": 20,
+			"codename": "change_roomimage"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 60,
+		"fields": {
+			"name": "Can delete room image",
+			"content_type": 20,
+			"codename": "delete_roomimage"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 61,
+		"fields": {
+			"name": "Can add flat image",
+			"content_type": 21,
+			"codename": "add_flatimage"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 62,
+		"fields": {
+			"name": "Can change flat image",
+			"content_type": 21,
+			"codename": "change_flatimage"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 63,
+		"fields": {
+			"name": "Can delete flat image",
+			"content_type": 21,
+			"codename": "delete_flatimage"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 64,
+		"fields": {
+			"name": "Can add flat review",
+			"content_type": 22,
+			"codename": "add_flatreview"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 65,
+		"fields": {
+			"name": "Can change flat review",
+			"content_type": 22,
+			"codename": "change_flatreview"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 66,
+		"fields": {
+			"name": "Can delete flat review",
+			"content_type": 22,
+			"codename": "delete_flatreview"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 67,
+		"fields": {
+			"name": "Can add PayPal IPN",
+			"content_type": 23,
+			"codename": "add_paypalipn"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 68,
+		"fields": {
+			"name": "Can change PayPal IPN",
+			"content_type": 23,
+			"codename": "change_paypalipn"
+		}
+	}, {
+		"model": "auth.permission",
+		"pk": 69,
+		"fields": {
+			"name": "Can delete PayPal IPN",
+			"content_type": 23,
+			"codename": "delete_paypalipn"
+		}
+	}, {
+		"model": "auth.user",
+		"pk": 1,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$7A2Auxc1wT9A$zOrLubd7KlN6cfPH9nZ322S2n8AYHGawSJbYXvuxRJQ=",
+			"last_login": "2018-05-09T10:12:00.482Z",
+			"is_superuser": false,
+			"username": "damserfer",
+			"first_name": "Damian",
+			"last_name": "Serrano Fernandez",
+			"email": "damian@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.482Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	}, {
+		"model": "auth.user",
+		"pk": 2,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$oEzewmmGTjyT$xhBw3UmmCBvugvI8Tc1Ax6iL+WA5AvZRFF/oMx36BJI=",
+			"last_login": "2018-05-09T10:12:00.491Z",
+			"is_superuser": false,
+			"username": "frasanvel1",
+			"first_name": "Javier",
+			"last_name": "Santos Velazquez",
+			"email": "frasanvel1@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.491Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	}, {
+		"model": "auth.user",
+		"pk": 3,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$4UA2r8wfvzwt$IjMLHNx7Pfmx3d0YoYh4lmvC5eVbzg7Autt/QuhPji0=",
+			"last_login": "2018-05-09T10:12:00.495Z",
+			"is_superuser": false,
+			"username": "alepolhal",
+			"first_name": "Alejandro",
+			"last_name": "Polvillo Hall",
+			"email": "alepolhall@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.495Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	}, {
+		"model": "auth.user",
+		"pk": 4,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$5RrgRCDef2YP$t6T2MjQPJVCrY5IvnGMnkSSIbasZNx8nnx59ao4aAB8=",
+			"last_login": "2018-05-09T10:12:00.498Z",
+			"is_superuser": false,
+			"username": "tansalalv",
+			"first_name": "Tania",
+			"last_name": "Salguero Alvarez",
+			"email": "tansalalv@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.498Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	}, {
+		"model": "auth.user",
+		"pk": 5,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$mxAT3eCAVLU2$T3tez+MZzikI8uRwch05GoZib0ZD7BZsPOyzzqFW5sc=",
+			"last_login": "2018-05-09T10:12:00.501Z",
+			"is_superuser": false,
+			"username": "carloztor",
+			"first_name": "Carlos",
+			"last_name": "Lozano",
+			"email": "carloztor@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.501Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	}, {
+		"model": "auth.user",
+		"pk": 6,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$WyBDBlRclzC8$ZpmNuo57IVFeiExf00pxzN7gsTeq8V072b0LG/mZCo4=",
+			"last_login": "2018-05-09T10:12:00.503Z",
+			"is_superuser": false,
+			"username": "mansergue",
+			"first_name": "Manuel",
+			"last_name": "Serrano Guerrero",
+			"email": "mansergue@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.504Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	}, {
+		"model": "auth.user",
+		"pk": 7,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$QWbvh5g6WQPJ$QW80LGiL3S6QSkw7HdbFfjLYQzY4aWH2E4oz2t8VpW4=",
+			"last_login": "2018-05-09T10:12:00.507Z",
+			"is_superuser": false,
+			"username": "gonlopher",
+			"first_name": "Gonzalo",
+			"last_name": "Lopez hernandez",
+			"email": "gonlopher@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.507Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	}, {
+		"model": "auth.user",
+		"pk": 8,
+		"fields": {
+			"password": "pbkdf2_sha256$100000$u4UZ1CxnSg8G$SWe+g3gXgo9YnavdWRkVoRuJZ8cAqwdBQnDlaffGwhA=",
+			"last_login": "2018-05-09T10:12:00.510Z",
+			"is_superuser": false,
+			"username": "raurompal",
+			"first_name": "Raul",
+			"last_name": "Romero Palomo",
+			"email": "raurompal@gmail.com",
+			"is_staff": false,
+			"is_active": true,
+			"date_joined": "2018-05-09T10:12:00.510Z",
+			"groups": [],
+			"user_permissions": []
+		}
+	}, {
+		"model": "RoomBnB.profile",
+		"pk": 1,
+		"fields": {
+			"user": 1,
+			"avatar": "avatars/foto-tama\u00f1o-carnet.jpg"
+		}
+	}, {
+		"model": "RoomBnB.profile",
+		"pk": 2,
+		"fields": {
+			"user": 2,
+			"avatar": "avatars/580109640.jpg"
+		}
+	}, {
+		"model": "RoomBnB.profile",
+		"pk": 3,
+		"fields": {
+			"user": 3,
+			"avatar": "avatars/descarga.jpg"
+		}
+	}, {
+		"model": "RoomBnB.profile",
+		"pk": 4,
+		"fields": {
+			"user": 4,
+			"avatar": "avatars/chica-sonrisa.jpg"
+		}
+	}, {
+		"model": "RoomBnB.profile",
+		"pk": 5,
+		"fields": {
+			"user": 5,
+			"avatar": "avatars/chico.jpg"
+		}
+	}, {
+		"model": "RoomBnB.profile",
+		"pk": 6,
+		"fields": {
+			"user": 6,
+			"avatar": "avatars/chico1.jpg"
+		}
+	}, {
+		"model": "RoomBnB.profile",
+		"pk": 7,
+		"fields": {
+			"user": 7,
+			"avatar": "avatars/chico2.jpg"
+		}
+	}, {
+		"model": "RoomBnB.profile",
+		"pk": 8,
+		"fields": {
+			"user": 8,
+			"avatar": "avatars/images.jpg"
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 1,
+		"fields": {
+			"description": "Habitacion amueblada con escritorio",
+			"price": 280.0,
+			"picture": "room/habitacion2.jpg",
+			"temporal_owner": 5,
+			"belong_to": 1
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 2,
+		"fields": {
+			"description": "Habitacion con dos escritorios",
+			"price": 280.0,
+			"picture": "room/habitacion1.jpg",
+			"temporal_owner": 6,
+			"belong_to": 1
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 3,
+		"fields": {
+			"description": "Habitacion amplia",
+			"price": 300.0,
+			"picture": "room/habitacion4.jpg",
+			"temporal_owner": 7,
+			"belong_to": 2
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 4,
+		"fields": {
+			"description": "Habitacion con  armario",
+			"price": 300.0,
+			"picture": "room/habitacion6.jpg",
+			"temporal_owner": 8,
+			"belong_to": 2
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 5,
+		"fields": {
+			"description": "Habitacion con television",
+			"price": 290.0,
+			"picture": "room/habitacion11.jpg",
+			"temporal_owner": null,
+			"belong_to": 3
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 6,
+		"fields": {
+			"description": "Habitacion bien amueblada",
+			"price": 290.0,
+			"picture": "room/habitacion5.jpg",
+			"temporal_owner": null,
+			"belong_to": 3
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 7,
+		"fields": {
+			"description": "Habitacion peque\u00f1a simple",
+			"price": 250.0,
+			"picture": "room/habitacion3.jpg",
+			"temporal_owner": null,
+			"belong_to": 4
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 8,
+		"fields": {
+			"description": "Habitacion rural",
+			"price": 250.0,
+			"picture": "room/habitacion8.jpg",
+			"temporal_owner": null,
+			"belong_to": 4
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 9,
+		"fields": {
+			"description": "Habitacion tematica ",
+			"price": 270.0,
+			"picture": "room/habitacion9.jpg",
+			"temporal_owner": null,
+			"belong_to": 5
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 10,
+		"fields": {
+			"description": "Habitacion con cama de matrimonio",
+			"price": 275.0,
+			"picture": "room/habitacion16.jpg",
+			"temporal_owner": null,
+			"belong_to": 5
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 11,
+		"fields": {
+			"description": "Habitacion con balcon",
+			"price": 280.0,
+			"picture": "room/habitacion10.jpg",
+			"temporal_owner": null,
+			"belong_to": 6
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 12,
+		"fields": {
+			"description": "Habitacion con ba\u00f1o propio",
+			"price": 300.0,
+			"picture": "room/habitacion7.jpg",
+			"temporal_owner": null,
+			"belong_to": 6
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 13,
+		"fields": {
+			"description": "Habitacion simple",
+			"price": 245.0,
+			"picture": "room/habitacion12.jpg",
+			"temporal_owner": null,
+			"belong_to": 7
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 14,
+		"fields": {
+			"description": "Habitacion hogare\u00f1a",
+			"price": 245.0,
+			"picture": "room/habitacion13.jpg",
+			"temporal_owner": null,
+			"belong_to": 7
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 15,
+		"fields": {
+			"description": "Habitacion con buenas vistas",
+			"price": 300.0,
+			"picture": "room/habitacion14.jpg",
+			"temporal_owner": null,
+			"belong_to": 8
+		}
+	}, {
+		"model": "RoomBnB.room",
+		"pk": 16,
+		"fields": {
+			"description": "Habitacion junto a la cocina",
+			"price": 300.0,
+			"picture": "room/habitacion15.jpg",
+			"temporal_owner": null,
+			"belong_to": 8
+		}
+	}, {
+		"model": "RoomBnB.contract",
+		"pk": 1,
+		"fields": {
+			"text": "Contrato de temporada",
+			"date_signed": "2018-05-09",
+			"landlord": 1,
+			"tenant": 5,
+			"room": 1
+		}
+	}, {
+		"model": "RoomBnB.contract",
+		"pk": 2,
+		"fields": {
+			"text": "Contrato de temporada",
+			"date_signed": "2018-05-09",
+			"landlord": 1,
+			"tenant": 6,
+			"room": 2
+		}
+	}, {
+		"model": "RoomBnB.contract",
+		"pk": 3,
+		"fields": {
+			"text": "Contrato de temporada",
+			"date_signed": "2018-05-09",
+			"landlord": 2,
+			"tenant": 7,
+			"room": 3
+		}
+	}, {
+		"model": "RoomBnB.contract",
+		"pk": 4,
+		"fields": {
+			"text": "Contrato de temporada",
+			"date_signed": "2018-05-09",
+			"landlord": 2,
+			"tenant": 8,
+			"room": 4
+		}
+	}, {
+		"model": "RoomBnB.userreview",
+		"pk": 1,
+		"fields": {
+			"user": 1
+		}
+	}, {
+		"model": "RoomBnB.userreview",
+		"pk": 2,
+		"fields": {
+			"user": 1
+		}
+	}, {
+		"model": "RoomBnB.userreview",
+		"pk": 3,
+		"fields": {
+			"user": 2
+		}
+	}, {
+		"model": "RoomBnB.userreview",
+		"pk": 4,
+		"fields": {
+			"user": 5
+		}
+	}, {
+		"model": "RoomBnB.userreview",
+		"pk": 5,
+		"fields": {
+			"user": 6
+		}
+	}, {
+		"model": "RoomBnB.userreview",
+		"pk": 6,
+		"fields": {
+			"user": 7
+		}
+	}, {
+		"model": "RoomBnB.userreview",
+		"pk": 7,
+		"fields": {
+			"user": 8
+		}
+	}
 ]
