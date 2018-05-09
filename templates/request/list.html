@@ -10,8 +10,8 @@
         <ul>
         {% for request in requests_to_me %}
             <li>
-                <p>{{ request.creation_date }}</p>
-                <p>Accepted: {{ request.accepted }}</p>
+                <p>{% trans "Request received on" %} {{ request.creation_date }}</p>
+                <br>
                 <a class="pure-button" href="{% url 'userReview' request.requested.belong_to.id request.requester.id %}">{% trans "View user reviews" %}</a>
                 <a class="pure-button" href="{% url 'roomDetail' request.requested.id %}">{% trans "View room" %}</a>
                 {% if not request.accepted %}
@@ -19,6 +19,7 @@
                     <a class="pure-button" href="/requests/deny/{{ request.id }}/">{% trans "Deny" %}</a>
                 {% endif %}
             </li>
+            <br>
         {% endfor %}
         </ul>
     {% else %}
@@ -30,11 +31,12 @@
         <ul>
         {% for request in requests_by_me %}
             <li>
-                <p>{{ request.creation_date }}</p>
-                <p>Accepted: {{ request.accepted }}</p>
+                <p>{% trans "Request made on" %} {{ request.creation_date }}</p>
+                <br>
                 <a class="pure-button" href="{% url 'userReview' request.requested.belong_to.id request.requester.id %}">{% trans "View user reviews" %}</a>
                 <a class="pure-button" href="{% url 'roomDetail' request.requested.id %}">{% trans "View room" %}</a>
             </li>
+            <br>
         {% endfor %}
         </ul>
     {% else %}

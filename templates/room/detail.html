@@ -5,11 +5,18 @@
 
 {% block content %}
 
-    <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
-
     <h1>{{ room.description }}</h1>
 
-    <h2>{{ room.price }} €</h2>
+    <section class="listings">
+        <div class="wrapper">
+             <ul class="properties_list">
+                 <li>
+                     <img src="{{ room.picture.url }}" alt="" title="" class="property_img"/>
+                     <span class="price">{{ room.price }} €</span>
+                 </li>
+             </ul>
+        </div>
+    </section>
 
     <h2>{% trans "Details" %}</h2>
 
@@ -94,7 +101,7 @@
 
             <td><b>{% trans "Image" %}</b></td>
 
-            <td><img src="{{ profile.avatar.url }}" width="50" height="50" style="border-radius: 50%;"></td>
+            <td><img src="https://ui-avatars.com/api/?name={{ userProperties.profile.user.username }}&size=50&rounded=true&background=fff3e0" width="50" height="50"></td>
 
             <td><b>{% trans "Sporty" %}</b></td>
 

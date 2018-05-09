@@ -346,17 +346,22 @@ def terms_and_conditions(request):
 
 def detailRoom(request, room_id):
     room = Room.objects.get(id=room_id)
-    user = room.temporal_owner
-    profile = Profile.objects.get(user=user)
-    profileProperties = get_user_details(profile)
     room_details = get_room_details(room)
     rentRequest = RentRequest.objects.all()
     flat = Flat.objects.get(id=room.belong_to.id)
     rooms = Room.objects.filter(belong_to=flat)
 
+    if room.temporal_owner is None:
+        return render(request, 'room/detail.html',
+                      {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details})
+    else:
+        user = room.temporal_owner
+        profile = Profile.objects.get(user=user)
+        profileProperties = get_user_details(profile)
 
-    return render(request, 'room/detail.html',
-                  {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details, 'userProperties': profileProperties, 'profile':profile})
+        return render(request, 'room/detail.html',
+                      {'room': room, 'rooms': rooms, 'rentRequest': rentRequest, 'roomDetails': room_details,
+                       'userProperties': profileProperties, 'profile': profile})
 
 
 def roomReview(request, room_id):
@@ -474,7 +479,7 @@ def paymentList(request):
     date=timezone.now().month
     list=[]
     pendientes=[]
-    rooms_id=[]
+    rooms=[]
 
 
     for n in contracts:
@@ -484,13 +489,13 @@ def paymentList(request):
                     list.append(pay)
                 else:
                     pendientes.append(n)
-                    rooms_id.append(n.room.id)
+                    rooms.append(n.room)
         else:
             pendientes.append(n)
-            rooms_id.append(n.room.id)
+            rooms.append(n.room)
 
 
-    return render(request, 'payment/list.html', {'paymentList': list,'rooms_id': rooms_id, 'pendientes': pendientes ,'date': date})
+    return render(request, 'payment/list.html', {'paymentList': list,'rooms': rooms, 'pendientes': pendientes ,'date': date})
 
 
 def retur(request):
