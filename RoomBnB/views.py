@@ -341,18 +341,6 @@ def base(request):
     return render(request, 'index.html', {'form': form})
 
 
-def handler404(request):
-    response = render(request, 'errors/404.html')
-    response.status_code = 404
-    return response
-
-
-def handler500(request):
-    response = render(request, 'errors/500.html')
-    response.status_code = 500
-    return response
-
-
 def terms_and_conditions(request):
     return render(request, 'tyc.html')
 
