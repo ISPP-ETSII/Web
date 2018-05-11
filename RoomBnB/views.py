@@ -1,6 +1,7 @@
 import os
 from datetime import timezone
 
+from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse, HttpResponseRedirect
@@ -338,6 +339,18 @@ def base(request):
             return HttpResponseRedirect( "EL pago se a realizado")
     """
     return render(request, 'index.html', {'form': form})
+
+
+def handler404(request):
+    response = render(request, 'errors/404.html')
+    response.status_code = 404
+    return response
+
+
+def handler500(request):
+    response = render(request, 'errors/500.html')
+    response.status_code = 500
+    return response
 
 
 def terms_and_conditions(request):
