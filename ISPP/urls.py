@@ -23,9 +23,6 @@ from django.conf.urls.i18n import i18n_patterns
 from RoomBnB import views
 
 
-handler404 = views.handler404
-handler500 = views.handler500
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
