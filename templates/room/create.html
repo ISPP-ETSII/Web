@@ -5,12 +5,33 @@
 
 {% block content %}
 
-    <form class="pure-form pure-form-stacked" action="{% url 'roomCreate' flatid %}" method="post" enctype="multipart/form-data">
+    <form class="pure-form pure-form-aligned" action="{% url 'roomCreate' flatid %}" method="post" enctype="multipart/form-data">
         <fieldset>
-            <legend>{% trans "Create a room" %}</legend>
+            <legend><h3>{% trans "Create a room" %}</h3></legend>
+            <br>
             {% csrf_token %}
-            {{ form.as_p }}
-            <input class="pure-button pure-button-primary" type="submit" value="{% trans "Create" %}" />
+
+            <div class="pure-control-group">
+                <label for="price">{% trans "Price" %}</label>
+                {{ form.price }}
+                <span class="pure-form-message-inline">{% trans "Required" %}</span>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="description">{% trans "Description" %}</label>
+                {{ form.description }}
+                <span class="pure-form-message-inline">{% trans "Required" %}</span>
+            </div>
+
+            <div class="pure-control-group">
+                <label for="picture">{% trans "Picture" %}</label>
+                {{ form.picture }}
+                <span class="pure-form-message-inline">{% trans "Required" %}</span>
+            </div>
+
+            <div class="pure-controls">
+                <input class="pure-button pure-button-primary" type="submit" value="{% trans "Create" %}" />
+            </div>
         </fieldset>
     </form>
     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}

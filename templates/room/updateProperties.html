@@ -7,16 +7,38 @@
 
     {% if user.is_authenticated %}
 
-        <form class="pure-form pure-form-stacked" action="{% url 'editRoomProperties' room_id %}" method="post">
+        <form class="pure-form pure-form-aligned" action="{% url 'editRoomProperties' room_id %}" method="post">
             <fieldset>
-                <legend>{% trans "Edit room properties" %}</legend>
+                <legend><h3>{% trans "Edit room properties" %}</h3></legend>
+                <br>
                 {% csrf_token %}
 
                 {{ form.room.as_hidden }}
-                {{ form.as_p }}
 
-                <br>
-                <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+                <div class="pure-control-group">
+                    <label for="balcony">{% trans "Balcony" %}</label>
+                    {{ form.balcony }}
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="window">{% trans "Window" %}</label>
+                    {{ form.window }}
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="air_conditioner">{% trans "Air conditioner" %}</label>
+                    {{ form.air_conditioner }}
+                </div>
+
+                <div class="pure-control-group">
+                    <label for="bed">{% trans "Bed" %}</label>
+                    {{ form.bed }}
+                </div>
+
+                <div class="pure-controls">
+                    <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+                </div>
+
             </fieldset>
         </form>
 

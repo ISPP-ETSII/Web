@@ -5,18 +5,48 @@
 
 {% block content %}
 
-    <form class="pure-form pure-form-stacked" action="{% url 'editUserProperties' %}" method="post">
+    <form class="pure-form pure-form-aligned" action="{% url 'editUserProperties' %}" method="post">
         <fieldset>
-            <legend>{% trans "Edit profile properties" %}</legend>
+            <legend><h3>{% trans "Edit profile properties" %}</h3></legend>
+            <br>
             {% csrf_token %}
 
             {{ form.profile.as_hidden }}
 
-            {{ form.as_p }}
+            <div class="pure-control-group">
+                <label for="smoker">{% trans "Smoker" %}</label>
+                {{ form.smoker }}
+            </div>
 
+            <div class="pure-control-group">
+                <label for="pets">{% trans "pets" %}</label>
+                {{ form.pets }}
+            </div>
 
-            <br>
-            <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+            <div class="pure-control-group">
+                <label for="sporty">{% trans "Sporty" %}</label>
+                {{ form.sporty }}
+            </div>
+
+            <div class="pure-control-group">
+                <label for="gamer">{% trans "Gamer" %}</label>
+                {{ form.gamer }}
+            </div>
+
+            <div class="pure-control-group">
+                <label for="sociable">{% trans "Sociable" %}</label>
+                {{ form.sociable }}
+            </div>
+
+            <div class="pure-control-group">
+                <label for="degree">{% trans "Degree" %}</label>
+                {{ form.degree }}
+            </div>
+
+            <div class="pure-controls">
+                <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+            </div>
+
         </fieldset>
     </form>
 

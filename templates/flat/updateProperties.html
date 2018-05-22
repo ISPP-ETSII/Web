@@ -7,20 +7,27 @@
 
     {% if user.is_authenticated %}
 
-        <form class="pure-form pure-form-stacked" action="{% url 'editFlatProperties' flat_id %}" method="post">
+        <form class="pure-form pure-form-aligned" action="{% url 'editFlatProperties' flat_id %}" method="post">
             <fieldset>
-                <legend>{% trans "Edit flat properties" %}</legend>
+                <legend><h3>{% trans "Edit flat properties" %}</h3></legend>
+                <br>
                 {% csrf_token %}
 
                 {{ form.flat.as_hidden }}
 
-                {{ form.as_p }}
+                <div class="pure-control-group">
+                    <label for="elevator">{% trans "Elevator" %}</label>
+                    {{ form.elevator }}
+                </div>
 
+                <div class="pure-control-group">
+                    <label for="washdisher">{% trans "Dishwasher" %}</label>
+                    {{ form.washdisher }}
+                </div>
 
-
-
-                <br>
-                <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+                <div class="pure-controls">
+                    <input class="pure-button pure-button-primary" type="submit" value="{% trans "Update" %}" />
+                </div>
             </fieldset>
         </form>
 
