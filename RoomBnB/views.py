@@ -174,20 +174,23 @@ def editFlatProperties(request,flat_id):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = FlatPropertiesForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
+        flat = Flat.objects.get(id=flat_id)
 
-            flat = Flat.objects.get(id=flat_id)
-            flatProperties = FlatProperties.objects.get(flat=flat)
-
-
-            flatProperties.washdisher = form.cleaned_data['washdisher']
-            flatProperties.elevator = form.cleaned_data['elevator']
-            flatProperties.save()
+        if flat.owner.user == request.user:
+            # check whether it's valid:
+            if form.is_valid():
+                flatProperties = FlatProperties.objects.get(flat=flat)
 
 
+                flatProperties.washdisher = form.cleaned_data['washdisher']
+                flatProperties.elevator = form.cleaned_data['elevator']
+                flatProperties.save()
 
-            return HttpResponseRedirect('/flats/'+ str(flat_id))
+
+
+                return HttpResponseRedirect('/flats/'+ str(flat_id))
+        else:
+            return HttpResponseRedirect('/error')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -204,17 +207,20 @@ def roomCreate(request, flat_id):
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = RoomForm(request.POST, request.FILES)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            flat = Flat.objects.get(id=flat_id)
-            room = Room(price=form.cleaned_data.get("price"),
-                        description=form.cleaned_data.get("description"),
-                        picture=form.cleaned_data['picture'],
-                        belong_to=flat)
-            room.save()
+        flat = Flat.objects.get(id=flat_id)
+        if flat.owner.user == request.user:
+            # check whether it's valid:
+            if form.is_valid():
+                # process the data in form.cleaned_data as required
+                room = Room(price=form.cleaned_data.get("price"),
+                            description=form.cleaned_data.get("description"),
+                            picture=form.cleaned_data['picture'],
+                            belong_to=flat)
+                room.save()
 
-            return HttpResponseRedirect('/rooms/' + str(room.id))
+                return HttpResponseRedirect('/rooms/' + str(room.id))
+        else:
+            return HttpResponseRedirect('/error')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -230,14 +236,17 @@ def editRoomProperties(request,room_id):
 
     if request.method == 'POST':
         form = RoomPropertiesForm(request.POST)
-        if form.is_valid():
-            roomProperties.balcony = form.cleaned_data.get('balcony')
-            roomProperties.window = form.cleaned_data.get('window')
-            roomProperties.air_conditioner = form.cleaned_data.get('air_conditioner')
-            roomProperties.bed = form.cleaned_data.get('bed')
-            roomProperties.save()
+        if room.belong_to.owner.user == request.user:
+            if form.is_valid():
+                roomProperties.balcony = form.cleaned_data.get('balcony')
+                roomProperties.window = form.cleaned_data.get('window')
+                roomProperties.air_conditioner = form.cleaned_data.get('air_conditioner')
+                roomProperties.bed = form.cleaned_data.get('bed')
+                roomProperties.save()
 
-            return HttpResponseRedirect('/rooms/'+ str(room_id))
+                return HttpResponseRedirect('/rooms/'+ str(room_id))
+        else:
+            return HttpResponseRedirect('/error')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -343,6 +352,10 @@ def base(request):
 
 def terms_and_conditions(request):
     return render(request, 'tyc.html')
+
+
+def not_allowed(request):
+    return render(request, 'error.html')
 
 
 def detailRoom(request, room_id):

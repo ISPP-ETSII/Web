@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-22 16:31+0000\n"
+"POT-Creation-Date: 2018-05-22 16:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -232,6 +232,10 @@ msgstr "¿Estás seguro de que quieres firmar el contrato?"
 #: templates/contract/create.html:62 templates/request/list.html:52
 msgid "Sign"
 msgstr "Firmar"
+
+#: templates/error.html:8
+msgid "You are not allowed to do that. Nice try."
+msgstr "No puedes realizar esa acción. Buen intento."
 
 #: templates/flat/create.html:4 templates/flat/create.html:12
 msgid "Create a flat"
