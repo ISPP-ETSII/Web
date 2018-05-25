@@ -170,14 +170,14 @@ def flatCreate(request):
 
 @login_required
 def editFlatProperties(request,flat_id):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = FlatPropertiesForm(request.POST)
-        flat = Flat.objects.get(id=flat_id)
+    flat = Flat.objects.get(id=flat_id)
+    is_allowed = flat.owner.user == request.user
 
-        if flat.owner.user == request.user:
-            # check whether it's valid:
+    if is_allowed:
+
+        if request.method == 'POST':
+            form = FlatPropertiesForm(request.POST)
+
             if form.is_valid():
                 flatProperties = FlatProperties.objects.get(flat=flat)
 
@@ -186,32 +186,32 @@ def editFlatProperties(request,flat_id):
                 flatProperties.elevator = form.cleaned_data['elevator']
                 flatProperties.save()
 
-
-
                 return HttpResponseRedirect('/flats/'+ str(flat_id))
+
         else:
-            return HttpResponseRedirect('/error')
+            flat = Flat.objects.get(id=flat_id)
+            flatProperties = FlatProperties.objects.get(flat=flat)
+            form = FlatPropertiesForm(instance=flatProperties)
 
-    # if a GET (or any other method) we'll create a blank form
+        return render(request, 'flat/updateProperties.html', {'form': form,'flat_id':flat_id})
+
     else:
-        flat = Flat.objects.get(id=flat_id)
-        flatProperties = FlatProperties.objects.get(flat=flat)
-        form = FlatPropertiesForm(instance=flatProperties)
-
-    return render(request, 'flat/updateProperties.html', {'form': form,'flat_id':flat_id})
+        return HttpResponseRedirect('/error')
 
 
 @login_required
 def roomCreate(request, flat_id):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = RoomForm(request.POST, request.FILES)
-        flat = Flat.objects.get(id=flat_id)
-        if flat.owner.user == request.user:
-            # check whether it's valid:
+    flat = Flat.objects.get(id=flat_id)
+    is_allowed = flat.owner.user == request.user
+
+    if is_allowed:
+
+        if request.method == 'POST':
+
+            form = RoomForm(request.POST, request.FILES)
+            flat = Flat.objects.get(id=flat_id)
+
             if form.is_valid():
-                # process the data in form.cleaned_data as required
                 room = Room(price=form.cleaned_data.get("price"),
                             description=form.cleaned_data.get("description"),
                             picture=form.cleaned_data['picture'],
@@ -219,24 +219,27 @@ def roomCreate(request, flat_id):
                 room.save()
 
                 return HttpResponseRedirect('/rooms/' + str(room.id))
+
         else:
-            return HttpResponseRedirect('/error')
+            form = RoomForm()
 
-    # if a GET (or any other method) we'll create a blank form
+        return render(request, 'room/create.html', {'form': form, 'flatid': flat_id})
+
     else:
-        form = RoomForm()
-
-    return render(request, 'room/create.html', {'form': form, 'flatid': flat_id})
+        return HttpResponseRedirect('/error')
 
 
 @login_required
 def editRoomProperties(request,room_id):
     room = Room.objects.get(id=room_id)
     roomProperties = RoomProperties.objects.get(room=room)
+    is_allowed = room.belong_to.owner.user == request.user
 
-    if request.method == 'POST':
-        form = RoomPropertiesForm(request.POST)
-        if room.belong_to.owner.user == request.user:
+    if is_allowed:
+
+        if request.method == 'POST':
+            form = RoomPropertiesForm(request.POST)
+
             if form.is_valid():
                 roomProperties.balcony = form.cleaned_data.get('balcony')
                 roomProperties.window = form.cleaned_data.get('window')
@@ -245,14 +248,14 @@ def editRoomProperties(request,room_id):
                 roomProperties.save()
 
                 return HttpResponseRedirect('/rooms/'+ str(room_id))
+
         else:
-            return HttpResponseRedirect('/error')
+            form = RoomPropertiesForm(instance=roomProperties)
 
-    # if a GET (or any other method) we'll create a blank form
+        return render(request, 'room/updateProperties.html', {'form': form,'room_id':room_id})
+
     else:
-        form = RoomPropertiesForm(instance=roomProperties)
-
-    return render(request, 'room/updateProperties.html', {'form': form,'room_id':room_id})
+        return HttpResponseRedirect('/error')
 
 
 @login_required
@@ -314,12 +317,15 @@ def showUserProperties(request, user_id):
 
 @login_required
 def flatDelete(request, flat_id):
-    flatList = Flat.objects.all()
-    context = {'flatList': flatList}
-    flat = Flat.objects.get(id=flat_id)
-    Flat.delete(flat)
+    flat_to_delete = Flat.objects.get(id=flat_id)
+    is_allowed = flat_to_delete.owner.user == request.user
 
-    return render(request, 'flat/list.html', context)
+    if is_allowed:
+        flat_to_delete.delete()
+
+        return render(request, 'flat/list.html', {'flatList': Flat.objects.all()})
+    else:
+        return HttpResponseRedirect('/error')
 
 
 @login_required
