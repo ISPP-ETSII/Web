@@ -438,34 +438,50 @@ def writeReviewUser(request, user_id, flat_id):
 
 @login_required
 def writeReviewRoom(request, room_id):
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            room = Room.objects.get(id=room_id)
-            rev = RoomReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
-                             rating=form.cleaned_data.get("rating"), room=room)
-            rev.save()
-            return HttpResponseRedirect('/roomReview/' + str(room_id))
-    else:
-        form = ReviewForm()
+    room = Room.objects.get(id=room_id)
+    is_allowed = room.temporal_owner == request.user
 
-    return render(request, 'room/writeReview.html', {'form': form, 'roomid': room_id})
+    if is_allowed:
+
+        if request.method == 'POST':
+
+            form = ReviewForm(request.POST)
+            if form.is_valid():
+                rev = RoomReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
+                                 rating=form.cleaned_data.get("rating"), room=room)
+                rev.save()
+                return HttpResponseRedirect('/roomReview/' + str(room_id))
+        else:
+            form = ReviewForm()
+
+        return render(request, 'room/writeReview.html', {'form': form, 'roomid': room_id})
+
+    else:
+        return HttpResponseRedirect('/error')
 
 
 @login_required
 def writeReviewFlat(request, flat_id):
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            flat = Flat.objects.get(id=flat_id)
-            rev = FlatReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
-                             rating=form.cleaned_data.get("rating"), flat=flat)
-            rev.save()
-            return HttpResponseRedirect('/flatReview/' + str(flat_id))
-    else:
-        form = ReviewForm()
+    flat = Flat.objects.get(id=flat_id)
+    is_allowed = len(Room.objects.all().filter(belong_to=flat, temporal_owner=request.user)) != 0
 
-    return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
+    if is_allowed:
+
+        if request.method == 'POST':
+            form = ReviewForm(request.POST)
+
+            if form.is_valid():
+                rev = FlatReview(title=form.cleaned_data.get("title"), description=form.cleaned_data.get("description"),
+                                 rating=form.cleaned_data.get("rating"), flat=flat)
+                rev.save()
+                return HttpResponseRedirect('/flatReview/' + str(flat_id))
+        else:
+            form = ReviewForm()
+
+        return render(request, 'flat/writeReview.html', {'form': form, 'flatid': flat_id})
+
+    else:
+        return HttpResponseRedirect('/error')
 
 
 @login_required
