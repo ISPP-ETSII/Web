@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-03 19:16+0000\n"
+"POT-Creation-Date: 2018-05-22 16:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,29 +27,30 @@ msgid "Spanish"
 msgstr "Español"
 
 #: RoomBnB/forms.py:14 RoomBnB/forms.py:31 RoomBnB/forms.py:41
-#: RoomBnB/forms.py:72 templates/flat/review.html:11
-#: templates/flat/writeReview.html:15 templates/room/review.html:11
-#: templates/room/writeReview.html:14 templates/user/review.html:11
-#: templates/user/writeReview.html:15
+#: RoomBnB/forms.py:72 templates/flat/create.html:17
+#: templates/flat/review.html:11 templates/flat/writeReview.html:17
+#: templates/room/review.html:11 templates/room/writeReview.html:17
+#: templates/user/review.html:11 templates/user/writeReview.html:17
 msgid "Title"
 msgstr "Título"
 
-#: RoomBnB/forms.py:15
+#: RoomBnB/forms.py:15 templates/flat/create.html:23
 msgid "Address"
 msgstr "Dirección"
 
 #: RoomBnB/forms.py:16 RoomBnB/forms.py:29 RoomBnB/forms.py:73
-#: templates/flat/review.html:13 templates/flat/writeReview.html:19
-#: templates/room/review.html:13 templates/room/writeReview.html:18
-#: templates/user/review.html:13 templates/user/writeReview.html:19
+#: templates/flat/create.html:29 templates/flat/review.html:13
+#: templates/flat/writeReview.html:23 templates/room/create.html:21
+#: templates/room/review.html:13 templates/room/writeReview.html:23
+#: templates/user/review.html:13 templates/user/writeReview.html:23
 msgid "Description"
 msgstr "Descripción"
 
-#: RoomBnB/forms.py:17 templates/room/detail.html:96
+#: RoomBnB/forms.py:17 templates/room/detail.html:102
 msgid "Image"
 msgstr "Imagen"
 
-#: RoomBnB/forms.py:30
+#: RoomBnB/forms.py:30 templates/room/create.html:15
 msgid "Price"
 msgstr "Precio"
 
@@ -66,34 +67,34 @@ msgid "Email"
 msgstr "Correo electrónico"
 
 #: RoomBnB/forms.py:74 templates/flat/review.html:14
-#: templates/flat/writeReview.html:23 templates/room/review.html:14
-#: templates/room/writeReview.html:22 templates/user/review.html:14
-#: templates/user/writeReview.html:23
+#: templates/flat/writeReview.html:29 templates/room/review.html:14
+#: templates/room/writeReview.html:29 templates/user/review.html:14
+#: templates/user/writeReview.html:29
 msgid "Rating"
 msgstr "Calificación"
 
 #: RoomBnB/forms.py:91 RoomBnB/models.py:49 templates/flat/detail.html:15
-#: templates/flat/detail.html:17
+#: templates/flat/detail.html:17 templates/flat/updateProperties.html:19
 msgid "Elevator"
 msgstr "Ascensor"
 
 #: RoomBnB/forms.py:92 RoomBnB/models.py:50 templates/flat/detail.html:21
-#: templates/flat/detail.html:23
+#: templates/flat/detail.html:23 templates/flat/updateProperties.html:24
 msgid "Dishwasher"
 msgstr "Lavavajillas"
 
-#: RoomBnB/forms.py:93 RoomBnB/models.py:70 templates/room/detail.html:19
-#: templates/room/detail.html:21
+#: RoomBnB/forms.py:93 RoomBnB/models.py:70 templates/room/detail.html:25
+#: templates/room/detail.html:27 templates/room/updateProperties.html:19
 msgid "Balcony"
 msgstr "Balcón"
 
-#: RoomBnB/forms.py:94 RoomBnB/models.py:71 templates/room/detail.html:25
-#: templates/room/detail.html:27
+#: RoomBnB/forms.py:94 RoomBnB/models.py:71 templates/room/detail.html:31
+#: templates/room/detail.html:33 templates/room/updateProperties.html:24
 msgid "Window"
 msgstr "Ventana"
 
-#: RoomBnB/forms.py:95 RoomBnB/models.py:72 templates/room/detail.html:31
-#: templates/room/detail.html:33
+#: RoomBnB/forms.py:95 RoomBnB/models.py:72 templates/room/detail.html:37
+#: templates/room/detail.html:39 templates/room/updateProperties.html:29
 msgid "Air conditioner"
 msgstr "Aire acondicionado"
 
@@ -122,32 +123,34 @@ msgid "Architecture"
 msgstr "Arquitectura"
 
 #: RoomBnB/models.py:31 templates/profile/detail.html:14
-#: templates/profile/detail.html:16 templates/room/detail.html:65
+#: templates/profile/detail.html:16 templates/profile/update.html:17
+#: templates/room/detail.html:71
 msgid "Smoker"
 msgstr "Fumador"
 
 #: RoomBnB/models.py:32 templates/profile/detail.html:20
-#: templates/profile/detail.html:22 templates/room/detail.html:83
+#: templates/profile/detail.html:22 templates/profile/update.html:22
+#: templates/room/detail.html:89
 msgid "Pets"
 msgstr "Mascotas"
 
 #: RoomBnB/models.py:33 templates/profile/detail.html:25
-#: templates/room/detail.html:100
+#: templates/profile/update.html:27 templates/room/detail.html:106
 msgid "Sporty"
 msgstr "Deportista"
 
 #: RoomBnB/models.py:34 templates/profile/detail.html:26
-#: templates/room/detail.html:111
+#: templates/profile/update.html:32 templates/room/detail.html:117
 msgid "Gamer"
 msgstr "Friki"
 
 #: RoomBnB/models.py:35 templates/profile/detail.html:27
-#: templates/room/detail.html:122
+#: templates/profile/update.html:37 templates/room/detail.html:126
 msgid "Sociable"
 msgstr "Sociable"
 
 #: RoomBnB/models.py:36 templates/profile/detail.html:28
-#: templates/room/detail.html:133
+#: templates/profile/update.html:42 templates/room/detail.html:135
 msgid "Degree"
 msgstr "Universidad"
 
@@ -167,9 +170,14 @@ msgstr "Sofá"
 msgid "None"
 msgstr "Ninguna"
 
-#: RoomBnB/models.py:73 templates/room/detail.html:36
+#: RoomBnB/models.py:73 templates/room/detail.html:42
+#: templates/room/updateProperties.html:34
 msgid "Bed"
 msgstr "Cama"
+
+#: templates/404.html:8 templates/500.html:8
+msgid "Oops, page not found in the server"
+msgstr "Ups, la página no se ha encontrado"
 
 #: templates/base.html:37 templates/base_home.html:37
 msgid "Home"
@@ -225,19 +233,38 @@ msgstr "¿Estás seguro de que quieres firmar el contrato?"
 msgid "Sign"
 msgstr "Firmar"
 
+#: templates/error.html:8
+msgid "You are not allowed to do that. Nice try."
+msgstr "No puedes realizar esa acción. Buen intento."
+
 #: templates/flat/create.html:4 templates/flat/create.html:12
 msgid "Create a flat"
 msgstr "Crear un piso"
 
-#: templates/flat/create.html:27 templates/flat/writeReview.html:33
-#: templates/profile/create.html:20 templates/room/create.html:13
-#: templates/room/writeReview.html:31 templates/user/writeReview.html:33
+#: templates/flat/create.html:19 templates/flat/create.html:25
+#: templates/flat/create.html:31 templates/flat/create.html:37
+#: templates/flat/writeReview.html:19 templates/flat/writeReview.html:25
+#: templates/flat/writeReview.html:37 templates/room/create.html:17
+#: templates/room/create.html:23 templates/room/create.html:29
+#: templates/room/writeReview.html:19 templates/room/writeReview.html:25
+#: templates/room/writeReview.html:37 templates/user/writeReview.html:19
+#: templates/user/writeReview.html:25 templates/user/writeReview.html:37
+msgid "Required"
+msgstr "Obligatorio"
+
+#: templates/flat/create.html:35 templates/room/create.html:27
+msgid "Picture"
+msgstr "Imagen"
+
+#: templates/flat/create.html:41 templates/flat/writeReview.html:41
+#: templates/profile/create.html:20 templates/room/create.html:33
+#: templates/room/writeReview.html:41 templates/user/writeReview.html:41
 msgid "Create"
 msgstr "Crear"
 
-#: templates/flat/create.html:33 templates/flat/updateProperties.html:29
-#: templates/profile/create.html:26 templates/room/updateProperties.html:25
-#: templates/room/writeReview.html:37
+#: templates/flat/create.html:49 templates/flat/updateProperties.html:36
+#: templates/profile/create.html:26 templates/room/updateProperties.html:47
+#: templates/room/writeReview.html:48
 msgid "You are not logged in."
 msgstr "No estás logueado"
 
@@ -246,7 +273,7 @@ msgid "Flat details"
 msgstr "Detalles del piso"
 
 #: templates/flat/detail.html:11 templates/profile/detail.html:10
-#: templates/room/detail.html:15 templates/room/detail.html:55
+#: templates/room/detail.html:21 templates/room/detail.html:61
 msgid "Details"
 msgstr "Detalles"
 
@@ -287,7 +314,7 @@ msgstr "Opiniones del piso"
 msgid "Owner reviews"
 msgstr "Opiniones del propietario"
 
-#: templates/flat/detail.html:118 templates/room/detail.html:148
+#: templates/flat/detail.html:118 templates/room/detail.html:150
 msgid "Update properties"
 msgstr "Actualizar propiedades"
 
@@ -318,8 +345,8 @@ msgstr "Escribir una opinión"
 msgid "Edit flat properties"
 msgstr "Editar propiedades de piso"
 
-#: templates/flat/updateProperties.html:23 templates/profile/update.html:19
-#: templates/room/updateProperties.html:19
+#: templates/flat/updateProperties.html:29 templates/profile/update.html:47
+#: templates/room/updateProperties.html:39
 msgid "Update"
 msgstr "Actualizar"
 
@@ -360,16 +387,16 @@ msgstr "No se han realizado pagos."
 msgid "Pending payment"
 msgstr "Pagos pendientes"
 
-#: templates/payment/list.html:43
+#: templates/payment/list.html:46
 msgid "Contract of the room"
 msgstr "Contrato de la habitación"
 
-#: templates/payment/list.html:43 templates/payment/list.html:62
-#: templates/room/detail.html:152
+#: templates/payment/list.html:47 templates/payment/list.html:69
+#: templates/room/detail.html:154
 msgid "Make payment"
 msgstr "Realizar pago"
 
-#: templates/payment/list.html:70
+#: templates/payment/list.html:77
 msgid "No pending payments are available."
 msgstr "No hay pagos pendientes."
 
@@ -442,23 +469,23 @@ msgstr "No hay contratos pendientes."
 msgid "Create a room"
 msgstr "Crear una habitación"
 
-#: templates/room/detail.html:47
+#: templates/room/detail.html:53
 msgid "Tenant"
 msgstr "Inquilino"
 
-#: templates/room/detail.html:53
+#: templates/room/detail.html:59
 msgid "Personal information"
 msgstr "Información personal"
 
-#: templates/room/detail.html:61
+#: templates/room/detail.html:67
 msgid "User"
 msgstr "Usuario"
 
-#: templates/room/detail.html:79
+#: templates/room/detail.html:85
 msgid "Name"
 msgstr "Nombre"
 
-#: templates/room/detail.html:145 templates/room/review.html:4
+#: templates/room/detail.html:147 templates/room/review.html:4
 msgid "Room reviews"
 msgstr "Opiniones de la habitación"
 

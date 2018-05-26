@@ -7,24 +7,40 @@
 
     {% if user.is_authenticated %}
 
-        <form class="pure-form pure-form-stacked" action="{% url 'flatCreate' %}" method="post" enctype="multipart/form-data">
+        <form class="pure-form pure-form-aligned" action="{% url 'flatCreate' %}" method="post" enctype="multipart/form-data">
             <fieldset>
-                <legend>{% trans "Create a flat" %}</legend>
+                <legend><h3>{% trans "Create a flat" %}</h3></legend>
+                <br>
                 {% csrf_token %}
-                {{ form.as_p }}
 
-                <!--<label for="title">Title: </label>
-                <input placeholder="An awesome flat" id="title" type="text" name="title" value="{{ title }}">
-                <br>
+                <div class="pure-control-group">
+                    <label for="title">{% trans "Title" %}</label>
+                    {{ form.title }}
+                    <span class="pure-form-message-inline">{% trans "Required" %}</span>
+                </div>
 
-                <label for="address">Address: </label>
-                <input placeholder="Street" id="address" type="text" name="address" value="{{ address }}">
+                <div class="pure-control-group">
+                    <label for="address">{% trans "Address" %}</label>
+                    {{ form.address }}
+                    <span class="pure-form-message-inline">{% trans "Required" %}</span>
+                </div>
 
-                <br>
-                <label for="description">Description: </label>
-                <input placeholder="Sample description" id="description" type="text" name="description" value="{{ description }}">-->
+                <div class="pure-control-group">
+                    <label for="description">{% trans "Description" %}</label>
+                    {{ form.description }}
+                    <span class="pure-form-message-inline">{% trans "Required" %}</span>
+                </div>
 
-                <input class="pure-button pure-button-primary" type="submit" value="{% trans "Create" %}" />
+                <div class="pure-control-group">
+                    <label for="picture">{% trans "Picture" %}</label>
+                    {{ form.picture }}
+                    <span class="pure-form-message-inline">{% trans "Required" %}</span>
+                </div>
+
+                <div class="pure-controls">
+                    <input class="pure-button pure-button-primary" type="submit" value="{% trans "Create" %}" />
+                </div>
+
             </fieldset>
         </form>
 
